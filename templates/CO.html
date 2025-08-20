@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+    <meta name="author" content="Fundsroom" />
+    <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+    <!--! BEGIN: Apps Title-->
+    <title>Fundsroom HR || CO</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/FundsAuditLogo.png" />
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css" />
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <!--! END: Vendors CSS-->
+    <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css" />
+    <!--! END: Custom CSS-->
+    <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
+    <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
+    <!--[if lt IE 9]>
+			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <nav class="nxl-navigation">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand">
+                    <img src="./../assets/images/FundsAuditText.png" alt="" class="logo logo-lg" />
+                    <img src="./../assets/images/FundsAuditLogo.png" alt="" class="logo logo-sm" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="nxl-navbar">
+                    <li class="nxl-item nxl-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="CO.html">CO</a></li>
+                            <!-- <li class="nxl-item"><a class="nxl-link" href="business-analytics.html">HR Analysis</a></li> -->
+                        </ul>
+                    </li>
+                    <!-- Admin Page Link (Hidden by Default) -->
+                    <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-settings"></i></span>
+                            <span class="nxl-mtext">Admin Page</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="admin.html">Dashboard Analysis - Edit</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="analysis-edit.html">HR Analysis - Edit</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="feather-briefcase fs-4 text-dark"></i>
+                        <h6 class="mt-4 text-dark fw-bolder">Welcome to FundsRoom</h6>
+                        <p class="fs-11 my-3 text-dark">
+                            FundsRoom is your trusted financial partner, offering seamless solutions for managing
+                            investments, loans, and business funds with ease.
+                        </p>
+                        <a href="https://www.fundsroom.com/" class="btn btn-primary text-dark w-100"
+                            style="margin-bottom: 10%;">Fundsroom</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&hl=en_IN"
+                            class="btn btn-success text-light w-100">Download FundsAudit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <header class="nxl-header">
+        <div class="header-wrapper">
+            <!--! [Start] Header Left !-->
+            <div class="header-left d-flex align-items-center gap-4">
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
+                    <div class="hamburger hamburger--arrowturn">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </a>
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <!--! [Start] nxl-navigation-toggle !-->
+                <div class="nxl-navigation-toggle">
+                    <a href="javascript:void(0);" id="menu-mini-button">
+                        <i class="feather-align-left"></i>
+                    </a>
+                    <a href="javascript:void(0);" id="menu-expend-button" style="display: none">
+                        <i class="feather-arrow-right"></i>
+                    </a>
+                </div>
+                <!--! [End] nxl-navigation-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu-toggle !-->
+                <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                    <a href="javascript:void(0);" id="nxl-lavel-mega-menu-open">
+                        <i class="feather-align-left"></i>
+                    </a>
+                </div>
+                <!--! [End] nxl-lavel-mega-menu-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu !-->
+                <div class="nxl-drp-link nxl-lavel-mega-menu">
+                    <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                        <a href="javascript:void(0)" id="nxl-lavel-mega-menu-hide">
+                            <i class="feather-arrow-left me-2"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+                    <!--! [Start] nxl-lavel-mega-menu-wrapper !-->
+                    <div class="nxl-lavel-mega-menu-wrapper d-flex gap-3">
+                        <!--! [Start] nxl-h-item nxl-mega-menu !-->
+                        <div class="dropdown nxl-h-item nxl-mega-menu">
+                            <!-- <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="dropdown" data-bs-auto-close="outside"> Mega Menu </a> -->
+                            <div class="dropdown-menu nxl-h-dropdown" id="mega-menu-dropdown">
+                                <div class="d-lg-flex align-items-start">
+                                </div>
+                            </div>
+                        </div>
+                        <!--! [End] nxl-h-item nxl-mega-menu !-->
+                    </div>
+                    <!--! [End] nxl-lavel-mega-menu-wrapper !-->
+                </div>
+                <!--! [End] nxl-lavel-mega-menu !-->
+            </div>
+            <!--! [End] Header Left !-->
+            <!--! [Start] Header Right !-->
+            <div class="header-right ms-auto">
+                <div class="d-flex align-items-center">
+
+                    <!-- Full Screen Switcher -->
+                    <div class="nxl-h-item d-none d-sm-flex">
+                        <div class="full-screen-switcher">
+                            <a href="javascript:void(0);" class="nxl-head-link me-0"
+                                onclick="$('body').fullScreenHelper('toggle');">
+                                <i class="feather-maximize maximize"></i>
+                                <i class="feather-minimize minimize"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dark/Light Theme Toggle -->
+                    <div class="nxl-h-item dark-light-theme">
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
+                            <i class="feather-moon"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button" style="display: none">
+                            <i class="feather-sun"></i>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="dropdown nxl-h-item">
+                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
+                            data-bs-auto-close="outside">
+                            <div class="avatar-text avatar-lg bg-gray-200">
+                                <i class="feather-user"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
+                            <div class="dropdown-header">
+
+                                <section id="user-header">
+                                    <div id="user-section" class="user-dropdown"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--! [End] Header Right !-->
+        </div>
+    </header>
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <!-- <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard</h5>
+                    </div> -->
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="CO.html">Home</a></li>
+                        <li class="breadcrumb-item">CO</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <div class="d-flex d-md-none">
+                            <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                                <i class="feather-arrow-left me-2"></i>
+                                <span>Back</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="d-md-none d-flex align-items-center">
+                        <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                            <i class="feather-align-right fs-20"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content">
+                <div class="row">
+                    <!-- [Latest Leads] start -->
+                    <div class="col-12">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">User Status tracking</h5>
+                                </div>
+                                <div class="card-header-action">
+                                    <!-- <div data-bs-toggle="tooltip" title="Delete">
+                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-danger" data-bs-toggle="remove"> </a>
+                                        </div> -->
+                                    <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            data-bs-toggle="refresh"> </a>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                            data-bs-toggle="expand"> </a>
+                                    </div>
+                                    <div class="search-bar">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Search..."
+                                            oninput="filterTable()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0" id="leadsTable">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th scope="row">SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator name</th>
+                                                <th>Mobile number</th>
+                                                <th>Email</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Rows will be dynamically populated here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination">
+                                        <!-- Pagination links will be dynamically populated here -->
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Add this button at the top of your page -->
+                    <!-- <div class="text-end mb-3">
+                        <button class="btn btn-primary" onclick="printPage()">
+                            <i class="bi bi-printer"></i> Print Page
+                        </button>
+                    </div> -->
+
+                    <!-- Metric Cards Section -->
+                    <!-- <div class="row">
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">Total Inquiry</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="totalInquiry">0</span>K</h3>
+                                        <div class="hstack gap-2 fs-11" id="totalInquiryTrend">
+                                            <i class="feather-arrow-up-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">Performance</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="performance">0</span>%</h3>
+                                        <div class="hstack gap-2 fs-11" id="performanceTrend">
+                                            <i class="feather-arrow-down-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">Escalations</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="escalations">0</span></h3>
+                                        <div class="hstack gap-2 fs-11" id="escalationsTrend">
+                                            <i class="feather-arrow-up-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">SLA Compliant</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="slaCompliant">0</span></h3>
+                                        <div class="hstack gap-2 fs-11" id="slaCompliantTrend">
+                                            <i class="feather-arrow-up-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">Avg. Time (H)</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="avgTime">0</span></h3>
+                                        <div class="hstack gap-2 fs-11" id="avgTimeTrend">
+                                            <i class="feather-arrow-down-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-lg-4 col-md-6">
+                            <div class="card stretch stretch-full">
+                                <div class="card-body">
+                                    <div class="fs-12 fw-medium text-muted mb-3">Avg. Fullfilment</div>
+                                    <div class="hstack justify-content-between lh-base">
+                                        <h3><span class="counter" id="avgFulfillment">0</span>%</h3>
+                                        <div class="hstack gap-2 fs-11" id="avgFulfillmentTrend">
+                                            <i class="feather-arrow-up-circle fs-12"></i>
+                                            <span>0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- [Latest Leads] start -->
+                    <!-- <div class="col-8 flex-fill">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">Users data</h5>
+                                </div>
+                                <div class="card-header-action">
+                                    <div class="card-header-btn">
+                                        <div data-bs-toggle="tooltip" title="Delete">
+                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-danger"
+                                                data-bs-toggle="remove"> </a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Refresh">
+                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                                data-bs-toggle="refresh"> </a>
+                                        </div>
+                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                                data-bs-toggle="expand"> </a>
+                                        </div>
+                                        <div class="search-bar">
+                                            <input type="text" id="searchInput" class="form-control"
+                                                placeholder="Search..." oninput="filterTable()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0" id="leadsTable">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th scope="row">User ID</th>
+                                                <th>User Type</th>
+                                                <th>Created on</th>
+                                                <th>Trial Start</th>
+                                                <th>Trial End</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination">
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Calendar Component -->
+                    <!-- <div class="col-4 flex-fill calendar-container">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <button id="prevMonth">&lt;</button>
+                                        <h2 id="currentMonthYear">March 2025</h2>
+                                        <button id="nextMonth">&gt;</button>
+                                    </div>
+                                    <div class="calendar-grid">
+                                        <div class="calendar-weekdays">
+                                            <div>MON</div>
+                                            <div>TUE</div>
+                                            <div>WED</div>
+                                            <div>THU</div>
+                                            <div>FRI</div>
+                                            <div>SAT</div>
+                                            <div>SUN</div>
+                                        </div>
+                                        <div class="calendar-days" id="calendarDays"></div>
+                                    </div>
+                                </div>
+                                <div id="errorMessage" class="text-danger mt-2" style="display: none;">
+                                    Failed to fetch data. Please try again.
+                                </div>
+                                <div class="selected-range mt-3">
+                                    <strong>Selected:</strong>
+                                    <span id="selectedRange"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- [Project Calendar] end -->
+
+                    <!-- Print-Specific CSS -->
+                    <style>
+                        @media print {
+
+                            /* Hide unnecessary buttons, settings, and navigation */
+                            .btn,
+                            .card-header-action,
+                            .card-header-btn,
+                            .dropdown,
+                            .pagination,
+                            .settings-button,
+                            .sidebar,
+                            .navbar,
+                            .footer {
+                                display: none !important;
+                            }
+
+                            /* Ensure cards and tables print properly */
+                            .card {
+                                border: 1px solid #ddd !important;
+                                box-shadow: none !important;
+                                background-color: #fff !important;
+                                padding: 15px !important;
+                                page-break-inside: avoid !important;
+                                margin-bottom: 15px !important;
+                            }
+
+                            .calendar-container {
+                                display: flex !important;
+                                justify-content: center !important;
+                                align-items: center !important;
+                                text-align: center !important;
+                                width: 100% !important;
+                                margin: 0 auto !important;
+                                padding: 10px !important;
+                            }
+
+                            .calendar {
+                                width: auto !important;
+                                max-width: 100% !important;
+                                border: 1px solid #000 !important;
+                                background-color: #fff !important;
+                                padding: 10px !important;
+                                margin: auto !important;
+                                display: inline-block !important;
+                            }
+
+                            .calendar th,
+                            .calendar td {
+                                border: 1px solid #000 !important;
+                                padding: 6px !important;
+                                text-align: center !important;
+                                font-size: 12px !important;
+                            }
+
+                            /* Prevents the calendar from breaking across pages */
+                            .calendar-container,
+                            .calendar {
+                                page-break-inside: avoid !important;
+                            }
+
+                            /* Fix layout for print */
+                            body {
+                                -webkit-print-color-adjust: exact !important;
+                                print-color-adjust: exact !important;
+                            }
+
+                            /* Improve table formatting */
+                            .table {
+                                width: 100% !important;
+                                border-collapse: collapse !important;
+                            }
+
+                            .table th,
+                            .table td {
+                                border: 1px solid #000 !important;
+                                padding: 8px !important;
+                                background-color: #fff !important;
+                                color: #000 !important;
+                            }
+
+                            /* Improve progress bar visibility */
+                            .progress {
+                                border: 1px solid #000 !important;
+                                background-color: #eee !important;
+                            }
+
+                            .progress-bar {
+                                background-color: #000 !important;
+                                color: #fff !important;
+                            }
+
+                            /* General styles */
+                            body {
+                                color: #000 !important;
+                                background-color: #fff !important;
+                                font-size: 14px !important;
+                            }
+
+                            /* Ensure images and icons print correctly */
+                            img,
+                            .feather,
+                            .bi {
+                                filter: grayscale(100%) !important;
+                            }
+
+                            /* Fix elements breaking between pages */
+                            * {
+                                overflow: visible !important;
+                            }
+
+                            /* Ensure charts print correctly */
+                            .chart-container {
+                                page-break-inside: avoid !important;
+                            }
+
+                            /* Prevent elements from getting cut off */
+                            html,
+                            body {
+                                height: auto !important;
+                                overflow: visible !important;
+                            }
+                        }
+                    </style>
+
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+            <!-- [ Footer ] start -->
+            <footer class="footer">
+                <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                    <span>Copyright Fundsroom ©</span>
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                </p>
+                <div class="d-flex align-items-center gap-4">
+                    <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
+                </div>
+            </footer>
+            <!-- [ Footer ] end -->
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
+    
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    <script src="./../assets/vendors/js/vendors.min.js"></script>
+    <!-- vendors.min.js {always must need to be top} -->
+    <script src="./../assets/vendors/js/daterangepicker.min.js"></script>
+    <script src="./../assets/vendors/js/apexcharts.min.js"></script>
+    <script src="./../assets/vendors/js/circle-progress.min.js"></script>
+    <script src="./../assets/vendors/js/jquery.calendar.min.js"></script>
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    <script src="./../assets/js/common-init.min.js"></script>
+    <script src="./../assets/js/reports-project-init.min.js"></script>
+    <script src="./../assets/js/widgets-charts-init.min.js"></script>
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    <script src="./../assets/js/theme-customizer-init.min.js"></script>
+    <!--! END: Theme Customizer !-->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- <script>
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                window.location.reload();
+            }
+        });
+
+        window.onload = function () {
+            const loggedIn = sessionStorage.getItem("loggedIn");
+            if (loggedIn !== "true") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Access Denied',
+                    text: 'You must be logged in to access this page.',
+                    confirmButtonText: 'Login',
+                    allowOutsideClick: false
+                }).then((result) => {
+                    if (result.isConfirmed) window.location.href = "index.html";
+                });
+            }
+        };
+
+        $(document).ready(function () {
+            const rowsPerPage = 10;
+            let currentPage = 1;
+            let tableData = [];
+
+            const formatDate = (str) => {
+                if (!str) return "--";
+                const d = new Date(str);
+                return `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
+            };
+
+            function fetchData() {
+                $.ajax({
+                    url: "https://api.fundsweb.in/api/v1/user/subscription-summaries",
+                    method: "GET",
+                    success: ({ success, summaries }) => {
+                        if (!success || !Array.isArray(summaries)) {
+                            console.error("Invalid response");
+                            return;
+                        }
+                        console.log("Fetched summaries:", summaries);
+
+                        tableData = summaries.reverse().map((item, i) => {
+                            const user = item.user || {};
+                            const domains = item.domains || [];
+                            const subscriptions = item.subscriptions || [];
+
+                            const domainUrlTxt = domains.length && domains[0].name ? `https://${domains[0].name}` : null;
+                            const domainUrl = domainUrlTxt ? `<a href="${domainUrlTxt}" target="_blank">${domainUrlTxt}</a>` : "--";
+
+                            return {
+                                sno: i + 1,
+                                userId: user.id || null,
+                                name: user.name || "--",
+                                phone: user.phoneNumber || "--",
+                                email: user.email || "--",
+                                referredBy: user.referredBy || "--",
+                                teamLeader: user.teamLeader || item.teamLeader || "",
+                                mailConfirmed: user.mailConfirmed === "Yes" ? "Yes" : "No",
+                                registrationStatus: '<span class="badge bg-soft-success text-success">Done</span>',
+                                loginStatus: '<span class="badge bg-soft-success text-success">Done</span>',
+                                subscriptionStatus: subscriptions[0]?.subscriptionStatus == "1"
+                                    ? '<span class="badge bg-soft-success text-success">Paid</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Unpaid</span>',
+                                subscriptionDate: subscriptions[0]?.createdAt ? formatDate(subscriptions[0].createdAt) : "--",
+                                domainStatus: domainUrlTxt
+                                    ? '<span class="badge bg-soft-success text-success">Registered</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Registered</span>',
+                                domainUrlTxt,
+                                domainUrl,
+                                requestSSL: domains[0]?.certArn
+                                    ? '<span class="badge bg-soft-success text-success">Requested</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Requested</span>',
+                                applySSL: domains[0]?.cloudFrontDomain
+                                    ? '<span class="badge bg-soft-success text-success">Applied</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Applied</span>',
+                                websiteLive: domains[0]?.cloudFrontDomain
+                                    ? '<span class="badge bg-soft-success text-success">Live</span>'
+                                    : '<span class="badge bg-soft-danger text-danger">Not Live</span>'
+                            };
+                        });
+
+                        renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
+                        renderPagination();
+                    },
+                    error: (err) => console.error("Fetch error:", err)
+                });
+            }
+
+            function renderTable(data) {
+                const tbody = $("#leadsTable tbody").empty();
+                data.forEach(row => {
+                    const disabled = row.domainUrlTxt ? "" : "disabled";
+                    tbody.append(`
+                    <tr>
+                        <td>${row.sno}</td>
+                        <td>${row.name}</td>
+                        <td>${row.phone}</td>
+                        <td>${row.email}</td>
+                        <td>${row.referredBy}</td>
+                        <td>
+                            <input type="text" class="form-control team-leader-input"
+                                   data-user-id="${row.userId}"
+                                   value="${row.teamLeader}"
+                                   placeholder="Enter name"
+                                   style="min-width:150px;">
+                        </td>
+                        <td>${row.registrationStatus}</td>
+                        <td>${row.loginStatus}</td>
+                        <td>${row.subscriptionStatus}</td>
+                        <td>${row.subscriptionDate}</td>
+                        <td>${row.domainStatus}</td>
+                        <td>${row.domainUrl}</td>
+                        <td>
+                            <select class="form-control mail-confirm-dropdown"
+                                    data-user-id="${row.userId}"
+                                    ${disabled}
+                                    style="min-width:100px;">
+                                <option value="No" ${row.mailConfirmed === "No" ? "selected" : ""}>No</option>
+                                <option value="Yes" ${row.mailConfirmed === "Yes" ? "selected" : ""}>Yes</option>
+                            </select>
+                        </td>
+                        <td>${row.requestSSL}</td>
+                        <td>${row.applySSL}</td>
+                        <td>${row.websiteLive}</td>
+                    </tr>
+                `);
+                });
+
+                bindDynamicEvents();
+            }
+
+            function bindDynamicEvents() {
+                $(".team-leader-input").off("keydown").on("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        const $el = $(this);
+                        const name = $el.val().trim();
+                        const id = $el.data("user-id");
+                        if (id && name) assignTeamLeader(id, name, $el);
+                    }
+                });
+
+                $(".mail-confirm-dropdown").off("change").on("change", function () {
+                    const $el = $(this);
+                    const uid = $el.data("user-id");
+                    const status = $el.val();
+                    if (uid) updateMailConfirmation(uid, status, $el);
+                });
+            }
+
+            function assignTeamLeader(userId, name, $input) {
+                $.ajax({
+                    url: "https://api.fundsweb.in/api/v1/user/assign-team-leader",
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify({ user_id: userId, team_leader: name }),
+                    success: () => {
+                        Swal.fire({ icon: "success", title: "Saved", text: `Assigned ${name}`, timer: 2000, showConfirmButton: false });
+                        $input.css("border", "2px solid green");
+                    },
+                    error: () => {
+                        Swal.fire({ icon: "error", title: "Failed", text: "Could not assign team leader" });
+                        $input.css("border", "2px solid red");
+                    }
+                });
+            }
+
+            function updateMailConfirmation(userId, status, $select) {
+                $.ajax({
+                    url: "https://api.fundsweb.in/api/v1/user/mail-confirmation",
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify({ user_id: userId, mail_confirmation: status }),
+                    success: () => {
+                        Swal.fire({ icon: "success", title: "Updated", text: `Mail confirmation set to ${status}`, timer: 1500, showConfirmButton: false });
+                        $select.css("border", "2px solid green");
+                    },
+                    error: () => {
+                        Swal.fire({ icon: "error", title: "Failed", text: "Could not update mail confirmation" });
+                        $select.css("border", "2px solid red");
+                    }
+                });
+            }
+
+            function renderPagination() {
+                const totalPages = Math.ceil(tableData.length / rowsPerPage);
+                const pag = $("#pagination").empty();
+                const prevDis = currentPage === 1 ? 'disabled' : '';
+                const nextDis = currentPage === totalPages ? 'disabled' : '';
+
+                pag.append(`<li><a class="${prevDis}" href="javascript:void(0);" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
+
+                const visible = 3;
+                let s = Math.max(currentPage - 1, 1);
+                let e = Math.min(s + visible - 1, totalPages);
+                if (e - s < visible - 1) s = Math.max(e - visible + 1, 1);
+
+                for (let i = s; i <= e; i++) {
+                    const active = i === currentPage ? "active" : "";
+                    pag.append(`<li><a class="${active}" href="javascript:void(0);" onclick="changePage(${i})">${i}</a></li>`);
+                }
+
+                pag.append(`<li><a class="${nextDis}" href="javascript:void(0);" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
+            }
+
+            window.changePage = (p) => {
+                const max = Math.ceil(tableData.length / rowsPerPage);
+                if (p < 1 || p > max) return;
+                currentPage = p;
+                renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
+                renderPagination();
+            };
+
+            window.filterTable = function () {
+                const val = $("#searchInput").val().toLowerCase().trim();
+
+                if (!val) {
+                    renderTable(tableData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage));
+                    renderPagination();
+                    return;
+                }
+
+                const filtered = tableData.filter(row =>
+                    Object.values(row).some(f => $('<div>').html(f).text().toLowerCase().trim() === val)
+                );
+
+                renderTable(filtered); // This also binds events
+                $("#pagination").hide();
+            };
+
+            window.printTable = () => {
+                const w = window.open('', '', 'height=600,width=800');
+                w.document.write('<html><head><title>Print Table</title></head><body>');
+                w.document.write($("#leadsTable")[0].outerHTML);
+                w.document.write('</body></html>');
+                w.document.close(); w.print();
+            };
+
+            window.exportToExcel = () => {
+                const headers = ["S No.", "Name", "Mobile No.", "Email", "Referred By", "Team Leader Allotted", "Registration Status", "Login Status", "Subscription Status", "Subscription Date", "Domain Registration Status", "Domain URL", "Mail Confirmation", "Request SSL Status", "Apply SSL Status", "Website Live Status"];
+                const data = [headers];
+
+                tableData.forEach((r, i) => {
+                    const clean = h => $('<div>').html(h).text().trim();
+                    data.push([
+                        i + 1, r.name, r.phone, r.email, clean(r.referredBy), r.teamLeader,
+                        clean(r.registrationStatus), clean(r.loginStatus), clean(r.subscriptionStatus),
+                        r.subscriptionDate, clean(r.domainStatus), r.domainUrlTxt || "--", r.mailConfirmed,
+                        clean(r.requestSSL), clean(r.applySSL), clean(r.websiteLive)
+                    ]);
+                });
+
+                const ws = XLSX.utils.aoa_to_sheet(data);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "User Status tracking");
+                XLSX.writeFile(wb, "userStatus.xlsx");
+            };
+
+            fetchData();
+        });
+    </script> -->
+</body>
+
+</html>
