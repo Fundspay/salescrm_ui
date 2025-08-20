@@ -40,9 +40,7 @@
         <div class="auth-minimal-inner">
             <div class="minimal-card-wrapper">
                 <div class="card mb-4 mt-5 mx-4 mx-sm-0 position-relative">
-                    <!-- <div class="wd-50 bg-white p-2 rounded-circle shadow-lg position-absolute translate-middle top-0 start-50">
-                        <img src="./../assets/images/favicon.svg" alt="" class="img-fluid">
-                    </div> -->
+
                     <div class="card-body p-sm-5">
                         <h2 class="fs-20 fw-bolder mb-4 position-relative">
                             <img src="/assets/images/FundsAuditLogo.png" alt="Logo"
@@ -51,7 +49,6 @@
                             Welcome to <br>FundsAudit HR Dashboard
                         </h2>
 
-                        <!-- <h4 class="fs-13 fw-bold mb-2">Login to your account</h4> -->
                         <p class="fs-12 fw-medium text-muted">Login to your account to get access to Dashboard.
                         </p>
                         <form id="loginForm" class="w-100 mt-3 pt-2">
@@ -63,17 +60,9 @@
                                 <div class="input-group field">
                                     <input type="password" class="form-control password" id="password"
                                         placeholder="Password">
-                                    <!-- <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                        title="Generate Password"><i class="feather-hash"></i></div> -->
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
-                                <!-- <div class="progress-bar mt-2">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div> -->
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
@@ -87,20 +76,6 @@
                                 <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
                             </div>
                         </form>
-                        <!-- <div class="w-100 mt-5 text-center mx-auto">
-                            <div class="mb-4 border-bottom position-relative"><span class="small py-1 px-3 text-uppercase text-muted bg-white position-absolute translate-middle">or</span></div>
-                            <div class="d-flex align-items-center justify-content-center gap-2">
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Facebook">
-                                    <i class="feather-facebook"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Twitter">
-                                    <i class="feather-twitter"></i>
-                                </a>
-                                <a href="javascript:void(0);" class="btn btn-light-brand flex-fill" data-bs-toggle="tooltip" data-bs-trigger="hover" title="Login with Github">
-                                    <i class="feather-github text"></i>
-                                </a>
-                            </div>
-                        </div> -->
                         <div class="mt-3 text-muted">
                             <span> Don't have an account?</span>
                             <a href="register.html" class="fw-bold">Create an Account</a>
@@ -139,66 +114,64 @@
     <!-- SHA-256 library for HTTP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha256.min.js"></script>
 
+    <!-- Add SweetAlert2 (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
-        function hash(input) {
-            const shaObj = new jsSHA("SHA-256", "TEXT");
-            shaObj.update(input);
-            return shaObj.getHash("HEX");
-        }
+        $(document).ready(function () {
+            $("#loginForm").on("submit", function (e) {
+                e.preventDefault();
 
-        const correctEmailHash = "7b62af32db5e8a407f22ebe42c67b215cee09caf1cc5361d1474721369283123";
-        const correctPasswordHash = "04c19a3214e578663ecff2cadd780410e5c56b23cc761985b1b138b1859bb573";
+                const email = $("#email").val().trim();
+                const password = $("#password").val().trim();
 
-        document.getElementById("loginForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const enteredEmail = document.getElementById("email").value.trim().toLowerCase();
-            const enteredPassword = document.getElementById("password").value;
-
-            const emailHash = hash(enteredEmail);
-            const passwordHash = hash(enteredPassword);
-
-            if (emailHash === correctEmailHash && passwordHash === correctPasswordHash) {
-                sessionStorage.setItem("loggedIn", "true");
+                if (!email || !password) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Both email and password are required!",
+                        confirmButtonColor: "#3085d6"
+                    });
+                    return;
+                }
 
                 Swal.fire({
-                    title: 'Logging you in…',
+                    title: "Logging in...",
                     allowOutsideClick: false,
-                    didOpen: () => Swal.showLoading()
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
                 });
 
-                setTimeout(() => {
-                    Swal.close();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Login Successful!',
-                        text: 'Welcome back.',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-
-                    setTimeout(() => {
-                        window.location.href = "/templates/CO.html";
-                    }, 1000);
-                }, 1500);
-            } else {
-                Swal.fire({
-                    title: 'Logging you in…',
-                    allowOutsideClick: false,
-                    didOpen: () => Swal.showLoading()
+                $.ajax({
+                    url: "http://localhost:3000/api/v1/user/login",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: email,
+                        password: password
+                    }),
+                    success: function (response) {
+                        console.log("Success:", response);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login successful!",
+                            confirmButtonColor: "#3085d6"
+                        }).then(() => {
+                            window.location.href = "/templates/CO.html";
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", status, error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Login failed!",
+                            text: xhr.responseJSON?.message || "Please check your credentials.",
+                            confirmButtonColor: "#d33"
+                        });
+                    }
                 });
-
-                setTimeout(() => {
-                    Swal.close();
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: 'Invalid email or password.',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                }, 1500);
-            }
+            });
         });
     </script>
 
