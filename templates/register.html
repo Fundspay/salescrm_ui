@@ -101,13 +101,13 @@
                                 <div class="col-lg-12 mb-4">
                                     <label class="form-label">Position<span class="text-danger">*</span></label>
                                     <select class="form-control" id="position" data-select2-selector="icon">
-                                        <!-- <option value="static">Intern</option> -->
                                         <option value="2">BranchManager</option>
                                         <option value="3">Admin and Finanace Excecutive</option>
-                                        <option value="4">Business Excecutive</option>
-                                        <option value="5">Business Management Trainee</option>
-                                        <option value="6" selected>HR management Trainee</option>
-                                        <option value="7">Junior Software Developer</option>
+                                        <option value="7">Tech Team Leader</option>
+                                        <option value="6">Business Management Trainee</option>
+                                        <option value="5" selected>HR management Trainee</option>
+                                        <option value="4">Junior Software Developer</option>
+                                        <option value="8">Business Development Executive</option>
                                     </select>
                                 </div>
                             </div>
@@ -118,17 +118,17 @@
                                 <div class="input-group field">
                                     <input type="password" class="form-control password" id="password"
                                         placeholder="Password">
-                                    <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
-                                        title="Generate Password"><i class="feather-hash"></i></div>
+                                    <!-- <div class="input-group-text c-pointer gen-pass" data-bs-toggle="tooltip"
+                                        title="Generate Password"><i class="feather-hash"></i></div> -->
                                     <div class="input-group-text border-start bg-gray-2 c-pointer show-pass"
                                         data-bs-toggle="tooltip" title="Show/Hide Password"><i></i></div>
                                 </div>
-                                <div class="progress-bar mt-2">
+                                <!-- <div class="progress-bar mt-2">
                                     <div></div>
                                     <div></div>
                                     <div></div>
                                     <div></div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="mb-3">
                                 <input type="password" class="form-control" placeholder="Confirm Password"
@@ -191,7 +191,7 @@
                 const gender = $("#gender").val();
                 const phoneNumber = $("#phoneNumber").val().trim();
 
-                if (!firstName || !lastName || !email || !userType || !position || !password || !confirmPassword || !gender || !phoneNumber) {
+                if (!firstName || !lastName || !email || !userType || !password || !confirmPassword || !gender || !phoneNumber) {
                     Swal.fire({
                         icon: "warning",
                         title: "All fields are required!",
@@ -209,20 +209,31 @@
                     return;
                 }
 
+                Swal.fire({
+                    title: "Registering user...",
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                var payload = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    type: userType,
+                    password: password,
+                    phoneNumber: phoneNumber,
+                    position: position,
+                    gender: gender
+                }
+                console.log("Payload:", payload);
+
                 $.ajax({
-                    url: "http://localhost:3000/api/v1/user/register",
+                    url: "http://fundsaudit.com/api/v1/user/register",
                     type: "POST",
                     contentType: "application/json",
-                    data: JSON.stringify({
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        type: userType,
-                        password: password,
-                        phoneNumber: phoneNumber,
-                        position: position,
-                        gender: gender
-                    }),
+                    data: JSON.stringify(payload),
                     success: function (response) {
                         console.log("Success:", response);
                         Swal.fire({
