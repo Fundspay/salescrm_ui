@@ -23,6 +23,15 @@
     <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
     <!--! END: Vendors CSS-->
     <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify-data.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/quill.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css" />
     <!--! END: Custom CSS-->
     <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
@@ -51,6 +60,18 @@
                     <li class="nxl-item nxl-caption">
                         <label>Navigation</label>
                     </li>
+                    <li class="nxl-item">
+                        <a href="profile.html" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-user"></i></span>
+                            <span class="nxl-mtext">My Profile</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="targets.html" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-activity"></i></span>
+                            <span class="nxl-mtext">My Targets</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
                     <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-airplay"></i></span>
@@ -58,9 +79,25 @@
                                     class="feather-chevron-right"></i></span>
                         </a>
                         <ul class="nxl-submenu">
-                            <li class="nxl-item"><a class="nxl-link" href="CO.html">CO</a></li>
-                            <!-- <li class="nxl-item"><a class="nxl-link" href="business-analytics.html">HR Analysis</a></li> -->
+                            <li class="nxl-item"><a class="nxl-link" href="CO.html">CO (Connect)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">RE (Reach)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">R (Resume)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">I (Interview)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">S (Selection)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">K (Kick off)</a></li>
                         </ul>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">My Performance</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Logout</span><span class="nxl-arrow"><i></i></span>
+                        </a>
                     </li>
                     <!-- Admin Page Link (Hidden by Default) -->
                     <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
@@ -125,11 +162,11 @@
                 </div>
                 <!--! [End] nxl-navigation-toggle !-->
                 <!--! [Start] nxl-lavel-mega-menu-toggle !-->
-                <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                <!-- <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
                     <a href="javascript:void(0);" id="nxl-lavel-mega-menu-open">
                         <i class="feather-align-left"></i>
                     </a>
-                </div>
+                </div> -->
                 <!--! [End] nxl-lavel-mega-menu-toggle !-->
                 <!--! [Start] nxl-lavel-mega-menu !-->
                 <div class="nxl-drp-link nxl-lavel-mega-menu">
@@ -231,23 +268,312 @@
                             </a>
                         </div>
                     </div>
-                    <div class="d-md-none d-flex align-items-center">
+                    <!-- <div class="d-md-none d-flex align-items-center">
                         <a href="javascript:void(0)" class="page-header-right-open-toggle">
                             <i class="feather-align-right fs-20"></i>
                         </a>
-                    </div>
+                    </div> -->
+                </div>
+                <div class="position-relative border-bottom">
+                    <label for="excelUpload" class="dropdown-item upload-trigger" style="cursor:pointer;">
+                        <span class="btn btn-icon" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                            title="Upload Excel files (Less than 5MB)">
+                            <i class="feather-upload"></i> Upload College Data
+                        </span>
+                    </label>
+                    <input type="file" id="excelUpload" accept=".csv,.xls,.xlsx" style="display:none;">
+
+                </div>
+                <div class="date-picker-container" style="margin-left: 1%;">
+                    <input type="text" id="dateRangePicker" class="form-control" placeholder="Select date or range"
+                        style="max-width:220px;" />
                 </div>
             </div>
             <!-- [ page-header ] end -->
             <!-- [ Main Content ] start -->
             <div class="main-content">
                 <div class="row">
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Total Inquiry</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="totalInquiry">0</span>K</h3>
+                                    <div class="hstack gap-2 fs-11" id="totalInquiryTrend">
+                                        <i class="feather-arrow-up-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Performance</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="performance">0</span>%</h3>
+                                    <div class="hstack gap-2 fs-11" id="performanceTrend">
+                                        <i class="feather-arrow-down-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Escalations</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="escalations">0</span></h3>
+                                    <div class="hstack gap-2 fs-11" id="escalationsTrend">
+                                        <i class="feather-arrow-up-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">SLA Compliant</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="slaCompliant">0</span></h3>
+                                    <div class="hstack gap-2 fs-11" id="slaCompliantTrend">
+                                        <i class="feather-arrow-up-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Avg. Time (H)</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="avgTime">0</span></h3>
+                                    <div class="hstack gap-2 fs-11" id="avgTimeTrend">
+                                        <i class="feather-arrow-down-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-4 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Avg. Fullfilment</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span class="counter" id="avgFulfillment">0</span>%</h3>
+                                    <div class="hstack gap-2 fs-11" id="avgFulfillmentTrend">
+                                        <i class="feather-arrow-up-circle fs-12"></i>
+                                        <span>0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 3%;">
                     <!-- [Latest Leads] start -->
+                    <style>
+                        /* Excel-like modern clean table */
+                        #leadsTable {
+                            border-collapse: collapse;
+                            width: 100%;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 14px;
+                            background: #fff;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+                            border-radius: 8px;
+                            overflow: hidden;
+                        }
+
+                        /* Header styling */
+                        #leadsTable th {
+                            background: #155fcf;
+                            color: #ffffff;
+                            font-weight: 600;
+                            text-align: left;
+                            padding: 6px 6px;
+                            border-bottom: 2px solid #e5e7eb;
+                        }
+
+                        /* Body cells */
+                        #leadsTable td {
+                            vertical-align: middle;
+                            padding: 8px 12px;
+                            white-space: nowrap;
+                            border-bottom: 1px solid #f1f5f9;
+                            transition: background 0.2s ease;
+                        }
+
+                        /* Zebra striping */
+                        #leadsTable tr:nth-child(even) td {
+                            background: #fafafa;
+                        }
+
+                        /* Hover highlight */
+                        #leadsTable tr:hover td {
+                            background: #f1f5ff;
+                        }
+
+                        /* Inline editing fields */
+                        #leadsTable input,
+                        #leadsTable select {
+                            display: none;
+                            width: 100%;
+                            font-size: 14px;
+                            padding: 6px 8px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 6px;
+                            background: #fff;
+                            transition: all 0.2s ease;
+                        }
+
+                        /* Show inputs when editing */
+                        #leadsTable td.editing input,
+                        #leadsTable td.editing select {
+                            display: block;
+                        }
+
+                        /* Span styling */
+                        #leadsTable td span {
+                            display: inline-block;
+                            width: 100%;
+                            min-height: 22px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            color: #1e293b;
+                        }
+
+                        /* Editing cell highlight */
+                        #leadsTable td.editing {
+                            background: #fff7ed;
+                            box-shadow: inset 0 0 0 2px #f97316;
+                        }
+                    </style>
+
                     <div class="col-12">
                         <div class="card stretch stretch-full">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">User Status tracking</h5>
+                                    <h5 class="card-title">COLLEGE DETAILS</h5>
+                                </div>
+                                <div class="card-header-action">
+                                    <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            onclick="loadTableData()"> </a>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize"> <a
+                                            href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                            data-bs-toggle="expand"> </a> </div>
+                                    <div class="search-bar">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Search..."
+                                            oninput="filterTable()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover mb-0" id="leadsTable">
+                                        <thead class="table-light">
+                                            <tr class="border-b">
+                                                <th>SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator Name</th>
+                                                <th>Mobile Number</th>
+                                                <th>Email</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Course</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed Response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Rows dynamically injected here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row g-3 h-100"> <!-- Added h-100 to ensure proper height -->
+                            <!-- First Row of Cards -->
+                            <div class="col-md-6">
+                                <div class="card bg-primary text-white h-100">
+                                    <div class="card-body">
+                                        <span class="badge bg-soft-primary text-primary text-dark float-end">12%</span>
+                                        <div class="text-start">
+                                            <h4 class="text-reset">3,569</h4>
+                                            <p class="text-reset m-0">Total Sales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-danger text-white h-100">
+                                    <div class="card-body">
+                                        <span class="badge bg-soft-primary text-primary text-dark float-end">15%</span>
+                                        <div class="text-start">
+                                            <h4 class="text-reset">1,254</h4>
+                                            <p class="text-reset m-0">Total Comment</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Second Row of Cards -->
+                            <div class="col-md-6">
+                                <div class="card bg-success text-white h-100">
+                                    <div class="card-body">
+                                        <span class="badge bg-soft-primary text-primary text-dark float-end">20%</span>
+                                        <div class="text-start">
+                                            <h4 class="text-reset">$9.657</h4>
+                                            <p class="text-reset m-0">Income Status</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-warning text-white h-100">
+                                    <div class="card-body">
+                                        <span class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
+                                        <div class="text-start">
+                                            <h4 class="text-reset">3,967</h4>
+                                            <p class="text-reset m-0">Total Visitors</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Add this button at the top of your page -->
+                    <!-- <div class="text-end mb-3">
+                        <button class="btn btn-primary" onclick="printPage()">
+                            <i class="bi bi-printer"></i> Print Page
+                        </button>
+                    </div> -->
+
+                    <!-- [Latest Leads] start -->
+                    <div class="col-6 flex-fill">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">INDIVIDUAL DETAILS</h5>
                                 </div>
                                 <div class="card-header-action">
                                     <!-- <div data-bs-toggle="tooltip" title="Delete">
@@ -287,7 +613,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- Rows will be dynamically populated here -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -296,7 +621,6 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
                                         id="pagination">
-                                        <!-- Pagination links will be dynamically populated here -->
                                     </ul>
                                     <div class="d-flex gap-2">
                                         <button class="btn btn-primary" onclick="printTable()">
@@ -310,165 +634,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <!-- Add this button at the top of your page -->
-                    <!-- <div class="text-end mb-3">
-                        <button class="btn btn-primary" onclick="printPage()">
-                            <i class="bi bi-printer"></i> Print Page
-                        </button>
-                    </div> -->
-
-                    <!-- Metric Cards Section -->
-                    <!-- <div class="row">
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">Total Inquiry</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="totalInquiry">0</span>K</h3>
-                                        <div class="hstack gap-2 fs-11" id="totalInquiryTrend">
-                                            <i class="feather-arrow-up-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">Performance</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="performance">0</span>%</h3>
-                                        <div class="hstack gap-2 fs-11" id="performanceTrend">
-                                            <i class="feather-arrow-down-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">Escalations</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="escalations">0</span></h3>
-                                        <div class="hstack gap-2 fs-11" id="escalationsTrend">
-                                            <i class="feather-arrow-up-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">SLA Compliant</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="slaCompliant">0</span></h3>
-                                        <div class="hstack gap-2 fs-11" id="slaCompliantTrend">
-                                            <i class="feather-arrow-up-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">Avg. Time (H)</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="avgTime">0</span></h3>
-                                        <div class="hstack gap-2 fs-11" id="avgTimeTrend">
-                                            <i class="feather-arrow-down-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-lg-4 col-md-6">
-                            <div class="card stretch stretch-full">
-                                <div class="card-body">
-                                    <div class="fs-12 fw-medium text-muted mb-3">Avg. Fullfilment</div>
-                                    <div class="hstack justify-content-between lh-base">
-                                        <h3><span class="counter" id="avgFulfillment">0</span>%</h3>
-                                        <div class="hstack gap-2 fs-11" id="avgFulfillmentTrend">
-                                            <i class="feather-arrow-up-circle fs-12"></i>
-                                            <span>0%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- [Latest Leads] start -->
-                    <!-- <div class="col-8 flex-fill">
-                        <div class="card stretch stretch-full">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Users data</h5>
-                                </div>
-                                <div class="card-header-action">
-                                    <div class="card-header-btn">
-                                        <div data-bs-toggle="tooltip" title="Delete">
-                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-danger"
-                                                data-bs-toggle="remove"> </a>
-                                        </div>
-                                        <div data-bs-toggle="tooltip" title="Refresh">
-                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
-                                                data-bs-toggle="refresh"> </a>
-                                        </div>
-                                        <div data-bs-toggle="tooltip" title="Maximize/Minimize">
-                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
-                                                data-bs-toggle="expand"> </a>
-                                        </div>
-                                        <div class="search-bar">
-                                            <input type="text" id="searchInput" class="form-control"
-                                                placeholder="Search..." oninput="filterTable()">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body custom-card-action p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-hover mb-0" id="leadsTable">
-                                        <thead>
-                                            <tr class="border-b">
-                                                <th scope="row">User ID</th>
-                                                <th>User Type</th>
-                                                <th>Created on</th>
-                                                <th>Trial Start</th>
-                                                <th>Trial End</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
-                                        id="pagination">
-                                    </ul>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-primary" onclick="printTable()">
-                                            <i class="bi bi-printer"></i> Print
-                                        </button>
-                                        <button class="btn btn-success" onclick="exportToExcel()">
-                                            <i class="bi bi-file-earmark-excel"></i> Excel
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <!-- Calendar Component -->
                     <!-- <div class="col-4 flex-fill calendar-container">
@@ -504,6 +669,140 @@
                         </div>
                     </div> -->
                     <!-- [Project Calendar] end -->
+
+                    <div class="col-xxl-3">
+                        <div class="card stretch stretch-full overflow-hidden">
+                            <div class="bg-success text-white">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <h5 class="text-reset">ANALYTICS</h5>
+                                </div>
+                                <div id="conversion-statistic-bar-chart"></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-4">
+                                    <div class="col-12 col-md-12 d-flex align-items-center gap-3">
+                                        <div class="avatar-text avatar-xl rounded bg-primary text-white">
+                                            <i class="feather-users"></i>
+                                        </div>
+                                        <a href="javascript:void(0);" class="fw-bold d-block">
+                                            <span class="text-truncate-1-line">Total Customers</span>
+                                            <span class="fs-14 fw-bolder d-block">26,595</span>
+                                        </a>
+                                        <div class="badge bg-soft-success text-success">
+                                            <i class="feather-arrow-up fs-10 me-1"></i>
+                                            <span>36.85%</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12 col-md-6 d-flex align-items-center gap-3">
+                                        <div class="avatar-text avatar-xl rounded bg-primary text-white">
+                                            <i class="feather-users"></i>
+                                        </div>
+                                        <a href="javascript:void(0);" class="fw-bold d-block">
+                                            <span class="text-truncate-1-line">Total Customers</span>
+                                            <span class="fs-14 fw-bolder d-block">26,595</span>
+                                        </a>
+                                        <div class="badge bg-soft-success text-success">
+                                            <i class="feather-arrow-up fs-10 me-1"></i>
+                                            <span>36.85%</span>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-12 col-md-12 d-flex align-items-center gap-3">
+                                        <div class="avatar-text avatar-xl rounded bg-primary text-white">
+                                            <i class="feather-users"></i>
+                                        </div>
+                                        <a href="javascript:void(0);" class="fw-bold d-block">
+                                            <span class="text-truncate-1-line">Total Customers</span>
+                                            <span class="fs-14 fw-bolder d-block">26,595</span>
+                                        </a>
+                                        <div class="badge bg-soft-success text-success">
+                                            <i class="feather-arrow-up fs-10 me-1"></i>
+                                            <span>36.85%</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12 col-md-6 d-flex align-items-center gap-3">
+                                        <div class="avatar-text avatar-xl rounded bg-primary text-white">
+                                            <i class="feather-users"></i>
+                                        </div>
+                                        <a href="javascript:void(0);" class="fw-bold d-block">
+                                            <span class="text-truncate-1-line">Total Customers</span>
+                                            <span class="fs-14 fw-bolder d-block">26,595</span>
+                                        </a>
+                                        <div class="badge bg-soft-success text-success">
+                                            <i class="feather-arrow-up fs-10 me-1"></i>
+                                            <span>36.85%</span>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-3 flex-fill">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">UPCOMING SCHEDULE</h5>
+                                </div>
+                                <div class="card-header-action">
+                                    <!-- <div data-bs-toggle="tooltip" title="Delete">
+                                            <a href="javascript:void(0);" class="avatar-text avatar-xs bg-danger" data-bs-toggle="remove"> </a>
+                                        </div> -->
+                                    <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            data-bs-toggle="refresh"> </a>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                            data-bs-toggle="expand"> </a>
+                                    </div>
+                                    <div class="search-bar">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Search..."
+                                            oninput="filterTable()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0" id="leadsTable">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th scope="row">SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator name</th>
+                                                <th>Mobile number</th>
+                                                <th>Email</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination">
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Print-Specific CSS -->
                     <style>
@@ -647,6 +946,57 @@
 					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
                 </div>
             </footer>
+            <style>
+                /* Apply your theme font */
+                .flatpickr-calendar,
+                .flatpickr-calendar * {
+                    font-family: 'Inter', sans-serif !important;
+                    font-size: 14px;
+                }
+
+                /* Header (month/year) */
+                .flatpickr-months .flatpickr-month {
+                    font-weight: 600;
+                    color: #155fcf;
+                    /* your theme blue */
+                }
+
+                /* Weekdays */
+                .flatpickr-weekday {
+                    color: #1e293b;
+                    font-weight: 500;
+                }
+
+                /* Selected date */
+                .flatpickr-day.selected,
+                .flatpickr-day.startRange,
+                .flatpickr-day.endRange {
+                    background: #155fcf !important;
+                    color: #fff !important;
+                    border-radius: 6px;
+                }
+
+                /* In-between range highlight */
+                .flatpickr-day.inRange {
+                    background: #e0ebff;
+                    color: #155fcf;
+                }
+
+                /* Today’s date highlight */
+                .flatpickr-day.today {
+                    border: 1px solid #155fcf;
+                }
+
+                /* Input box styling */
+                #dateRangePicker {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 14px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    padding: 6px 10px;
+                    color: #1e293b;
+                }
+            </style>
             <!-- [ Footer ] end -->
     </main>
     <!--! ================================================================ !-->
@@ -655,7 +1005,7 @@
     <!--! ================================================================ !-->
     <!--! BEGIN: Theme Customizer !-->
     <!--! ================================================================ !-->
-    
+
     <!--! ================================================================ !-->
     <!--! [End] Theme Customizer !-->
     <!--! ================================================================ !-->
@@ -669,11 +1019,16 @@
     <script src="./../assets/vendors/js/apexcharts.min.js"></script>
     <script src="./../assets/vendors/js/circle-progress.min.js"></script>
     <script src="./../assets/vendors/js/jquery.calendar.min.js"></script>
+    <script src="./../assets/vendors/js/select2.min.js"></script>
+    <script src="./../assets/vendors/js/select2-active.min.js"></script>
+    <script src="./../assets/js/common-init.min.js"></script>
+    <script src="./../assets/vendors/js/lslstrength.min.js"></script>
     <!--! END: Vendors JS !-->
     <!--! BEGIN: Apps Init  !-->
     <script src="./../assets/js/common-init.min.js"></script>
     <script src="./../assets/js/reports-project-init.min.js"></script>
     <script src="./../assets/js/widgets-charts-init.min.js"></script>
+    <script src="./../assets/js/widgets-miscellaneous-init.min.js"></script>
     <!--! END: Apps Init !-->
     <!--! BEGIN: Theme Customizer  !-->
     <script src="./../assets/js/theme-customizer-init.min.js"></script>
@@ -945,6 +1300,268 @@
             fetchData();
         });
     </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        let fromDate = null;
+        let toDate = null;
+
+        flatpickr("#dateRangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d", // how it shows in input
+            onChange: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 1) {
+                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate = fromDate;
+                } else if (selectedDates.length === 2) {
+                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate = instance.formatDate(selectedDates[1], "Y-m-d");
+                }
+                console.log("From:", fromDate, "To:", toDate);
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#excelUpload").on("change", function (e) {
+                Swal.fire({
+                    title: "Uploading...",
+                    text: "Please wait while we process your file.",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                let file = e.target.files[0];
+                if (!file) return;
+
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    let data = new Uint8Array(e.target.result);
+                    let workbook = XLSX.read(data, { type: "array" });
+
+                    // take first sheet
+                    let sheetName = workbook.SheetNames[0];
+                    let sheet = workbook.Sheets[sheetName];
+
+                    // Convert to JSON (raw)
+                    let rawData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    console.log("Raw Excel Data:", rawData);
+
+                    // Remove first 3 header rows (adjust if needed)
+                    let rows = rawData.slice(1);
+
+                    // Map to required format
+                    let jsonData = rows.map((row, i) => {
+                        // Convert Excel date (if numeric) to normal date string
+                        let dateValue = row[9];
+                        if (typeof dateValue === "number") {
+                            // XLSX has a utility to convert Excel serial date → JS Date
+                            let jsDate = XLSX.SSF.parse_date_code(dateValue);
+                            if (jsDate) {
+                                // Format to "8 July 2025"
+                                dateValue = `${jsDate.d} ${new Date(jsDate.y, jsDate.m - 1, jsDate.d)
+                                    .toLocaleString("en-US", { month: "long" })} ${jsDate.y}`;
+                            }
+                        }
+
+                        return {
+                            collegeDetails: {
+                                sr: row[0] || i + 1,
+                                collegeName: row[1] || null,
+                                coordinatorName: row[2] || null,
+                                mobileNumber: row[3] || null,
+                                emailId: row[4] || null,
+                                city: row[5] || null,
+                                state: row[6] || null,
+                                course: row[7] || null,
+                            },
+                            connect: {
+                                connectedBy: row[8] || null,
+                                dateOfConnect: dateValue || null, // <-- fixed
+                                callResponse: row[10] || null,
+                                internshipType: row[12] || null,
+                                detailedResponse: row[13] || null,
+                            },
+                            userId: 1
+                        };
+                    });
+
+                    console.log("Formatted JSON:", jsonData);
+
+                    // Send via AJAX POST
+                    $.ajax({
+                        url: "http://fundsaudit.com/api/v1/cosheet/register",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(jsonData),
+                        success: function (res) {
+                            console.log("Response:", res);
+                            Swal.fire({
+                                icon: "success",
+                                title: "Uploaded!",
+                                text: "College data uploaded successfully.",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        },
+                        error: function (xhr) {
+                            console.log("Error:", xhr);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Upload Failed",
+                                text: xhr.responseText || "Something went wrong!",
+                            });
+                        },
+                    });
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        });
+    </script>
+
+    <script>
+        var userData = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData);
+
+        const apiBase = "http://fundsaudit.com/api/v1/cosheet";
+
+        const dropdowns = {
+            city: ["Jaipur", "Pilani", "Jodhpur"],
+            state: ["Rajasthan", "Delhi", "Maharashtra"],
+            course: ["MBA", "B.Tech", "M.Tech"],
+            connectedBy: ["Palak", "Swati", "Other"],
+            // dateOfConnect: ["2025-01-01", "2025-02-01", "2025-03-01"],
+            callResponse: ["CONNECTED", "NOT ANSWERED", "INVALID"],
+            internshipType: ["WIP", "DONE", "NA"],
+            detailedResponse: ["SEND JD", "FOLLOW UP", "CLOSE"]
+        };
+
+        function loadTableData() {
+            $.ajax({
+                url: apiBase + "/list",
+                method: "GET",
+                success: function (res) {
+                    if (res.success) {
+                        let tbody = $("#leadsTable tbody");
+                        tbody.empty();
+                        res.data.forEach((row, index) => {
+                            let tr = `<tr data-id="${row.id}">
+                            <td>${index + 1}</td>
+                            ${makeCell("collegeName", row.collegeName)}
+                            ${makeCell("coordinatorName", row.coordinatorName)}
+                            ${makeCell("mobileNumber", row.mobileNumber)}
+                            ${makeCell("emailId", row.emailId)}
+                            ${makeDropdownCell("city", row.city)}
+                            ${makeDropdownCell("state", row.state)}
+                            ${makeDropdownCell("course", row.course)}
+                            ${makeDropdownCell("connectedBy", row.connectedBy)}
+                            ${makeCell("dateOfConnect", row.dateOfConnect)}
+                            ${makeDropdownCell("callResponse", row.callResponse)}
+                            ${makeDropdownCell("internshipType", row.internshipType)}
+                            ${makeDropdownCell("detailedResponse", row.detailedResponse)}
+                        </tr>`;
+                            tbody.append(tr);
+                        });
+                        attachCellEvents();
+                    }
+                }
+            });
+        }
+
+        function makeCell(field, value) {
+            let displayValue = value || "";
+
+            // Format date if field is dateOfConnect
+            if (field === "dateOfConnect" && value) {
+                let d = new Date(value);
+                let options = { day: 'numeric', month: 'long', year: 'numeric' };
+                displayValue = d.toLocaleDateString("en-GB", options); // e.g. 7 July 2025
+            }
+
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
+        }
+
+
+        function formatDate(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr; // fallback if not a valid date
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function makeDropdownCell(field, selectedValue) {
+            let options = dropdowns[field] || [];
+            let html = `<td data-field="${field}">
+                    <span>${selectedValue || ""}</span>
+                    <select class="form-control" data-select2-selector="icon">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+
+            options.forEach(opt => {
+                let sel = (opt === selectedValue) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${opt}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function attachCellEvents() {
+            // Show input/select on click
+            $("#leadsTable td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            // Save on blur/change
+            $("#leadsTable td input, #leadsTable td select").off("blur change").on("blur change", function () {
+                let td = $(this).closest("td");
+                let tr = $(this).closest("tr");
+                let id = tr.data("id");
+                let field = td.data("field");
+                let value = $(this).val();
+
+                td.find("span").text(value);
+                td.removeClass("editing");
+
+                let payload = {};
+                payload[field] = value;
+
+                $.ajax({
+                    url: apiBase + "/" + id,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(payload),
+                    success: function (res) {
+                        console.log("Updated:", res);
+                    },
+                    error: function (err) {
+                        console.error("Update failed", err);
+                    }
+                });
+            });
+        }
+
+        $(document).ready(function () {
+            loadTableData();
+        });
+    </script>
 </body>
 
 </html>
