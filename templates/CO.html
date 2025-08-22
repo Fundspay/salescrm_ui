@@ -1390,7 +1390,7 @@
                                 internshipType: row[12] || null,
                                 detailedResponse: row[13] || null,
                             },
-                            userId: 1
+                            userId: 2
                         };
                     });
 
@@ -1398,7 +1398,7 @@
 
                     // Send via AJAX POST
                     $.ajax({
-                        url: "http://fundsaudit.com/api/v1/cosheet/register",
+                        url: "https://fundsaudit.com/api/v1/cosheet/register",
                         type: "POST",
                         contentType: "application/json",
                         data: JSON.stringify(jsonData),
@@ -1431,7 +1431,7 @@
         var userData = JSON.parse(sessionStorage.getItem("user_data"));
         console.log(userData);
 
-        const apiBase = "http://fundsaudit.com/api/v1/cosheet";
+        const apiBase = "https://fundsaudit.com/api/v1/cosheet";
 
         const dropdowns = {
             city: ["Jaipur", "Pilani", "Jodhpur"],
