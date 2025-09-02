@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+    <meta name="author" content="Fundsroom" />
+    <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+    <!--! BEGIN: Apps Title-->
+    <title>Fundsroom HR || CO</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/FundsAuditLogo.png" />
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/bootstrap.min.css" />
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <!--! END: Vendors CSS-->
+    <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="./../assets/css/theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/tagify-data.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/quill.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/select2-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="./../assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script>
+        function setStickyColumns() {
+            const table = document.getElementById("leadsTable");
+            if (!table) return;
+
+            const stickyCols = 3;
+            let leftOffsets = [];
+
+            let total = 0;
+            for (let i = 0; i < stickyCols; i++) {
+                leftOffsets[i] = total;
+                const th = table.querySelector(`th:nth-child(${i + 1})`);
+                total += th.offsetWidth;
+            }
+
+            for (let i = 0; i < stickyCols; i++) {
+                const th = table.querySelector(`th:nth-child(${i + 1})`);
+                th.style.left = leftOffsets[i] + 'px';
+                th.style.zIndex = 11;
+            }
+
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                for (let i = 0; i < stickyCols; i++) {
+                    const td = row.querySelector(`td:nth-child(${i + 1})`);
+                    td.style.left = leftOffsets[i] + 'px';
+                    td.style.zIndex = 6;
+                }
+            });
+        }
+
+        window.addEventListener("load", setStickyColumns);
+        window.addEventListener("resize", setStickyColumns);
+    </script>
+
+    <script>
+        function setStickyColumns2() {
+            const table = document.getElementById("leadsTable2");
+            if (!table) return;
+
+            const stickyCols = 3; // first 3 columns sticky
+            let leftOffsets = [];
+
+            let total = 0;
+            for (let i = 0; i < stickyCols; i++) {
+                leftOffsets[i] = total;
+                const th = table.querySelector(`th:nth-child(${i + 1})`);
+                if (th) total += th.offsetWidth;
+            }
+
+            // Apply sticky left for headers
+            for (let i = 0; i < stickyCols; i++) {
+                const th = table.querySelector(`th:nth-child(${i + 1})`);
+                if (th) {
+                    th.style.left = leftOffsets[i] + 'px';
+                    th.style.zIndex = 11;
+                }
+            }
+
+            // Apply sticky left for each row cell
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                for (let i = 0; i < stickyCols; i++) {
+                    const td = row.querySelector(`td:nth-child(${i + 1})`);
+                    if (td) {
+                        td.style.left = leftOffsets[i] + 'px';
+                        td.style.zIndex = 6;
+                    }
+                }
+            });
+        }
+
+        window.addEventListener("load", setStickyColumns2);
+        window.addEventListener("resize", setStickyColumns2);
+    </script>
+
+
+    <!--! END: Custom CSS-->
+    <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
+    <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
+    <!--[if lt IE 9]>
+			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <nav class="nxl-navigation">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand">
+                    <img src="./../assets/images/FundsAuditText.png" alt="" class="logo logo-lg" />
+                    <img src="./../assets/images/FundsAuditLogo.png" alt="" class="logo logo-sm" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="nxl-navbar">
+                    <li class="nxl-item nxl-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="profile.html" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-user"></i></span>
+                            <span class="nxl-mtext">My Profile</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="targets.html" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-activity"></i></span>
+                            <span class="nxl-mtext">My Targets</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <li class="nxl-item nxl-hasmenu">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Dashboard</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="CO.html">CO (Connect)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">RE (Reach)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">R (Resume)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">I (Interview)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">S (Selection)</a></li>
+                            <li class="nxl-item"><a class="nxl-link" href="RE.html">K (Kick off)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">My Performance</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Logout</span><span class="nxl-arrow"><i></i></span>
+                        </a>
+                    </li>
+                    <!-- Admin Page Link (Hidden by Default) -->
+                    <li class="nxl-item nxl-hasmenu" id="adminPageLink" style="display: none;">
+                        <a href="javascript:void(0);" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-settings"></i></span>
+                            <span class="nxl-mtext">Admin Page</span><span class="nxl-arrow"><i
+                                    class="feather-chevron-right"></i></span>
+                        </a>
+                        <ul class="nxl-submenu">
+                            <li class="nxl-item"><a class="nxl-link" href="admin.html">Dashboard Analysis - Edit</a>
+                            </li>
+                            <li class="nxl-item"><a class="nxl-link" href="analysis-edit.html">HR Analysis - Edit</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="card text-center">
+                    <div class="card-body">
+                        <i class="feather-briefcase fs-4 text-dark"></i>
+                        <h6 class="mt-4 text-dark fw-bolder">Welcome to FundsRoom</h6>
+                        <p class="fs-11 my-3 text-dark">
+                            FundsRoom is your trusted financial partner, offering seamless solutions for managing
+                            investments, loans, and business funds with ease.
+                        </p>
+                        <a href="https://www.fundsroom.com/" class="btn btn-primary text-dark w-100"
+                            style="margin-bottom: 10%;">Fundsroom</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&hl=en_IN"
+                            class="btn btn-success text-light w-100">Download FundsAudit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <header class="nxl-header">
+        <div class="header-wrapper">
+            <!--! [Start] Header Left !-->
+            <div class="header-left d-flex align-items-center gap-4">
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
+                    <div class="hamburger hamburger--arrowturn">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </a>
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <!--! [Start] nxl-navigation-toggle !-->
+                <div class="nxl-navigation-toggle">
+                    <a href="javascript:void(0);" id="menu-mini-button">
+                        <i class="feather-align-left"></i>
+                    </a>
+                    <a href="javascript:void(0);" id="menu-expend-button" style="display: none">
+                        <i class="feather-arrow-right"></i>
+                    </a>
+                </div>
+                <!--! [End] nxl-navigation-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu-toggle !-->
+                <!-- <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                    <a href="javascript:void(0);" id="nxl-lavel-mega-menu-open">
+                        <i class="feather-align-left"></i>
+                    </a>
+                </div> -->
+                <!--! [End] nxl-lavel-mega-menu-toggle !-->
+                <!--! [Start] nxl-lavel-mega-menu !-->
+                <div class="nxl-drp-link nxl-lavel-mega-menu">
+                    <div class="nxl-lavel-mega-menu-toggle d-flex d-lg-none">
+                        <a href="javascript:void(0)" id="nxl-lavel-mega-menu-hide">
+                            <i class="feather-arrow-left me-2"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+                    <!--! [Start] nxl-lavel-mega-menu-wrapper !-->
+                    <div class="nxl-lavel-mega-menu-wrapper d-flex gap-3">
+                        <!--! [Start] nxl-h-item nxl-mega-menu !-->
+                        <div class="dropdown nxl-h-item nxl-mega-menu">
+                            <!-- <a href="javascript:void(0);" class="btn btn-light-brand" data-bs-toggle="dropdown" data-bs-auto-close="outside"> Mega Menu </a> -->
+                            <div class="dropdown-menu nxl-h-dropdown" id="mega-menu-dropdown">
+                                <div class="d-lg-flex align-items-start">
+                                </div>
+                            </div>
+                        </div>
+                        <!--! [End] nxl-h-item nxl-mega-menu !-->
+                    </div>
+                    <!--! [End] nxl-lavel-mega-menu-wrapper !-->
+                </div>
+                <!--! [End] nxl-lavel-mega-menu !-->
+            </div>
+            <!--! [End] Header Left !-->
+            <!--! [Start] Header Right !-->
+            <div class="header-right ms-auto">
+                <div class="d-flex align-items-center">
+
+                    <!-- Full Screen Switcher -->
+                    <div class="nxl-h-item d-none d-sm-flex">
+                        <div class="full-screen-switcher">
+                            <a href="javascript:void(0);" class="nxl-head-link me-0"
+                                onclick="$('body').fullScreenHelper('toggle');">
+                                <i class="feather-maximize maximize"></i>
+                                <i class="feather-minimize minimize"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Dark/Light Theme Toggle -->
+                    <div class="nxl-h-item dark-light-theme">
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 dark-button">
+                            <i class="feather-moon"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="nxl-head-link me-0 light-button" style="display: none">
+                            <i class="feather-sun"></i>
+                        </a>
+                    </div>
+
+                    <!-- User Dropdown -->
+                    <div class="dropdown nxl-h-item">
+                        <a href="javascript:void(0);" data-bs-toggle="dropdown" role="button"
+                            data-bs-auto-close="outside">
+                            <div class="avatar-text avatar-lg bg-gray-200">
+                                <i class="feather-user"></i>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end nxl-h-dropdown nxl-user-dropdown">
+                            <div class="dropdown-header">
+
+                                <section id="user-header">
+                                    <div id="user-section" class="user-dropdown"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--! [End] Header Right !-->
+        </div>
+    </header>
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+            <div class="page-header">
+                <div class="page-header-left d-flex align-items-center">
+                    <!-- <div class="page-header-title">
+                        <h5 class="m-b-10">Dashboard</h5>
+                    </div> -->
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="CO.html">Home</a></li>
+                        <li class="breadcrumb-item">CO</li>
+                    </ul>
+                </div>
+                <div class="page-header-right ms-auto">
+                    <div class="page-header-right-items">
+                        <div class="d-flex d-md-none">
+                            <a href="javascript:void(0)" class="page-header-right-close-toggle">
+                                <i class="feather-arrow-left me-2"></i>
+                                <span>Back</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="d-md-none d-flex align-items-center">
+                        <a href="javascript:void(0)" class="page-header-right-open-toggle">
+                            <i class="feather-align-right fs-20"></i>
+                        </a>
+                    </div> -->
+                </div>
+                <div class="position-relative border-bottom">
+                    <label for="excelUpload" class="dropdown-item upload-trigger" style="cursor:pointer;">
+                        <span class="btn btn-icon" data-bs-toggle="tooltip" data-bs-trigger="hover"
+                            title="Upload Excel files (Less than 5MB)">
+                            <i class="feather-upload"></i> Upload College Data
+                        </span>
+                    </label>
+                    <input type="file" id="excelUpload" accept=".csv,.xls,.xlsx" style="display:none;">
+
+                </div>
+                <div class="date-picker-container" style="margin-left: 1%;">
+                    <input type="text" id="dateRangePicker" class="form-control" placeholder="Select date or range"
+                        style="max-width:220px;" />
+                </div>
+            </div>
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content">
+                <div class="row">
+                    <!-- Total Calls -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Total Calls</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <div>
+                                        <h3><span id="totalCalls">0</span>/<span id="targetCalls">0</span></h3>
+                                        <div class="fs-11 text-muted">
+                                            Remaining: <span id="remainingCalls">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="hstack gap-2 fs-11" id="totalCallsTrend">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="achievementPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connected -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Connected</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span id="connectedCount">0</span></h3>
+                                    <div class="hstack gap-2 fs-11">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="connectedPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Not Answered -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Not Answered</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span id="notAnsweredCount">0</span></h3>
+                                    <div class="hstack gap-2 fs-11">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="notAnsweredPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Busy -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Busy</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span id="busyCount">0</span></h3>
+                                    <div class="hstack gap-2 fs-11">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="busyPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Switch Off -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Switch Off</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span id="switchOffCount">0</span></h3>
+                                    <div class="hstack gap-2 fs-11">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="switchOffPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invalid -->
+                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Invalid</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <h3><span id="invalidCount">0</span></h3>
+                                    <div class="hstack gap-2 fs-11">
+                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
+                                        <span id="invalidPercent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Add this button at the top of your page -->
+                    <!-- <div class="text-end mb-3">
+                        <button class="btn btn-primary" onclick="printPage()">
+                            <i class="bi bi-printer"></i> Print Page
+                        </button>
+                    </div> -->
+
+                    <!-- [Latest Leads] start -->
+                    <div class="col-9 flex-fill">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">INDIVIDUAL CONNECTS</h5>
+                                </div>
+                                <div class="card-header-action d-flex align-items-center gap-2">
+                                    <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            onclick="loadTableData2()"> </a>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                            data-bs-toggle="expand"> </a>
+                                    </div>
+                                    <div class="search-bar">
+                                        <input type="text" id="searchInput2" class="form-control"
+                                            placeholder="Search..." oninput="filterTable2()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0" id="leadsTable2">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th>Action</th>
+                                                <th>SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator Name</th>
+                                                <th>Mobile Number</th>
+                                                <th>Email</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Course</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed Response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination2"></ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable2()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel2()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Component -->
+                    <!-- <div class="col-4 flex-fill calendar-container">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <button id="prevMonth">&lt;</button>
+                                        <h2 id="currentMonthYear">March 2025</h2>
+                                        <button id="nextMonth">&gt;</button>
+                                    </div>
+                                    <div class="calendar-grid">
+                                        <div class="calendar-weekdays">
+                                            <div>MON</div>
+                                            <div>TUE</div>
+                                            <div>WED</div>
+                                            <div>THU</div>
+                                            <div>FRI</div>
+                                            <div>SAT</div>
+                                            <div>SUN</div>
+                                        </div>
+                                        <div class="calendar-days" id="calendarDays"></div>
+                                    </div>
+                                </div>
+                                <div id="errorMessage" class="text-danger mt-2" style="display: none;">
+                                    Failed to fetch data. Please try again.
+                                </div>
+                                <div class="selected-range mt-3">
+                                    <strong>Selected:</strong>
+                                    <span id="selectedRange"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- [Project Calendar] end -->
+
+                    <div class="col-xxl-3">
+                        <div class="card stretch stretch-full overflow-hidden">
+                            <div class="bg-success text-white">
+                                <div class="p-4 d-flex justify-content-between align-items-center">
+                                    <h5 class="text-reset">ANALYTICS</h5>
+                                </div>
+                                <div id="conversion-statistic-bar-chart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="mb-3">Daily JD Sent</h6>
+                                <ul class="list-group" id="jdList">
+                                    <!-- Dates and JD counts will be appended here -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row" style="margin-bottom: 3%;">
+                    <style>
+                        .table-responsive {
+                            overflow-x: auto;
+                            position: relative;
+                        }
+
+                        #leadsTable {
+                            border-collapse: collapse;
+                            width: max-content;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 14px;
+                            background: #fff;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+                            border-radius: 8px;
+                        }
+
+                        #leadsTable th {
+                            font-weight: 600;
+                            text-align: left;
+                            padding: 8px 12px;
+                            border-bottom: 2px solid #e5e7eb;
+                            position: sticky;
+                            top: 0;
+                            z-index: 10;
+                        }
+
+                        #leadsTable th:nth-child(-n+3) {
+                            background: #fff;
+                            color: #000;
+                            z-index: 15;
+                        }
+
+                        #leadsTable th:nth-child(n+4) {
+                            background: #fff;
+                            color: #000;
+                            font-weight: bold;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable td {
+                            vertical-align: middle;
+                            padding: 8px 12px;
+                            white-space: nowrap;
+                            border-bottom: 1px solid #f1f5f9;
+                        }
+
+                        #leadsTable tr:nth-child(even) td {
+                            background: #fafafa;
+                        }
+
+                        #leadsTable tr:hover td {
+                            background: #f1f5ff;
+                        }
+
+                        #leadsTable th:nth-child(-n+3),
+                        #leadsTable td:nth-child(-n+3) {
+                            position: sticky;
+                            left: 0;
+                            z-index: 5;
+                            border-right: 1px solid #dee2e6;
+                            background: #fff;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable input,
+                        #leadsTable select {
+                            display: none;
+                            width: 100%;
+                            font-size: 14px;
+                            padding: 6px 8px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 6px;
+                            background: #fff;
+                        }
+
+                        #leadsTable td.editing input,
+                        #leadsTable td.editing select {
+                            display: block;
+                        }
+
+                        #leadsTable td span {
+                            display: inline-block;
+                            width: 100%;
+                            min-height: 22px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            color: #1e293b;
+                        }
+
+                        #leadsTable td.editing {
+                            background: #fff7ed;
+                            box-shadow: inset 0 0 0 2px #f97316;
+                        }
+                    </style>
+
+                    <style>
+                        .table-responsive {
+                            overflow-x: auto;
+                            position: relative;
+                        }
+
+                        #leadsTable2 {
+                            border-collapse: collapse;
+                            width: max-content;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 14px;
+                            background: #fff;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+                            border-radius: 8px;
+                        }
+
+                        #leadsTable2 th {
+                            font-weight: 600;
+                            text-align: left;
+                            padding: 8px 12px;
+                            border-bottom: 2px solid #e5e7eb;
+                            position: sticky;
+                            top: 0;
+                            z-index: 10;
+                            background: #fff;
+                        }
+
+                        #leadsTable2 th:nth-child(-n+3) {
+                            background: #fff;
+                            color: #000;
+                            z-index: 15;
+                        }
+
+                        #leadsTable2 th:nth-child(n+4) {
+                            background: #fff;
+                            color: #000;
+                            font-weight: bold;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable2 td {
+                            vertical-align: middle;
+                            padding: 8px 12px;
+                            white-space: nowrap;
+                            border-bottom: 1px solid #f1f5f9;
+                        }
+
+                        #leadsTable2 tr:nth-child(even) td {
+                            background: #fafafa;
+                        }
+
+                        #leadsTable2 tr:hover td {
+                            background: #f1f5ff;
+                        }
+
+                        #leadsTable2 th:nth-child(-n+3),
+                        #leadsTable2 td:nth-child(-n+3) {
+                            position: sticky;
+                            left: 0;
+                            z-index: 5;
+                            border-right: 1px solid #dee2e6;
+                            background: #fff;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable2 input,
+                        #leadsTable2 select {
+                            display: none;
+                            width: 100%;
+                            font-size: 14px;
+                            padding: 6px 8px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 6px;
+                            background: #fff;
+                        }
+
+                        #leadsTable2 td.editing input,
+                        #leadsTable2 td.editing select {
+                            display: block;
+                        }
+
+                        #leadsTable2 td span {
+                            display: inline-block;
+                            width: 100%;
+                            min-height: 22px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            color: #1e293b;
+                        }
+
+                        #leadsTable2 td.editing {
+                            background: #fff7ed;
+                            box-shadow: inset 0 0 0 2px #f97316;
+                        }
+                    </style>
+
+
+                    <div class="col-12">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">COLLEGE DETAILS</h5>
+                                </div>
+                                <div class="card-header-action">
+                                    <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            onclick="loadTableData()"> </a>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize"> <a
+                                            href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                            data-bs-toggle="expand"> </a> </div>
+                                    <div class="search-bar">
+                                        <input type="text" id="searchInput" class="form-control" placeholder="Search..."
+                                            oninput="filterTable()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover mb-0" id="leadsTable">
+                                        <thead class="table-light">
+                                            <tr class="border-b">
+                                                <th></th>
+                                                <th>SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator Name</th>
+                                                <th>Mobile Number</th>
+                                                <th>Email</th>
+                                                <th>State</th>
+                                                <th>City</th>
+                                                <th>Course</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed Response</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Rows dynamically injected here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination">
+                                        <!-- Pagination links will be dynamically populated here -->
+                                    </ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="date-picker-container" style="margin-left: 1%; margin-top: 2%; margin-bottom: 2%;">
+                        <input type="text" id="dateRangePicker2" class="form-control" placeholder="Select date or range"
+                            style="max-width:220px;" />
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row g-3 h-100">
+                            <!-- First Row of Cards -->
+                            <div class="col-md-6">
+                                <a href="tables/cna.html" class="text-decoration-none">
+                                    <div class="card bg-primary text-white h-100">
+                                        <div class="card-body">
+                                            <span
+                                                class="badge bg-soft-primary text-primary text-dark float-end">12%</span>
+                                            <div class="text-start">
+                                                <h4 class="text-reset">2</h4>
+                                                <p class="text-reset m-0">CNA</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="tables/busy.html" class="text-decoration-none">
+                                    <div class="card bg-danger text-white h-100">
+                                        <div class="card-body">
+                                            <span
+                                                class="badge bg-soft-primary text-primary text-dark float-end">15%</span>
+                                            <div class="text-start">
+                                                <h4 class="text-reset">4</h4>
+                                                <p class="text-reset m-0">Busy</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="row g-3 h-100">
+                            <!-- Second Row of Cards -->
+                            <div class="col-md-6">
+                                <a href="tables/invalid.html" class="text-decoration-none">
+                                    <div class="card bg-success text-white h-100">
+                                        <div class="card-body">
+                                            <span
+                                                class="badge bg-soft-primary text-primary text-dark float-end">20%</span>
+                                            <div class="text-start">
+                                                <h4 class="text-reset">5</h4>
+                                                <p class="text-reset m-0">Invalid</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="tables/others.html" class="text-decoration-none">
+                                    <div class="card bg-warning text-white h-100">
+                                        <div class="card-body">
+                                            <span
+                                                class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
+                                            <div class="text-start">
+                                                <h4 class="text-reset">34</h4>
+                                                <p class="text-reset m-0">Others</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 flex-fill">
+                    <div class="card stretch stretch-full">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title">FUTURE COLLEGE DETAILS</h5>
+                            </div>
+                            <div class="card-header-action d-flex align-items-center gap-2">
+                                <div data-bs-toggle="tooltip" title="Refresh">
+                                    <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                        onclick="loadTableData3()"> </a>
+                                </div>
+                                <div data-bs-toggle="tooltip" title="Maximize/Minimiz   e">
+                                    <a href="javascript:void(0);" class="avatar-text avatar-xs bg-success"
+                                        data-bs-toggle="expand"> </a>
+                                </div>
+
+                                <div class="month-dropdown d-flex align-items-center gap-2">
+                                    <select id="monthSelect3" class="form-select form-select-sm"
+                                        onchange="setSelectedMonth3()">
+                                        <option value="">📅 Select Month</option>
+                                    </select>
+                                    <span id="selectedMonthDisplay3" class="badge bg-primary"
+                                        style="display:none;"></span>
+                                </div>
+
+
+                                <div class="search-bar">
+                                    <input type="text" id="searchInput3" class="form-control" placeholder="Search..."
+                                        oninput="filterTable3()">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body custom-card-action p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0" id="leadsTable3">
+                                    <thead>
+                                        <tr class="border-b">
+                                            <th>SR</th>
+                                            <th>College Name</th>
+                                            <th>Co-ordinator Name</th>
+                                            <th>Mobile Number</th>
+                                            <th>Email</th>
+                                            <th>City</th>
+                                            <th>State</th>
+                                            <th>Course</th>
+                                            <th>Connected by</th>
+                                            <th>Date of connect</th>
+                                            <th>Call Response</th>
+                                            <th>Type of INT</th>
+                                            <th>Detailed Response</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                    id="pagination3"></ul>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-primary" onclick="printTable3()">
+                                        <i class="bi bi-printer"></i> Print
+                                    </button>
+                                    <button class="btn btn-success" onclick="exportToExcel3()">
+                                        <i class="bi bi-file-earmark-excel"></i> Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <style>
+                    .card-header-action {
+                        gap: 10px;
+                    }
+
+                    .month-dropdown select {
+                        min-width: 160px;
+                        border-radius: 8px;
+                        border: 1px solid #ddd;
+                        background-color: #f8f9fa;
+                        padding: 4px 8px;
+                        font-size: 14px;
+                        transition: all 0.2s ease-in-out;
+                    }
+
+                    .month-dropdown select:hover {
+                        border-color: #0d6efd;
+                        background-color: #fff;
+                        box-shadow: 0 0 6px rgba(13, 110, 253, 0.2);
+                    }
+
+                    .search-bar .input-group {
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        transition: box-shadow 0.2s;
+                    }
+
+                    .search-bar .input-group:focus-within {
+                        box-shadow: 0 0 6px rgba(13, 110, 253, 0.2);
+                        border-color: #0d6efd;
+                    }
+
+                    .search-bar input {
+                        border: none;
+                        outline: none;
+                        font-size: 14px;
+                    }
+                </style>
+
+
+                <!-- [ Main Content ] end -->
+            </div>
+            <!-- [ Footer ] start -->
+            <footer class="footer">
+                <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                    <span>Copyright Fundsroom ©</span>
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                </p>
+                <div class="d-flex align-items-center gap-4">
+                    <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
+					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
+                </div>
+            </footer>
+            <style>
+                /* Apply your theme font */
+                .flatpickr-calendar,
+                .flatpickr-calendar * {
+                    font-family: 'Inter', sans-serif !important;
+                    font-size: 14px;
+                }
+
+                /* Header (month/year) */
+                .flatpickr-months .flatpickr-month {
+                    font-weight: 600;
+                    color: #155fcf;
+                    /* your theme blue */
+                }
+
+                /* Weekdays */
+                .flatpickr-weekday {
+                    color: #1e293b;
+                    font-weight: 500;
+                }
+
+                /* Selected date */
+                .flatpickr-day.selected,
+                .flatpickr-day.startRange,
+                .flatpickr-day.endRange {
+                    background: #155fcf !important;
+                    color: #fff !important;
+                    border-radius: 6px;
+                }
+
+                /* In-between range highlight */
+                .flatpickr-day.inRange {
+                    background: #e0ebff;
+                    color: #155fcf;
+                }
+
+                /* Today’s date highlight */
+                .flatpickr-day.today {
+                    border: 1px solid #155fcf;
+                }
+
+                /* Input box styling */
+                #dateRangePicker {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 14px;
+                    border-radius: 6px;
+                    border: 1px solid #cbd5e1;
+                    padding: 6px 10px;
+                    color: #1e293b;
+                }
+            </style>
+            <!-- [ Footer ] end -->
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
+
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    <script src="./../assets/vendors/js/vendors.min.js"></script>
+    <!-- vendors.min.js {always must need to be top} -->
+    <script src="./../assets/vendors/js/daterangepicker.min.js"></script>
+    <script src="./../assets/vendors/js/apexcharts.min.js"></script>
+    <script src="./../assets/vendors/js/circle-progress.min.js"></script>
+    <script src="./../assets/vendors/js/jquery.calendar.min.js"></script>
+    <script src="./../assets/vendors/js/select2.min.js"></script>
+    <script src="./../assets/vendors/js/select2-active.min.js"></script>
+    <script src="./../assets/js/common-init.min.js"></script>
+    <script src="./../assets/vendors/js/lslstrength.min.js"></script>
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    <script src="./../assets/js/reports-project-init.min.js"></script>
+    <script src="./../assets/js/widgets-charts-init.min.js"></script>
+    <script src="./../assets/js/widgets-miscellaneous-init.min.js"></script>
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    <script src="./../assets/js/theme-customizer-init.min.js"></script>
+    <!--! END: Theme Customizer !-->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        var userData = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData);
+
+        function loadDashboardData(fromDate = null, toDate = null) {
+            let url = `https://fundsaudit.com/api/v1/cosheet/stats/user/${userData.user_id}`;
+
+            if (fromDate && toDate) {
+                url = `https://fundsaudit.com/api/v1/cosheet/stats/user/${userData.user_id}?fromDate=${fromDate}&toDate=${toDate}`;
+            }
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (response) {
+                    console.log("get call response:", response);
+                    if (response.success) {
+                        const data = response.data;
+
+                        $("#totalCalls").text(data.totalCalls);
+                        $("#targetCalls").text(data.targetCalls);
+                        $("#remainingCalls").text(data.remainingCalls);
+                        $("#achievementPercent").text(data.achievementPercent + "%");
+
+                        $("#connectedCount").text(data.counts.connected);
+                        $("#connectedPercent").text(data.percentages.connected + "%");
+
+                        $("#notAnsweredCount").text(data.counts["not answered"]);
+                        $("#notAnsweredPercent").text(data.percentages["not answered"] + "%");
+
+                        $("#busyCount").text(data.counts.busy);
+                        $("#busyPercent").text(data.percentages.busy + "%");
+
+                        $("#switchOffCount").text(data.counts["switch off"]);
+                        $("#switchOffPercent").text(data.percentages["switch off"] + "%");
+
+                        $("#invalidCount").text(data.counts.invalid);
+                        $("#invalidPercent").text(data.percentages.invalid + "%");
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching dashboard data", err);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            loadDashboardData();
+        });
+    </script>
+
+    <script>
+        let fromDate = null;
+        let toDate = null;
+
+        flatpickr("#dateRangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onClose: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate = instance.formatDate(selectedDates[1], "Y-m-d");
+
+                    console.log("From:", fromDate, "To:", toDate);
+
+                    loadAnalysisChart(fromDate, toDate);
+
+                    loadDashboardData(fromDate, toDate);
+                    loadTableData2(fromDate, toDate);
+                }
+            }
+        });
+    </script>
+
+    <script>
+        let fromDate2 = null;
+        let toDate2 = null;
+
+        flatpickr("#dateRangePicker2", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onClose: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    fromDate2 = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate2 = instance.formatDate(selectedDates[1], "Y-m-d");
+
+                    console.log("From:", fromDate2, "To:", toDate2);
+
+                    // loadAnalysisChart(fromDate, toDate);
+
+                    // loadDashboardData(fromDate, toDate);
+                    // loadTableData2(fromDate, toDate);
+                }
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#excelUpload").on("change", function (e) {
+                Swal.fire({
+                    title: "Uploading...",
+                    text: "Please wait while we process your file.",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                let file = e.target.files[0];
+                if (!file) return;
+
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    let data = new Uint8Array(e.target.result);
+                    let workbook = XLSX.read(data, { type: "array" });
+
+                    // take first sheet
+                    let sheetName = workbook.SheetNames[0];
+                    let sheet = workbook.Sheets[sheetName];
+
+                    // Convert to JSON (raw)
+                    let rawData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    console.log("Raw Excel Data:", rawData);
+
+                    // Remove first 3 header rows (adjust if needed)
+                    let rows = rawData.slice(1);
+
+                    // Map to required format
+                    let jsonData = rows.map((row, i) => {
+                        // Convert Excel date (if numeric) to normal date string
+                        let dateValue = row[9];
+                        if (typeof dateValue === "number") {
+                            // XLSX has a utility to convert Excel serial date → JS Date
+                            let jsDate = XLSX.SSF.parse_date_code(dateValue);
+                            if (jsDate) {
+                                // Format to "8 July 2025"
+                                dateValue = `${jsDate.d} ${new Date(jsDate.y, jsDate.m - 1, jsDate.d)
+                                    .toLocaleString("en-US", { month: "long" })} ${jsDate.y}`;
+                            }
+                        }
+
+                        return {
+                            collegeDetails: {
+                                sr: row[0] || i + 1,
+                                collegeName: row[1] || null,
+                                coordinatorName: row[2] || null,
+                                mobileNumber: row[3] || null,
+                                emailId: row[4] || null,
+                                city: row[5] || null,
+                                state: row[6] || null,
+                                course: row[7] || null,
+                            },
+                            connect: {
+                                connectedBy: row[8] || null,
+                                dateOfConnect: dateValue || null, // <-- fixed
+                                callResponse: row[10] || null,
+                                internshipType: row[12] || null,
+                                detailedResponse: row[13] || null,
+                            },
+                            userId: 2
+                        };
+                    });
+
+                    console.log("Formatted JSON:", jsonData);
+
+                    // Send via AJAX POST
+                    $.ajax({
+                        url: "https://fundsaudit.com/api/v1/cosheet/add",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(jsonData),
+                        success: function (res) {
+                            console.log("Response:", res);
+                            Swal.fire({
+                                icon: "success",
+                                title: "Uploaded!",
+                                text: "College data uploaded successfully.",
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        },
+                        error: function (xhr) {
+                            console.log("Error:", xhr);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Upload Failed",
+                                text: xhr.responseText || "Something went wrong!",
+                            });
+                        },
+                    });
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        });
+    </script>
+
+    <script>
+        var userData = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData);
+
+        const apiBase = "https://fundsaudit.com/api/v1/cosheet";
+
+        const dropdowns = {
+            city: [],
+            state: [],
+            course: ["MBA", "PGDM", "MBA+PGDM", "BBA/BCOM", "OTHERS"],
+            connectedBy: [],
+            callResponse: ["connected", "not answered", "busy", "switch off", "invalid"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            detailedResponse: [
+                "Send JD", "Not Interested", "January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November",
+                "December", "Cut the call"
+            ]
+        };
+
+        let citiesData = [];
+        let tableData = [];
+        const rowsPerPage = 10;
+        let currentPage = 1;
+
+        function loadCities() {
+            return fetch("/templates/cities.json")
+                .then(res => res.json())
+                .then(data => {
+                    citiesData = data;
+                    dropdowns.state = [...new Set(data.map(item => item.state))];
+                })
+                .catch(err => console.error("Failed to load cities.json:", err));
+        }
+
+        function loadTableData() {
+            $.ajax({
+                url: apiBase + "/list",
+                method: "GET",
+                success: function (res) {
+                    console.log(res);
+                    if (res.success && res.users) {
+                        tableData = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            collegeName: row.collegeName || "",
+                            coordinatorName: row.coordinatorName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            city: row.city || "",
+                            state: row.state || "",
+                            course: row.course || "",
+                            connectedBy: row.connectedBy || "",
+                            dateOfConnect: row.dateOfConnect || "",
+                            callResponse: row.callResponse || "",
+                            internshipType: row.internshipType || "",
+                            detailedResponse: row.detailedResponse || ""
+                        }));
+
+                        dropdowns.connectedBy = res.users.map(u => u.firstName);
+                        dropdowns.connectedBy.push("Other"); // keep "Other" as option
+                        console.log("ConnectedBy options:", dropdowns.connectedBy);
+
+                        renderTable();
+                        renderPagination();
+                    }
+                }
+            });
+        }
+
+        function renderTable() {
+            let tbody = $("#leadsTable tbody");
+            tbody.empty();
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const rows = tableData.slice(start, end);
+
+            rows.forEach((row, index) => {
+                let tr = `<tr data-id="${row.id}">
+        <td>
+            <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </td>
+        <td>${row.sno}</td>
+        ${makeCell("collegeName", row.collegeName)}
+        ${makeCell("coordinatorName", row.coordinatorName)}
+        ${makeCell("mobileNumber", row.mobileNumber)}
+        ${makeCell("emailId", row.emailId)}
+        ${makeDropdownCell("state", row.state)}
+        ${makeDropdownCell("city", row.city, row.state)}
+        ${makeDropdownCell("course", row.course)}
+        ${makeDropdownCell("connectedBy", row.connectedBy)}
+        ${makeDateCell("dateOfConnect", row.dateOfConnect)}
+        ${makeDropdownCell("callResponse", row.callResponse)}
+        ${makeDropdownCell("internshipType", row.internshipType)}
+        ${makeDropdownCell("detailedResponse", row.detailedResponse)}
+    </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents();
+            attachSendMailEvents();
+            setStickyColumns();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(tableData.length / rowsPerPage);
+            const pagination = $("#pagination");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage = function (page) {
+            const totalPages = Math.ceil(tableData.length / rowsPerPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderTable();
+            renderPagination();
+        };
+
+        function makeCell(field, value) {
+            let displayValue = value || "";
+
+            if (field === "mobileNumber" && value) {
+                return `<td data-field="${field}">
+    <span>
+        <a href="tel:${value}" class="text-primary text-decoration-none">
+            ${value}
+        </a>
+    </span>
+    <input type="text" value="${displayValue}">
+</td>`;
+            }
+
+            return `<td data-field="${field}">
+<span>${displayValue}</span>
+<input type="text" value="${displayValue}">
+</td>`;
+        }
+
+        // Date cell
+        function makeDateCell(field, value) {
+            let displayValue = formatDate(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+    <span>${displayValue}</span>
+    <input type="text" class="date-picker" value="${rawValue}">
+</td>`;
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        // Dropdown cell
+        function makeDropdownCell(field, selectedValue, stateFilter = null) {
+            let options = dropdowns[field] || [];
+
+            // if this is a city dropdown, filter based on selected state
+            if (field === "city" && stateFilter) {
+                options = citiesData.filter(c => c.state === stateFilter).map(c => c.name);
+            }
+
+            let html = `<td data-field="${field}">
+    <span>${selectedValue || ""}</span>
+    <select class="form-control select2">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+
+            options.forEach(opt => {
+                let sel = (opt === selectedValue) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${opt}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        // Cell events
+        function attachCellEvents() {
+            $("#leadsTable td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable td[data-field='mobileNumber']").off("dblclick").on("dblclick", function (e) {
+                e.preventDefault();
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input").focus();
+            });
+
+            $("#leadsTable td input, #leadsTable td select").off("blur change").on("blur change", function () {
+                let td = $(this).closest("td");
+                let tr = $(this).closest("tr");
+                let id = tr.data("id");
+                let field = td.data("field");
+                let value = $(this).val();
+
+                if ($(this).hasClass("date-picker")) {
+                    value = new Date(value).toISOString().split("T")[0];
+                    td.find("span").text(formatDate(value));
+                } else {
+                    td.find("span").text(value);
+                }
+                td.removeClass("editing");
+
+                let payload = {};
+                payload[field] = value;
+
+                $.ajax({
+                    url: apiBase + "/update/" + id,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(payload),
+                    success: function (res) {
+                        console.log("Updated:", res);
+
+                        // 🔹 if state changed, reset city dropdown for this row
+                        if (field === "state") {
+                            const cityTd = tr.find("td[data-field='city']");
+                            const newCityDropdown = makeDropdownCell("city", "", value);
+                            cityTd.replaceWith(newCityDropdown);
+                            attachCellEvents(); // rebind events
+                        }
+                    },
+                    error: function (err) {
+                        console.error("Update failed", err);
+                    }
+                });
+            });
+
+            $(".date-picker").flatpickr({
+                dateFormat: "Y-m-d"
+            });
+        }
+
+        // Send Mail Events
+        function attachSendMailEvents() {
+            $(".send-mail").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to send the JD mail?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, Send",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: "https://fundsaudit.com/api/v1/cosheet/" + id + "/send-jd",
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({ cc: [], bcc: [] }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The JD mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the JD mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        // Search
+        window.filterTable = function () {
+            const value = $("#searchInput").val().toLowerCase().trim();
+            if (!value) {
+                renderTable();
+                renderPagination();
+                return;
+            }
+
+            const filtered = tableData.filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            const tbody = $("#leadsTable tbody");
+            tbody.empty();
+            filtered.forEach((row, index) => {
+                const tr = `<tr data-id="${row.id}">
+        <td>
+            <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </td>
+        <td>${index + 1}</td>
+        ${makeCell("collegeName", row.collegeName)}
+        ${makeCell("coordinatorName", row.coordinatorName)}
+        ${makeCell("mobileNumber", row.mobileNumber)}
+        ${makeCell("emailId", row.emailId)}
+        ${makeDropdownCell("state", row.state)}
+        ${makeDropdownCell("city", row.city, row.state)}
+        ${makeDropdownCell("course", row.course)}
+        ${makeDropdownCell("connectedBy", row.connectedBy)}
+        ${makeDateCell("dateOfConnect", row.dateOfConnect)}
+        ${makeDropdownCell("callResponse", row.callResponse)}
+        ${makeDropdownCell("internshipType", row.internshipType)}
+        ${makeDropdownCell("detailedResponse", row.detailedResponse)}
+    </tr>`;
+                tbody.append(tr);
+            });
+
+            $("#pagination").hide();
+            attachCellEvents();
+            attachSendMailEvents();
+        };
+
+        // Print
+        window.printTable = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        // Export Excel
+        window.exportToExcel = function () {
+            const headers = [
+                "S No.",
+                "College Name",
+                "Coordinator Name",
+                "Mobile Number",
+                "Email ID",
+                "State",
+                "City",
+                "Course",
+                "Connected By",
+                "Date of Connect",
+                "Call Response",
+                "Internship Type",
+                "Detailed Response"
+            ];
+
+            const data = [headers];
+
+            tableData.forEach((row, index) => {
+                data.push([
+                    index + 1,
+                    row.collegeName,
+                    row.coordinatorName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.state,
+                    row.city,
+                    row.course,
+                    row.connectedBy,
+                    row.dateOfConnect,
+                    row.callResponse,
+                    row.internshipType,
+                    row.detailedResponse
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "CollegeDetails");
+            XLSX.writeFile(workbook, "CollegeDetails_All.xlsx");
+        };
+
+        $(document).ready(function () {
+            // first load states & cities
+            loadCities().then(() => {
+                loadTableData();
+            });
+        });
+    </script>
+
+
+    <script>
+        var userData2 = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData2);
+
+        const apiBase2 = "https://fundsaudit.com/api/v1/cosheet";
+
+        const dropdowns2 = {
+            city: ["Jaipur", "Pilani", "Jodhpur"],
+            state: ["Rajasthan", "Delhi", "Maharashtra"],
+            course: ["MBA", "PGDM", "MBA+PGDM", "BBA/BCOM", "OTHERS"],
+            connectedBy: [],
+            callResponse: ["connected", "not answered", "busy", "switch off", "invalid"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            detailedResponse: ["Send JD", "Not Interested", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Cut the call"]
+        };
+
+        let tableData2 = [];
+        const rowsPerPage2 = 10;
+        let currentPage2 = 1;
+
+        function loadTableData2(fromDate = null, toDate = null) {
+            let url = "https://fundsaudit.com/api/v1/cosheet/list";
+
+            if (fromDate && toDate) {
+                url = `https://fundsaudit.com/api/v1/cosheet/list?fromDate=${fromDate}&toDate=${toDate}`;
+            }
+            $.ajax({
+                url: apiBase2 + "/list",
+                method: "GET",
+                success: function (res) {
+                    console.log("response 2:", res);
+                    if (res.success && res.users) {
+                        tableData2 = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            collegeName: row.collegeName || "",
+                            coordinatorName: row.coordinatorName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            city: row.city || "",
+                            state: row.state || "",
+                            course: row.course || "",
+                            connectedBy: row.connectedBy || "",
+                            dateOfConnect: row.dateOfConnect || "",
+                            callResponse: row.callResponse || "",
+                            internshipType: row.internshipType || "",
+                            detailedResponse: row.detailedResponse || ""
+                        }));
+
+                        dropdowns2.connectedBy = res.users.map(u => u.firstName);
+                        dropdowns2.connectedBy.push("Other");
+                        console.log("ConnectedBy options:", dropdowns2.connectedBy);
+
+                        renderTable2();
+                        renderPagination2();
+                    }
+                }
+            });
+        }
+
+        function renderTable2() {
+            let tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+
+            const start = (currentPage2 - 1) * rowsPerPage2;
+            const end = start + rowsPerPage2;
+            const rows = tableData2.slice(start, end);
+
+            rows.forEach((row, index) => {
+                let tr = `<tr data-id="${row.id}">
+        <td>
+            <button class="btn btn-sm btn-success send-mail2" data-id="${row.id}" title="Send JD">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </td>
+        <td>${row.sno}</td>
+        ${makeCell2("collegeName", row.collegeName)}
+        ${makeCell2("coordinatorName", row.coordinatorName)}
+        ${makeCell2("mobileNumber", row.mobileNumber)}
+        ${makeCell2("emailId", row.emailId)}
+        ${makeDropdownCell2("city", row.city)}
+        ${makeDropdownCell2("state", row.state)}
+        ${makeDropdownCell2("course", row.course)}
+        ${makeDropdownCell2("connectedBy", row.connectedBy)}
+        ${makeDateCell2("dateOfConnect", row.dateOfConnect)}
+        ${makeDropdownCell2("callResponse", row.callResponse)}
+        ${makeDropdownCell2("internshipType", row.internshipType)}
+        ${makeDropdownCell2("detailedResponse", row.detailedResponse)}
+    </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents2();
+            attachSendMailEvents2();
+            setStickyColumns2(); // reuse if you want same sticky columns
+        }
+
+        function renderPagination2() {
+            const totalPages = Math.ceil(tableData2.length / rowsPerPage2);
+            const pagination = $("#pagination2");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage2 - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage2 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage2 === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage2 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage2 = function (page) {
+            const totalPages = Math.ceil(tableData2.length / rowsPerPage2);
+            if (page < 1 || page > totalPages) return;
+            currentPage2 = page;
+            renderTable2();
+            renderPagination2();
+        };
+
+        function makeCell2(field, value) {
+            let displayValue = value || "";
+
+            if (field === "mobileNumber" && value) {
+                return `<td data-field="${field}">
+    <span>
+        <a href="tel:${value}" class="text-primary text-decoration-none">
+            ${value}
+        </a>
+    </span>
+    <input type="text" value="${displayValue}">
+</td>`;
+            }
+
+            return `<td data-field="${field}">
+<span>${displayValue}</span>
+<input type="text" value="${displayValue}">
+</td>`;
+        }
+
+        function makeDateCell2(field, value) {
+            let displayValue = formatDate2(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+    <span>${displayValue}</span>
+    <input type="text" class="date-picker2" value="${rawValue}">
+</td>`;
+        }
+
+        function formatDate2(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function makeDropdownCell2(field, selectedValue) {
+            let options = dropdowns2[field] || [];
+            let html = `<td data-field="${field}">
+    <span>${selectedValue || ""}</span>
+    <select class="form-control select2">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+
+            options.forEach(opt => {
+                let sel = (opt === selectedValue) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${opt}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function attachCellEvents2() {
+            $("#leadsTable2 td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable2 td[data-field='mobileNumber']").off("dblclick").on("dblclick", function (e) {
+                e.preventDefault();
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input").focus();
+            });
+
+            $("#leadsTable2 td input, #leadsTable2 td select").off("blur change").on("blur change", function () {
+                let td = $(this).closest("td");
+                let tr = $(this).closest("tr");
+                let id = tr.data("id");
+                let field = td.data("field");
+                let value = $(this).val();
+
+                if ($(this).hasClass("date-picker2")) {
+                    value = new Date(value).toISOString().split("T")[0];
+                    td.find("span").text(formatDate2(value));
+                } else {
+                    td.find("span").text(value);
+                }
+                td.removeClass("editing");
+
+                let payload = {};
+                payload[field] = value;
+
+                $.ajax({
+                    url: apiBase2 + "/update/" + id,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(payload),
+                    success: function (res) {
+                        console.log("Updated:", res);
+                    },
+                    error: function (err) {
+                        console.error("Update failed", err);
+                    }
+                });
+            });
+
+            $(".date-picker2").flatpickr({
+                dateFormat: "Y-m-d"
+            });
+        }
+
+        function attachSendMailEvents2() {
+            $(".send-mail2").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to send the JD mail?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, Send",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: "https://fundsaudit.com/api/v1/cosheet/" + id + "/send-jd",
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                cc: [],
+                                bcc: []
+                            }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The JD mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the JD mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        window.filterTable2 = function () {
+            const value = $("#searchInput2").val().toLowerCase().trim();
+            if (!value) {
+                renderTable2();
+                renderPagination2();
+                return;
+            }
+
+            const filtered = tableData2.filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            const tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+            filtered.forEach((row, index) => {
+                const tr = `<tr data-id="${row.id}">
+        <td>
+            <button class="btn btn-sm btn-success send-mail2" data-id="${row.id}" title="Send JD">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </td>
+        <td>${index + 1}</td>
+        ${makeCell2("collegeName", row.collegeName)}
+        ${makeCell2("coordinatorName", row.coordinatorName)}
+        ${makeCell2("mobileNumber", row.mobileNumber)}
+        ${makeCell2("emailId", row.emailId)}
+        ${makeDropdownCell2("city", row.city)}
+        ${makeDropdownCell2("state", row.state)}
+        ${makeDropdownCell2("course", row.course)}
+        ${makeDropdownCell2("connectedBy", row.connectedBy)}
+        ${makeDateCell2("dateOfConnect", row.dateOfConnect)}
+        ${makeDropdownCell2("callResponse", row.callResponse)}
+        ${makeDropdownCell2("internshipType", row.internshipType)}
+        ${makeDropdownCell2("detailedResponse", row.detailedResponse)}
+    </tr>`;
+                tbody.append(tr);
+            });
+
+            $("#pagination2").hide();
+            attachCellEvents2();
+            attachSendMailEvents2();
+        };
+
+        window.printTable2 = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable2")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        window.exportToExcel2 = function () {
+            const headers = [
+                "S No.",
+                "College Name",
+                "Coordinator Name",
+                "Mobile Number",
+                "Email ID",
+                "City",
+                "State",
+                "Course",
+                "Connected By",
+                "Date of Connect",
+                "Call Response",
+                "Internship Type",
+                "Detailed Response"
+            ];
+
+            const data = [headers];
+
+            tableData2.forEach((row, index) => {
+                data.push([
+                    index + 1,
+                    row.collegeName,
+                    row.coordinatorName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.city,
+                    row.state,
+                    row.course,
+                    row.connectedBy,
+                    row.dateOfConnect,
+                    row.callResponse,
+                    row.internshipType,
+                    row.detailedResponse
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "CollegeDetails2");
+            XLSX.writeFile(workbook, "CollegeDetails_All2.xlsx");
+        };
+
+        $(document).ready(function () {
+            loadTableData2();
+        });
+    </script>
+
+    <script>
+        let analysisChart = null;
+        let userId = 1;
+
+        function loadAnalysisChart(fromDate = null, toDate = null) {
+            let url = `https://fundsaudit.com/api/v1/analysis/daily-analysis/${userData.user_id}`;
+
+            if (fromDate && toDate) {
+                url = `https://fundsaudit.com/api/v1/analysis/daily-analysis/${userData.user_id}?fromDate=${fromDate}&toDate=${toDate}`;
+            }
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function (res) {
+                    console.log("barchart data:", res);
+                    const jdList = $("#jdList");
+                    jdList.empty(); // clear old list
+
+                    if (res.success && res.data.length > 0) {
+                        const dates = res.data.map(item => item.date);
+                        const jdCounts = res.data.map(item => item.jdCount);
+
+                        res.data.forEach(item => {
+                            jdList.append(`
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>${item.date}</span>
+                                <span class="fw-bold">${item.jdCount}</span>
+                            </li>
+                        `);
+                        });
+
+                        if (analysisChart) {
+                            analysisChart.updateOptions({
+                                series: [{ name: "JD Count", data: jdCounts }],
+                                xaxis: { categories: dates }
+                            });
+                        } else {
+                            analysisChart = new ApexCharts(document.querySelector("#conversion-statistic-bar-chart"), {
+                                series: [{ name: "JD Count", data: jdCounts }],
+                                chart: {
+                                    type: "bar",
+                                    height: 200,
+                                    toolbar: { show: false }
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: false,
+                                        endingShape: "rounded",
+                                        columnWidth: "20%"
+                                    }
+                                },
+                                colors: ["#fff"],
+                                grid: { show: false },
+                                legend: { show: false },
+                                dataLabels: { enabled: false },
+                                xaxis: {
+                                    categories: dates,
+                                    labels: {
+                                        show: true,
+                                        style: { colors: "#fff", fontFamily: "Roboto" }
+                                    },
+                                    axisBorder: { show: false }
+                                },
+                                yaxis: { labels: { show: false } },
+                                tooltip: {
+                                    theme: "dark",
+                                    y: {
+                                        formatter: function (val) {
+                                            return val + " JDs";
+                                        }
+                                    },
+                                    style: { colors: "#000", fontFamily: "Roboto" }
+                                }
+                            });
+                            analysisChart.render();
+                        }
+                    } else {
+                        console.warn("No analysis data found for selected range.");
+                        jdList.append(`<li><span class="date">No Data</span><span class="count">0 JDs</span></li>`);
+                        if (analysisChart) {
+                            analysisChart.updateOptions({
+                                series: [{ name: "JD Count", data: [] }],
+                                xaxis: { categories: [] }
+                            });
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching analysis data", err);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            loadAnalysisChart();
+        });
+    </script>
+
+    <script>
+        let leadsData3 = [];
+        let leadsMasterData3 = [];
+        let leadsPage3 = 1;
+        const leadsRowsPerPage3 = 10;
+
+        // Load data into table with optional month-year
+        function fetchLeadsData3(monthYear = null) {
+            let url = "https://fundsaudit.com/api/v1/cosheet/list";
+
+            if (monthYear) {
+                url = `https://fundsaudit.com/api/v1/cosheet/list?month=${monthYear}`;
+            }
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function (res) {
+                    console.log("Future College Data:", res);
+                    if (res.success && res.data.length > 0) {
+                        leadsMasterData3 = res.data;
+                        leadsData3 = [...leadsMasterData3];
+                        renderLeadsTable3();
+                        renderLeadsPagination3();
+                    } else {
+                        $("#leadsTable3 tbody").html(
+                            `<tr><td colspan="14" class="text-center text-muted">No records found</td></tr>`
+                        );
+                        $("#pagination3").html("");
+                    }
+                },
+                error: function () {
+                    alert("Failed to load leads data.");
+                }
+            });
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            if (!dateStr) return "";
+            let d = new Date(dateStr);
+            if (isNaN(d)) return dateStr;
+            return d.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        // Render table
+        function renderLeadsTable3() {
+            let start = (leadsPage3 - 1) * leadsRowsPerPage3;
+            let end = start + leadsRowsPerPage3;
+            let pageData = leadsData3.slice(start, end);
+
+            let rows = "";
+            pageData.forEach((item, index) => {
+                let srNo = start + index + 1;
+                rows += `
+                <tr>
+                    <td>${srNo}</td>
+                    <td>${item.collegeName || ""}</td>
+                    <td>${item.coordinatorName || ""}</td>
+                    <td>${item.mobileNumber || ""}</td>
+                    <td>${item.emailId || ""}</td>
+                    <td>${item.city || ""}</td>
+                    <td>${item.state || ""}</td>
+                    <td>${item.course || ""}</td>
+                    <td>${item.connectedBy || ""}</td>
+                    <td>${formatDate(item.dateOfConnect) || ""}</td>
+                    <td>${item.callResponse || ""}</td>
+                    <td>${item.internshipType || ""}</td>
+                    <td>${item.detailedResponse || ""}</td>
+                </tr>`;
+            });
+
+            $("#leadsTable3 tbody").html(rows);
+        }
+
+        // Pagination
+        function renderLeadsPagination3() {
+            const totalPages = Math.ceil(leadsData3.length / leadsRowsPerPage3);
+            const pagination = $("#pagination3");
+            pagination.empty();
+
+            if (totalPages <= 1) return;
+
+            const visibleCount = 3;
+            let startPage = Math.max(leadsPage3 - 1, 1);
+            let endPage = startPage + visibleCount - 1;
+
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visibleCount + 1, 1);
+            }
+
+            const prevDisabled = leadsPage3 === 1 ? "disabled" : "";
+            const nextDisabled = leadsPage3 === totalPages ? "disabled" : "";
+
+            pagination.append(
+                `<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changeLeadsPage3(${leadsPage3 - 1})">&laquo;</a></li>`
+            );
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === leadsPage3 ? "active" : "";
+                pagination.append(
+                    `<li><a href="javascript:void(0);" class="${active}" onclick="changeLeadsPage3(${i})">${i}</a></li>`
+                );
+            }
+
+            pagination.append(
+                `<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changeLeadsPage3(${leadsPage3 + 1})">&raquo;</a></li>`
+            );
+        }
+
+        function changeLeadsPage3(page) {
+            const totalPages = Math.ceil(leadsData3.length / leadsRowsPerPage3);
+            if (page < 1 || page > totalPages) return;
+            leadsPage3 = page;
+            renderLeadsTable3();
+            renderLeadsPagination3();
+        }
+
+        // Search filter
+        function filterTable3() {
+            let input = document.getElementById("searchInput3").value.toLowerCase();
+
+            if (input === "") {
+                leadsData3 = [...leadsMasterData3];
+            } else {
+                leadsData3 = leadsMasterData3.filter(item => {
+                    return (
+                        (item.collegeName || "").toLowerCase().includes(input) ||
+                        (item.coordinatorName || "").toLowerCase().includes(input) ||
+                        (item.mobileNumber || "").toLowerCase().includes(input) ||
+                        (item.emailId || "").toLowerCase().includes(input) ||
+                        (item.city || "").toLowerCase().includes(input) ||
+                        (item.state || "").toLowerCase().includes(input) ||
+                        (item.course || "").toLowerCase().includes(input) ||
+                        (item.connectedBy || "").toLowerCase().includes(input) ||
+                        (item.dateOfConnect || "").toLowerCase().includes(input) ||
+                        (item.callResponse || "").toLowerCase().includes(input) ||
+                        (item.internshipType || "").toLowerCase().includes(input) ||
+                        (item.detailedResponse || "").toLowerCase().includes(input)
+                    );
+                });
+            }
+
+            leadsPage3 = 1;
+            renderLeadsTable3();
+            renderLeadsPagination3();
+        }
+
+        // Print
+        function printTable3() {
+            let printContents = document.getElementById("leadsTable3").outerHTML;
+            let win = window.open("", "", "width=900,height=650");
+            win.document.write("<html><head><title>Print Leads</title></head><body>");
+            win.document.write(printContents);
+            win.document.write("</body></html>");
+            win.document.close();
+            win.print();
+        }
+
+        // Export Excel
+        function exportToExcel3() {
+            let table = document.getElementById("leadsTable3");
+            let wb = XLSX.utils.table_to_book(table, { sheet: "FutureColleges" });
+            XLSX.writeFile(wb, "FutureColleges.xlsx");
+        }
+
+        // Initialize with current month
+        $(document).ready(function () {
+            if (selectedMonthYear3) {
+                fetchLeadsData3(selectedMonthYear3);
+            } else {
+                fetchLeadsData3();
+            }
+        });
+    </script>
+
+
+<script>
+    let selectedMonthYear3 = ""; // stores month-year in "YYYY-MM"
+
+    // Populate year and month dropdowns
+    (function populateYearMonthDropdowns3() {
+        const yearSelect = document.getElementById("yearSelect3");
+        const monthSelect = document.getElementById("monthSelect3");
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1;
+
+        // Year options (last 2, current, next 2 years)
+        for (let y = currentYear - 2; y <= currentYear + 2; y++) {
+            let option = document.createElement("option");
+            option.value = y;
+            option.textContent = y;
+            if (y === currentYear) option.selected = true;
+            yearSelect.appendChild(option);
+        }
+
+        // Month options
+        for (let m = 1; m <= 12; m++) {
+            let option = document.createElement("option");
+            option.value = String(m).padStart(2, "0");
+            let d = new Date(2000, m - 1, 1);
+            option.textContent = d.toLocaleDateString("en-GB", { month: "long" });
+            if (m === currentMonth) option.selected = true;
+            monthSelect.appendChild(option);
+        }
+
+        // Initialize with current
+        selectedMonthYear3 = `${currentYear}-${String(currentMonth).padStart(2, "0")}`;
+        document.getElementById("selectedMonthDisplay3").textContent =
+            now.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+        document.getElementById("selectedMonthDisplay3").style.display = "inline-block";
+    })();
+
+    // Handle selection
+    function setSelectedMonthYear3() {
+        const year = document.getElementById("yearSelect3").value;
+        const month = document.getElementById("monthSelect3").value;
+        const display = document.getElementById("selectedMonthDisplay3");
+
+        if (year && month) {
+            selectedMonthYear3 = `${year}-${month}`;
+            let d = new Date(year, month - 1, 1);
+            display.textContent = d.toLocaleDateString("en-GB", { month: "long", year: "numeric" });
+            display.style.display = "inline-block";
+
+            // reload API with month-year
+            fetchLeadsData3(selectedMonthYear3);
+        } else {
+            selectedMonthYear3 = "";
+            display.style.display = "none";
+            fetchLeadsData3(); // load all
+        }
+    }
+</script>
+
+</body>
+
+</html>

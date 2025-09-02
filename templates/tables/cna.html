@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+    <meta name="author" content="Fundsroom" />
+    <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+    <!--! BEGIN: Apps Title-->
+    <title>Fundsroom HR || CO</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/FundsAuditLogo.png" />
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/daterangepicker.min.css" />
+    <!--! END: Vendors CSS-->
+    <!--! BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/theme.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/tagify.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/tagify-data.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/quill.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/select2-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <script>
+        function setStickyColumns2() {
+            const table = document.getElementById("leadsTable2");
+            if (!table) return;
+
+            const stickyCols = 3;
+            let leftOffsets = [];
+
+            let total = 0;
+            const firstRow = table.querySelector("thead tr:first-child");
+            for (let i = 0; i < stickyCols; i++) {
+                const th = firstRow.querySelector(`th:nth-child(${i + 1})`);
+                if (th) {
+                    leftOffsets[i] = total;
+                    total += th.offsetWidth;
+                }
+            }
+
+            requestAnimationFrame(() => {
+                const headerRows = table.querySelectorAll("thead tr");
+                let cumulativeTop = 0;
+
+                headerRows.forEach(row => {
+                    const rowHeight = row.offsetHeight;
+
+                    row.querySelectorAll("th").forEach(th => {
+                        th.style.position = "sticky";
+                        th.style.top = cumulativeTop + "px";
+                        th.style.background = "#fff";
+                        th.style.zIndex = 12;
+                    });
+
+                    for (let i = 0; i < stickyCols; i++) {
+                        const th = row.querySelector(`th:nth-child(${i + 1})`);
+                        if (th) {
+                            th.style.left = leftOffsets[i] + "px";
+                            th.style.zIndex = 16;
+                        }
+                    }
+
+                    cumulativeTop += rowHeight;
+                });
+
+                const rows = table.querySelectorAll("tbody tr");
+                rows.forEach(row => {
+                    for (let i = 0; i < stickyCols; i++) {
+                        const td = row.querySelector(`td:nth-child(${i + 1})`);
+                        if (td) {
+                            td.style.position = "sticky";
+                            td.style.left = leftOffsets[i] + "px";
+                            td.style.background = "#fff";
+                            td.style.zIndex = 6;
+                        }
+                    }
+                });
+            });
+        }
+
+        window.addEventListener("load", setStickyColumns2);
+        window.addEventListener("resize", setStickyColumns2);
+    </script>
+    <!--! END: Custom CSS-->
+    <!--! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries !-->
+    <!--! WARNING: Respond.js doesn"t work if you view the page via file: !-->
+    <!--[if lt IE 9]>
+			<script src="https:oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! [Start] Main Content !-->
+    <!--! ================================================================ !-->
+    <main class="nxl-container">
+        <div class="nxl-content">
+            <!-- [ page-header ] start -->
+
+            <!-- [ page-header ] end -->
+            <!-- [ Main Content ] start -->
+            <div class="main-content">
+
+
+                <div class="row">
+                    <!-- Add this button at the top of your page -->
+                    <!-- <div class="text-end mb-3">
+                        <button class="btn btn-primary" onclick="printPage()">
+                            <i class="bi bi-printer"></i> Print Page
+                        </button>
+                    </div> -->
+
+                    <!-- [Latest Leads] start -->
+                    <div class="col-12 flex-fill">
+                        <div class="card stretch stretch-full">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">CNA List (Total colleges: <span id="collegeCount2">
+                                            0</span>)</h5>
+                                </div>
+                                <div class="card-header-action d-flex align-items-center gap-2">
+                                    <!-- <div data-bs-toggle="tooltip" title="Refresh">
+                                        <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
+                                            onclick="loadTableData2()"> </a>
+                                    </div> -->
+                                    <div class="search-wrapper2" id="searchWrapper2">
+                                        <button id="searchToggle2" class="search-icon">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png"
+                                                alt="Search" width="20" height="20">
+                                        </button>
+                                        <div class="search-bar2" id="searchBar2">
+                                            <input type="text" id="searchInput2" class="form-control"
+                                                placeholder="Search..." oninput="filterTable2()">
+                                        </div>
+                                    </div>
+                                    <div data-bs-toggle="tooltip" title="Maximize/Minimize">
+                                        <a href="javascript:void(0);" class="avatar-xs" data-bs-toggle="expand">
+                                            <i class="feather-maximize maximize" style="font-size: 15px;"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0" id="leadsTable2">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th>Send JD</th>
+                                                <th>SR</th>
+                                                <th>College Name</th>
+                                                <th>Co-ordinator Name</th>
+                                                <th>Mobile Number</th>
+                                                <th>Email</th>
+                                                <th>State</th>
+                                                <th>City</th>
+                                                <th>Course</th>
+                                                <th>Connected by</th>
+                                                <th>Date of connect</th>
+                                                <th>Call Response</th>
+                                                <th>Type of INT</th>
+                                                <th>Detailed Response</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                        id="pagination2"></ul>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary" onclick="printTable2()">
+                                            <i class="bi bi-printer"></i> Print
+                                        </button>
+                                        <button class="btn btn-success" onclick="exportToExcel2()">
+                                            <i class="bi bi-file-earmark-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+                        #dateRangePicker2::placeholder {
+                            font-weight: 700;
+                            color: #000;
+                            opacity: 1;
+                        }
+
+                        .search-wrapper2 {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .search-icon {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            margin-right: 8px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 4px;
+                        }
+
+                        .search-bar2 {
+                            display: none;
+                        }
+
+                        .search-bar2.active {
+                            display: block;
+                        }
+
+                        #searchInput2 {
+                            padding: 6px 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                    </style>
+
+                    <script>
+                        const searchToggle2 = document.getElementById("searchToggle2");
+                        const searchBar2 = document.getElementById("searchBar2");
+                        const searchWrapper2 = document.getElementById("searchWrapper2");
+
+                        searchToggle2.addEventListener("click", () => {
+                            const isActive = searchBar2.classList.toggle("active");
+
+                            if (isActive) {
+                                document.getElementById("searchInput2").focus();
+
+                                loadTableData();
+                                loadTableData2();
+                            }
+                        });
+
+                        document.addEventListener("click", (event) => {
+                            if (!searchWrapper2.contains(event.target)) {
+                                searchBar2.classList.remove("active");
+                            }
+                        });
+                    </script>
+
+                    <style>
+                        /* Remove leftover space from sidebar */
+                        .nxl-container {
+                            margin-left: 0 !important;
+                            padding-left: 0 !important;
+                            width: 100% !important;
+                        }
+
+                        .nxl-content {
+                            margin-left: 0 !important;
+                            padding-left: 0 !important;
+                            width: 100% !important;
+                        }
+
+                        /* Make row use full width */
+                        .main-content .row {
+                            margin-left: 0 !important;
+                            margin-right: 0 !important;
+                        }
+                    </style>
+
+                    <style>
+                        .table-responsive {
+                            overflow-x: auto;
+                            position: relative;
+                        }
+
+                        .column-filter2 {
+                            display: inline-block !important;
+                            width: 100%;
+                            margin-top: 4px;
+                        }
+
+                        #leadsTable2 {
+                            border-collapse: collapse;
+                            width: max-content;
+                            font-family: 'Inter', sans-serif;
+                            font-size: 14px;
+                            background: #fff;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+                            border-radius: 8px;
+                        }
+
+                        #leadsTable2 th {
+                            font-weight: 600;
+                            text-align: left;
+                            padding: 8px 12px;
+                            border-bottom: 2px solid #e5e7eb;
+                            position: sticky;
+                            top: 0;
+                            z-index: 10;
+                            background: #fff;
+                        }
+
+                        #leadsTable2 th:nth-child(-n+3) {
+                            background: #fff;
+                            color: #000;
+                            z-index: 15;
+                        }
+
+                        #leadsTable2 th:nth-child(n+4) {
+                            background: #fff;
+                            color: #000;
+                            font-weight: bold;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable2 td {
+                            vertical-align: middle;
+                            padding: 8px 12px;
+                            white-space: nowrap;
+                            border-bottom: 1px solid #f1f5f9;
+                        }
+
+                        #leadsTable2 tr:nth-child(even) td {
+                            background: #fafafa;
+                        }
+
+                        #leadsTable2 tr:hover td {
+                            background: #f1f5ff;
+                        }
+
+                        #leadsTable2 th:nth-child(-n+3),
+                        #leadsTable2 td:nth-child(-n+3) {
+                            position: sticky;
+                            left: 0;
+                            z-index: 5;
+                            border-right: 1px solid #dee2e6;
+                            background: #fff;
+                            font-size: 13px;
+                        }
+
+                        #leadsTable2 input,
+                        #leadsTable2 select {
+                            display: none;
+                            width: 100%;
+                            font-size: 14px;
+                            padding: 6px 8px;
+                            border: 1px solid #cbd5e1;
+                            border-radius: 6px;
+                            background: #fff;
+                        }
+
+                        #leadsTable2 td.editing input,
+                        #leadsTable2 td.editing select {
+                            display: block;
+                        }
+
+                        #leadsTable2 td span {
+                            display: inline-block;
+                            width: 100%;
+                            min-height: 22px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            color: #1e293b;
+                        }
+
+                        #leadsTable2 td.editing {
+                            background: #fff7ed;
+                            box-shadow: inset 0 0 0 2px #f97316;
+                        }
+                    </style>
+
+                </div>
+
+                <div class="row" style="margin-bottom: 3%;">
+
+    </main>
+    <!--! ================================================================ !-->
+    <!--! [End] Main Content !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Theme Customizer !-->
+    <!--! ================================================================ !-->
+
+    <!--! ================================================================ !-->
+    <!--! [End] Theme Customizer !-->
+    <!--! ================================================================ !-->
+    <!--! ================================================================ !-->
+    <!--! Footer Script !-->
+    <!--! ================================================================ !-->
+    <!--! BEGIN: Vendors JS !-->
+    <script src="/assets/vendors/js/vendors.min.js"></script>
+    <!-- vendors.min.js {always must need to be top} -->
+    <script src="/assets/vendors/js/daterangepicker.min.js"></script>
+    <script src="/assets/vendors/js/apexcharts.min.js"></script>
+    <script src="/assets/vendors/js/circle-progress.min.js"></script>
+    <script src="/assets/vendors/js/jquery.calendar.min.js"></script>
+    <script src="/assets/vendors/js/select2.min.js"></script>
+    <script src="/assets/vendors/js/select2-active.min.js"></script>
+    <script src="/assets/js/common-init.min.js"></script>
+    <script src="/assets/vendors/js/lslstrength.min.js"></script>
+    <!--! END: Vendors JS !-->
+    <!--! BEGIN: Apps Init  !-->
+    <script src="/assets/js/reports-project-init.min.js"></script>
+    <script src="/assets/js/widgets-charts-init.min.js"></script>
+    <script src="/assets/js/widgets-miscellaneous-init.min.js"></script>
+    <!--! END: Apps Init !-->
+    <!--! BEGIN: Theme Customizer  !-->
+    <script src="/assets/js/theme-customizer-init.min.js"></script>
+    <!--! END: Theme Customizer !-->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        var userData2 = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData2);
+
+        const apiBase2 = "https://fundsaudit.com/api/v1/cosheet";
+
+        const dropdowns2 = {
+            city: [],
+            state: [],
+            course: ["MBA", "PGDM", "MBA+PGDM", "BBA/BCOM", "OTHERS"],
+            connectedBy: [],
+            callResponse: ["connected", "not answered", "busy", "switch off", "invalid"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            detailedResponse: [
+                "Send JD", "Not Interested", "January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November",
+                "December", "Cut the call"
+            ]
+        };
+
+        const colorMap2 = {
+            callResponse: {
+                "connected": "#28a745",
+                "not answered": "#dc3545",
+                "busy": "#ffc107",
+                "switch off": "#0d6efd",
+                "invalid": "#6c757d"
+            },
+            internshipType: {
+                "fulltime": "#28a745",
+                "sip": "#0d6efd",
+                "liveproject": "#ffc107",
+                "wip": "#0d6efd",
+                "others": "#adb5bd"
+            },
+            detailedResponse: {
+                "send jd": "#28a745",
+                "not interested": "#dc3545",
+                "cut the call": "#ffc107",
+                "january": "#0d6efd",
+                "february": "#0d6efd",
+                "march": "#0d6efd",
+                "april": "#0d6efd",
+                "may": "#0d6efd",
+                "june": "#0d6efd",
+                "july": "#0d6efd",
+                "august": "#0d6efd",
+                "september": "#0d6efd",
+                "october": "#0d6efd",
+                "november": "#0d6efd",
+                "december": "#0d6efd"
+            }
+        };
+
+        let citiesData2 = [];
+        let tableData2 = [];
+        let filteredData2 = [];
+        const rowsPerPage2 = 10;
+        let currentPage2 = 1;
+
+        function loadCities2() {
+            return fetch("/templates/cities.json")
+                .then(res => res.json())
+                .then(data => {
+                    citiesData2 = data;
+                    dropdowns2.state = [...new Set(data.map(item => item.state))];
+                })
+                .catch(err => console.error("Failed to load cities.json:", err));
+        }
+
+        function loadTableData2() {
+            $.ajax({
+                url: apiBase2 + "/list",
+                method: "GET",
+                success: function (res) {
+                    console.log("master sheet 2:", res);
+                    if (res.success && res.users) {
+
+                        tableData2 = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            collegeName: row.collegeName || "",
+                            coordinatorName: row.coordinatorName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            state: row.state || "",
+                            city: row.city || "",
+                            course: row.course || "",
+                            connectedBy: row.connectedBy || "",
+                            dateOfConnect: row.dateOfConnect || "",
+                            callResponse: row.callResponse || "",
+                            internshipType: row.internshipType || "",
+                            detailedResponse: row.detailedResponse || ""
+                        }));
+
+                        dropdowns2.connectedBy = res.users.map(u => u.firstName);
+                        dropdowns2.connectedBy.push("Other");
+                        console.log("ConnectedBy options 2:", dropdowns2.connectedBy);
+
+                        sessionStorage.setItem("users_list2", JSON.stringify(res.users));
+
+                        filteredData2 = [...tableData2];
+
+                        if (userData2 && userData2.name) {
+                            filteredData2 = filteredData2.filter(
+                                row => row.connectedBy === userData2.name
+                            );
+                        }
+
+                        filteredData2 = filteredData2.filter(
+                            row => row.callResponse && row.callResponse.toLowerCase() === "not answered"
+                        );
+
+                        filteredData2 = filteredData2.map((row, index) => ({
+                            ...row,
+                            sno: index + 1
+                        }));
+
+                        const totalColleges = filteredData2.length;
+                        const countEl = document.getElementById("collegeCount2");
+                        if (countEl) countEl.textContent = totalColleges;
+
+                        renderTable2();
+                        renderPagination2();
+                        renderColumnFilters2();
+                    }
+                }
+            });
+        }
+
+        function getBaseFilteredData2() {
+            let base = [...tableData2];
+
+            if (userData2 && userData2.name) {
+                base = base.filter(row => row.connectedBy === userData2.name);
+            }
+
+            base = base.filter(row => row.callResponse && row.callResponse.toLowerCase() === "not answered");
+
+            return base;
+        }
+
+        function renderTable2() {
+            let tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+
+            const start = (currentPage2 - 1) * rowsPerPage2;
+            const end = start + rowsPerPage2;
+            const rows = filteredData2.slice(start, end);
+
+            rows.forEach((row, index) => {
+                let tr = `<tr data-id="${row.id}">
+            <td>
+                <button class="btn btn-sm btn-danger delete-record" data-id="${row.id}" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            <td>${row.sno}</td>
+            ${makeCell2("collegeName", row.collegeName)}
+            ${makeCell2("coordinatorName", row.coordinatorName)}
+            ${makeCell2("mobileNumber", row.mobileNumber)}
+            ${makeCell2("emailId", row.emailId)}
+            ${makeDropdownCell2("state", row.state)}
+            ${makeDropdownCell2("city", row.city, row.state)}
+            ${makeDropdownCell2("course", row.course)}
+            ${makeDropdownCell2("connectedBy", row.connectedBy)}
+            ${makeDateCell2("dateOfConnect", row.dateOfConnect)}
+            ${makeDropdownCell2("callResponse", row.callResponse)}
+            ${makeDropdownCell2("internshipType", row.internshipType)}
+            ${makeDropdownCell2("detailedResponse", row.detailedResponse)}   
+            <td>
+                <button class="btn btn-sm btn-success send-mail2" data-id="${row.id}" title="Send JD">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </td>
+            </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents2();
+            attachSendMailEvents2();
+            setStickyColumns2();
+        }
+
+        function renderPagination2() {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            const pagination = $("#pagination2");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage2 - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage2 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage2 === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage2 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage2 = function (page) {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            if (page < 1 || page > totalPages) return;
+            currentPage2 = page;
+            renderTable2();
+            renderPagination2();
+        };
+
+        function renderColumnFilters2() {
+            const headerRow = $("#leadsTable2 thead tr.filters");
+            headerRow.remove();
+
+            let filterRow = "<tr class='filters'>";
+            $("#leadsTable2 thead tr:first th").each(function (i, th) {
+                if (i === 0 || i === 1 || i === 14) {
+                    filterRow += "<th></th>";
+                } else {
+                    filterRow += `<th><select class="column-filter2 form-select form-select-sm" data-index="${i}">
+                <option value="">All</option>
+            </select></th>`;
+                }
+            });
+            filterRow += "</tr>";
+            $("#leadsTable2 thead").append(filterRow);
+
+            populateColumnFilterOptions2();
+        }
+
+        function populateColumnFilterOptions2() {
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const index = $(this).data("index");
+                let values = [...new Set(filteredData2.map(row => Object.values(row)[index]))];
+
+                values = values.filter(v => v && v.trim() !== "");
+
+                let formattedValues = values;
+
+                if ($("#leadsTable2 thead tr:first th").eq(index).text().toLowerCase().includes("date")) {
+                    formattedValues = values.map(v => {
+                        let d = new Date(v);
+                        if (!isNaN(d)) {
+                            return {
+                                raw: v,
+                                display: d.toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric"
+                                })
+                            };
+                        }
+                        return { raw: v, display: v };
+                    });
+                } else {
+                    formattedValues = values.map(v => ({ raw: v, display: v }));
+                }
+
+                formattedValues.sort((a, b) => a.display.localeCompare(b.display));
+
+                formattedValues.forEach(v => {
+
+                    $(this).append(`<option value="${v.raw}">${v.display}</option>`);
+                });
+            });
+
+            $(".column-filter2").off("change").on("change", function () {
+                applyFilters2();
+            });
+        }
+
+        function applyFilters2() {
+            filteredData2 = [...getBaseFilteredData2()];
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const value = $(this).val();
+                const index = $(this).data("index");
+                if (value) {
+                    filteredData2 = filteredData2.filter(row => {
+                        const cellValue = Object.values(row)[index] || "";
+                        return cellValue.toLowerCase() === value.toLowerCase();
+                    });
+                }
+            });
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        }
+
+        function makeCell2(field, value) {
+            let displayValue = value || "";
+
+            if (field === "mobileNumber" && value) {
+                const numbers = value.split("/").map(num => num.trim());
+
+                const links = numbers.map(num =>
+                    `<a href="tel:${num}" class="text-primary text-decoration-none me-2">${num}</a>`
+                ).join(" | ");
+
+                return `<td data-field="${field}">
+                <span>${links}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
+            }
+
+            return `<td data-field="${field}">
+        <span>${displayValue}</span>
+        <input type="text" value="${displayValue}">
+        </td>`;
+        }
+
+        function makeDateCell2(field, value) {
+            let displayValue = formatDate2(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+        <span>${displayValue}</span>
+        <input type="text" class="date-picker2" value="${rawValue}">
+        </td>`;
+        }
+
+        function formatDate2(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function makeDropdownCell2(field, selectedValue, stateFilter = null) {
+            let options = dropdowns2[field] || [];
+
+            if (field === "city" && stateFilter) {
+                options = citiesData2.filter(c => c.state === stateFilter).map(c => c.name);
+            }
+
+            function capitalize(str) {
+                return str.replace(/\b\w/g, c => c.toUpperCase());
+            }
+
+            let displaySelected = selectedValue ? capitalize(selectedValue) : "";
+
+            let bgColor = "";
+            if (colorMap2[field] && selectedValue) {
+                bgColor = colorMap2[field][selectedValue.toLowerCase()] || "";
+            }
+
+            let html = `<td data-field="${field}" style="background-color:${bgColor};">
+            <span style="color:black; font-weight:bold;">${displaySelected}</span>
+            <select class="form-control select22">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+
+            options.forEach(opt => {
+                let sel = (opt === selectedValue) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${capitalize(opt)}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function attachCellEvents2() {
+            $("#leadsTable2 td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable2 td[data-field='mobileNumber']").off("dblclick").on("dblclick", function (e) {
+                e.preventDefault();
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input").focus();
+            });
+
+            $("#leadsTable2 td input, #leadsTable2 td select")
+                .off("blur change")
+                .on("blur change", function () {
+
+                    if ($(this).hasClass("date-picker2")) return;
+
+                    let td = $(this).closest("td");
+                    let tr = $(this).closest("tr");
+                    let id = tr.data("id");
+                    let field = td.data("field");
+                    let value = $(this).val();
+
+                    function capitalize(str) {
+                        return str.replace(/\b\w/g, c => c.toUpperCase());
+                    }
+
+                    if ($(this).is("select")) {
+                        let displayText = capitalize(value);
+                        let bgColor = "";
+                        if (colorMap2[field] && value) {
+                            bgColor = colorMap2[field][value.toLowerCase()] || "";
+                        }
+                        td.css("background-color", bgColor);
+                        td.find("span").css("color", "black").css("font-weight", "bold").text(displayText);
+                    } else {
+                        td.find("span").text(value);
+                    }
+                    td.removeClass("editing");
+
+                    let payload = {};
+                    payload[field] = value;
+
+                    $.ajax({
+                        url: apiBase2 + "/update/" + id,
+                        method: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify(payload),
+                        success: function (res) {
+                            console.log("Updated 2:", res);
+
+                            if (field === "state") {
+                                const cityTd = tr.find("td[data-field='city']");
+                                const newCityDropdown = makeDropdownCell2("city", "", value);
+                                cityTd.replaceWith(newCityDropdown);
+                                attachCellEvents2();
+                            }
+                        },
+                        error: function (err) {
+                            console.error("Update failed 2", err);
+                        }
+                    });
+                });
+
+            $(".date-picker2").each(function () {
+                const input = $(this);
+                input.flatpickr({
+                    dateFormat: "Y-m-d",
+                    onChange: function (selectedDates, dateStr) {
+                        if (!dateStr) return;
+
+                        let td = input.closest("td");
+                        let tr = input.closest("tr");
+                        let id = tr.data("id");
+                        let field = td.data("field");
+                        let value = new Date(dateStr).toISOString().split("T")[0];
+
+                        td.find("span").text(formatDate2(value));
+                        td.removeClass("editing");
+
+                        let payload = {};
+                        payload[field] = value;
+
+                        $.ajax({
+                            url: apiBase2 + "/update/" + id,
+                            method: "PUT",
+                            contentType: "application/json",
+                            data: JSON.stringify(payload),
+                            success: function (res) {
+                                console.log("Updated 2:", res);
+                            },
+                            error: function (err) {
+                                console.error("Update failed 2", err);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function attachSendMailEvents2() {
+            $(".send-mail2").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to send the JD mail?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, Send",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: "https://fundsaudit.com/api/v1/cosheet/" + id + "/send-jd",
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({ cc: [], bcc: [], userId: userData2.user_id }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The JD mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the JD mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        window.filterTable2 = function () {
+            const value = $("#searchInput2").val().toLowerCase().trim();
+            if (!value) {
+                renderTable2();
+                renderPagination2();
+                return;
+            }
+
+            const filtered = getBaseFilteredData2().filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            const tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+            filtered.forEach((row, index) => {
+                const tr = `<tr data-id="${row.id}">
+                <td>
+                    <button class="btn btn-sm btn-danger delete-record2" data-id="${row.id}" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+                <td>${index + 1}</td>
+                ${makeCell2("collegeName", row.collegeName)}
+                ${makeCell2("coordinatorName", row.coordinatorName)}
+                ${makeCell2("mobileNumber", row.mobileNumber)}
+                ${makeCell2("emailId", row.emailId)}
+                ${makeDropdownCell2("state", row.state)}
+                ${makeDropdownCell2("city", row.city, row.state)}
+                ${makeDropdownCell2("course", row.course)}
+                ${makeDropdownCell2("connectedBy", row.connectedBy)}
+                ${makeDateCell2("dateOfConnect", row.dateOfConnect)}
+                    ${makeDropdownCell2("callResponse", row.callResponse)}
+                    ${makeDropdownCell2("internshipType", row.internshipType)}
+                    ${makeDropdownCell2("detailedResponse", row.detailedResponse)}
+                    <td>
+                        <button class="btn btn-sm btn-danger delete-record" data-id="${row.id}" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>`;
+                tbody.append(tr);
+            });
+
+            $("#pagination2").hide();
+            attachCellEvents2();
+            attachSendMailEvents2();
+        };
+
+        window.printTable2 = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable2")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        window.exportToExcel2 = function () {
+            const headers = [
+                "S No.",
+                "College Name",
+                "Coordinator Name",
+                "Mobile Number",
+                "Email ID",
+                "State",
+                "City",
+                "Course",
+                "Connected By",
+                "Date of Connect",
+                "Call Response",
+                "Internship Type",
+                "Detailed Response"
+            ];
+
+            const data = [headers];
+
+            tableData2.forEach((row, index) => {
+                data.push([
+                    index + 1,
+                    row.collegeName,
+                    row.coordinatorName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.state,
+                    row.city,
+                    row.course,
+                    row.connectedBy,
+                    row.dateOfConnect,
+                    row.callResponse,
+                    row.internshipType,
+                    row.detailedResponse
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "CollegeDetails2");
+            XLSX.writeFile(workbook, "CollegeDetails_All2.xlsx");
+        };
+
+        $(document).ready(function () {
+            loadCities2().then(() => {
+                loadTableData2();
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("click", function (e) {
+            if (e.target.closest(".delete-record")) {
+                let button = e.target.closest(".delete-record");
+                let recordId = button.getAttribute("data-id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log("Deleting record with ID:", recordId);
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/cosheet/cosheet/${recordId}`,
+                            method: "DELETE",
+                            success: function (res) {
+                                Swal.fire(
+                                    "Deleted!",
+                                    "The record has been deleted.",
+                                    "success"
+                                );
+
+                                $(`#leadsTable2 tr[data-id="${recordId}"]`).remove();
+                            },
+                            error: function (err) {
+                                console.error("Delete failed", err);
+                                Swal.fire(
+                                    "Error!",
+                                    "Failed to delete the record.",
+                                    "error"
+                                );
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
