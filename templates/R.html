@@ -499,7 +499,7 @@
                         </a>
                     </div> -->
                 </div>
-                <!-- <div class="position-relative border-bottom">
+                <div class="position-relative border-bottom">
                     <label for="excelUpload" class="dropdown-item upload-trigger" style="cursor:pointer;">
                         <span class="btn btn-icon" data-bs-toggle="tooltip" data-bs-trigger="hover"
                             title="Upload Excel files (Less than 5MB)">
@@ -508,7 +508,7 @@
                     </label>
                     <input type="file" id="excelUpload" accept=".csv,.xls,.xlsx" style="display:none;">
 
-                </div> -->
+                </div>
                 <div class="date-picker-container" style="margin-left: 1%;">
                     <input type="text" id="dateRangePicker" class="form-control" placeholder="Select date or range"
                         style="max-width:220px;" />
@@ -648,25 +648,18 @@
                                         <tr class="border-b">
                                             <th>Delete</th>
                                             <th>SR</th>
-                                            <th>College Name</th>
-                                            <th>Co-ordinator Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Email</th>
-                                            <th>State</th>
-                                            <th>City</th>
-                                            <th>Course</th>
-                                            <th>Connected by</th>
-                                            <th>Date of connect</th>
-                                            <th>Call Response</th>
-                                            <th>Type of INT</th>
-                                            <th>Detailed Response</th>
-                                            <th>Follow up by</th>
-                                            <th>Follow up date</th>
-                                            <th>Response of follow up</th>
-                                            <th>No. of resumes</th>
-                                            <th>Date of resume</th>
-                                            <th>Expected response date</th>
-                                            <th>Follow up mail</th>
+                                            <th>DATE OF RESUMES RECEIVED</th>
+                                            <th>COLLEGE NAME</th>
+                                            <th>COURSE</th>
+                                            <th>INTERNSHIP TYPE</th>
+                                            <th>COLLEGE ONBOARDED BY</th>
+                                            <th>NAME OF STUDENT</th>
+                                            <th>MOBILE NUMBER</th>
+                                            <th>EMAIL ID</th>
+                                            <th>DOMAIN</th>
+                                            <th>DATE OF INTERVIEW SCHEDULED</th>
+                                            <th>MAIL SENT ON</th>
+                                            <th>Send Resume</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -697,7 +690,7 @@
                     const userData5 = JSON.parse(sessionStorage.getItem("user_data"));
                     if (userData5 && userData5.name) {
                         document.getElementById("reSheetTitle").innerHTML =
-                            `${userData5.name}'s RE Sheet (Total colleges: <span id="collegeCount2">0</span>)`;
+                            `${userData5.name}'s RESUME Sheet (Total colleges: <span id="collegeCount2">0</span>)`;
                     }
                 </script>
 
@@ -797,8 +790,8 @@
                         <div class="card stretch stretch-full">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">RE MASTER SHEET (Total colleges: <span id="collegeCount">
-                                            0</span>)</h5>
+                                    <h5 class="card-title">RESUME MASTER SHEET (Total colleges: <span
+                                            id="collegeCount2">0</span>)</h5>
                                 </div>
                                 <div class="card-header-action">
                                     <!-- <div data-bs-toggle="tooltip" title="Refresh">
@@ -831,25 +824,18 @@
                                             <tr class="border-b">
                                                 <th>Delete</th>
                                                 <th>SR</th>
-                                                <th>College Name</th>
-                                                <th>Co-ordinator Name</th>
-                                                <th>Mobile Number</th>
-                                                <th>Email</th>
-                                                <th>State</th>
-                                                <th>City</th>
-                                                <th>Course</th>
-                                                <th>Connected by</th>
-                                                <th>Date of connect</th>
-                                                <th>Call Response</th>
-                                                <th>Type of INT</th>
-                                                <th>Detailed Response</th>
-                                                <th>Follow up by</th>
-                                                <th>Follow up date</th>
-                                                <th>Response of follow up</th>
-                                                <th>No. of resumes</th>
-                                                <th>Date of resume</th>
-                                                <th>Expected response date</th>
-                                                <th>Follow up mail</th>
+                                                <th>DATE OF RESUMES RECEIVED</th>
+                                                <th>COLLEGE NAME</th>
+                                                <th>COURSE</th>
+                                                <th>INTERNSHIP TYPE</th>
+                                                <th>COLLEGE ONBOARDED BY</th>
+                                                <th>NAME OF STUDENT</th>
+                                                <th>MOBILE NUMBER</th>
+                                                <th>EMAIL ID</th>
+                                                <th>DOMAIN</th>
+                                                <th>DATE OF INTERVIEW SCHEDULED</th>
+                                                <th>MAIL SENT ON</th>
+                                                <th>Send Resume</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -1699,118 +1685,153 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
+        $(document).ready(function () {
+            $("#excelUpload").on("change", function (e) {
+                Swal.fire({
+                    title: "Uploading...",
+                    text: "Please wait while we process your file.",
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                let file = e.target.files[0];
+                if (!file) return;
+
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    let data = new Uint8Array(e.target.result);
+                    let workbook = XLSX.read(data, { type: "array" });
+
+                    let sheetName = workbook.SheetNames[0];
+                    let sheet = workbook.Sheets[sheetName];
+
+                    let rawData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    console.log("Raw Excel Data:", rawData);
+
+                    let rows = rawData.slice(2);
+
+                    let userData = JSON.parse(sessionStorage.getItem("user_data"));
+                    let userId = userData?.user_id || null;
+
+                    function parseExcelDate(value) {
+                        if (!value) return null;
+                        if (typeof value === "number") {
+                            let jsDate = XLSX.SSF.parse_date_code(value);
+                            if (jsDate) {
+                                return `${jsDate.d} ${new Date(jsDate.y, jsDate.m - 1, jsDate.d)
+                                    .toLocaleString("en-US", { month: "long" })} ${jsDate.y}`;
+                            }
+                        }
+                        return value;
+                    }
+
+                    let jsonData = rows.map((row, i) => {
+                        return {
+                            sr: row[0] ?? i + 1,
+                            resumeDate: parseExcelDate(row[1]) ?? null,
+                            collegeName: row[2] ?? null,
+                            course: row[3] ? row[3].toLowerCase() : null,
+                            internshipType: row[4] ? row[4].toLowerCase() : null,
+                            followupBy: row[5] ?? null,
+                            studentName: row[6] ?? null,
+                            mobileNumber: row[7] ?? null,
+                            emailId: row[8] ?? null,
+                            domain: row[9] ?? null,
+                            interviewDate: parseExcelDate(row[10]) ?? null,
+                            dateOfOnboarding: null,
+                            userId: userId
+                        };
+                    });
+
+                    console.log("Formatted JSON:", jsonData);
+
+                    $.ajax({
+                        url: "https://fundsaudit.com/api/v1/studentresume/create",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(jsonData),
+                        success: function (res) {
+                            console.log("Response:", res);
+
+                            let message = "Resume data uploaded successfully.";
+                            Swal.fire({
+                                icon: "success",
+                                title: "Upload Complete",
+                                html: `${message}`,
+                                confirmButtonText: "Okay"
+                            });
+                        },
+
+                        error: function (xhr) {
+                            console.log("Error:", xhr);
+                            Swal.fire({
+                                icon: "error",
+                                title: "Upload Failed",
+                                text: xhr.responseText || "Something went wrong!",
+                            });
+                        },
+                    });
+                };
+                reader.readAsArrayBuffer(file);
+            });
+        });
+    </script>
+
+    <script>
         var userData = JSON.parse(sessionStorage.getItem("user_data"));
         console.log(userData);
 
-        const apiBase = "https://fundsaudit.com/api/v1/cosheet";
+        const apiBase = "https://fundsaudit.com/api/v1/studentresume";
 
         const dropdowns = {
-            city: [],
-            state: [],
-            course: ["MBA", "PGDM", "MBA+PGDM", "BBA/BCOM", "OTHERS"],
-            connectedBy: [],
-            callResponse: ["connected", "not answered", "busy", "switch off", "invalid"],
+            domain: ["Marketing", "Finance", "HR", "Operations", "Others"],
             internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
-            detailedResponse: [
-                "Send JD", "Not Interested", "January", "February", "March", "April",
-                "May", "June", "July", "August", "September", "October", "November",
-                "December", "Cut the call"
-            ],
-            followUpResponse: ["resumes received",
-                "sending in 1-2 days",
-                "delayed",
-                "no response",
-                "unprofessional"]
+            course: ["mba", "pgdm", "mba+pgdm", "bba/bcom", "engineering", "other"]
         };
 
         const colorMap = {
-            callResponse: {
-                "connected": "#28a745",
-                "not answered": "#dc3545",
-                "busy": "#ffc107",
-                "switch off": "#0d6efd",
-                "invalid": "#6c757d"
-            },
             internshipType: {
                 "fulltime": "#28a745",
                 "sip": "#0d6efd",
                 "liveproject": "#ffc107",
                 "wip": "#0d6efd",
                 "others": "#adb5bd"
-            },
-            detailedResponse: {
-                "send jd": "#28a745",
-                "not interested": "#dc3545",
-                "cut the call": "#ffc107",
-                "january": "#0d6efd",
-                "february": "#0d6efd",
-                "march": "#0d6efd",
-                "april": "#0d6efd",
-                "may": "#0d6efd",
-                "june": "#0d6efd",
-                "july": "#0d6efd",
-                "august": "#0d6efd",
-                "september": "#0d6efd",
-                "october": "#0d6efd",
-                "november": "#0d6efd",
-                "december": "#0d6efd"
             }
         };
 
-        let citiesData = [];
         let tableData = [];
         let filteredData = [];
         const rowsPerPage = 10;
         let currentPage = 1;
 
-        function loadCities() {
-            return fetch("/templates/cities.json")
-                .then(res => res.json())
-                .then(data => {
-                    citiesData = data;
-                    dropdowns.state = [...new Set(data.map(item => item.state))];
-                })
-                .catch(err => console.error("Failed to load cities.json:", err));
-        }
-
         function loadTableData() {
             $.ajax({
-                url: apiBase + "/list/jdsent",
+                url: `${apiBase}/list`,
                 method: "GET",
                 success: function (res) {
-                    console.log("master sheet:", res);
-                    if (res.success && res.users) {
+                    console.log("student resumes:", res);
+                    if (res.success && res.data) {
+                        if (res.users && Array.isArray(res.users)) {
+                            dropdowns.followupBy = res.users.map(u => u.firstName);
+                        }
                         tableData = res.data.map((row, index) => ({
                             sno: index + 1,
                             id: row.id,
+                            resumeDate: row.resumeDate || "",
                             collegeName: row.collegeName || "",
-                            coordinatorName: row.coordinatorName || "",
+                            course: row.course || "",
+                            internshipType: row.internshipType || "",
+                            followupBy: row.followupBy || "",
+                            studentName: row.studentName || "",
                             mobileNumber: row.mobileNumber || "",
                             emailId: row.emailId || "",
-                            state: row.state || "",
-                            city: row.city || "",
-                            course: row.course || "",
-                            connectedBy: row.connectedBy || "",
-                            dateOfConnect: row.dateOfConnect || "",
-                            callResponse: row.callResponse || "",
-                            internshipType: row.internshipType || "",
-                            detailedResponse: row.detailedResponse || "",
-                            followUpBy: row.followUpBy || "",
-                            followUpDate: row.followUpDate || "",
-                            followUpResponse: row.followUpResponse || "",
-                            resumeCount: row.resumeCount || "",
-                            resumeDate: row.resumeDate || "",
-                            expectedResponseDate: row.expectedResponseDate || ""
+                            domain: row.domain || "",
+                            interviewDate: row.interviewDate || "",
+                            mailSentAt: row.mailSentAt || "",
                         }));
-
-                        dropdowns.connectedBy = res.users.map(u => u.firstName);
-                        dropdowns.connectedBy.push("Other");
-                        console.log("ConnectedBy options:", dropdowns.connectedBy);
-
-                        sessionStorage.setItem("users_list", JSON.stringify(res.users));
-
-                        const totalColleges = tableData.length;
-                        document.getElementById("collegeCount").textContent = totalColleges;
 
                         filteredData = [...tableData];
                         renderTable();
@@ -1837,26 +1858,17 @@
                 </button>
             </td>
             <td>${row.sno}</td>
-
-            <!-- keep all these NON-editable / dropdown as before -->
-            <td>${row.collegeName || ""}</td>
-            <td>${row.coordinatorName || ""}</td>
-            <td>${row.mobileNumber || ""}</td>
-            <td>${row.emailId || ""}</td>
-            <td>${row.state || ""}</td>
-            <td>${row.city || ""}</td>
-            <td>${row.course || ""}</td>
-            <td>${row.connectedBy || ""}</td>
-            <td>${formatDate(row.dateOfConnect) || ""}</td>
-            <td>${row.callResponse || ""}</td>
-            <td>${row.internshipType || ""}</td>
-            <td>${row.detailedResponse || ""}</td>
-            ${makeDropdownCell("followUpBy", row.followUpBy || "", null, dropdowns.connectedBy)}
-            ${makeDateCell("followUpDate", row.followUpDate || "")}
-            ${makeDropdownCell("followUpResponse", row.followUpResponse || "", null, dropdowns.followUpResponse)}
-            ${makeNumberCell("resumeCount", row.resumeCount || "")}
             ${makeDateCell("resumeDate", row.resumeDate || "")}
-            ${makeDateCell("expectedResponseDate", row.expectedResponseDate || "")}
+            ${makeCell("collegeName", row.collegeName || "")}
+            ${makeDropdownCell("course", row.course || "", null, dropdowns.course)}
+            ${makeDropdownCell("internshipType", row.internshipType || "", null, dropdowns.internshipType)}
+            ${makeDropdownCell("followupBy", row.followupBy || "", null, dropdowns.connectedBy)}
+            ${makeCell("studentName", row.studentName || "")}
+            ${makeCell("mobileNumber", row.mobileNumber || "")}
+            ${makeCell("emailId", row.emailId || "")}
+            ${makeDropdownCell("domain", row.domain || "", null, dropdowns.domain)}
+            ${makeDateCell("interviewDate", row.interviewDate || "")}
+            <td>${row.mailSentAt}</td>
             <td>
                 <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
                     <i class="fas fa-paper-plane"></i>
@@ -1870,6 +1882,22 @@
             attachSendMailEvents();
             setStickyColumns();
         }
+
+        const columnKeys = [
+            "actions",         // delete button column (no filter)
+            "sno",             // SR (no filter)
+            "resumeDate",      // Date of Resumes Received
+            "collegeName",     // College Name
+            "course",          // Course
+            "internshipType",  // Internship Type
+            "followupBy",      // College Onboarded By
+            "studentName",     // Name of Student
+            "mobileNumber",    // Mobile Number
+            "emailId",         // Email ID
+            "domain",          // Domain
+            "interviewDate",   // Date of Interview Scheduled
+            "sendMail"         // Send Mail button (no filter)
+        ];
 
         function renderPagination() {
             const totalPages = Math.ceil(filteredData.length / rowsPerPage);
@@ -1910,12 +1938,12 @@
             headerRow.remove();
 
             let filterRow = "<tr class='filters'>";
-            $("#leadsTable thead tr:first th").each(function (i, th) {
-                if (i === 0 || i === 1 || i === 20) {
+            columnKeys.forEach((key, i) => {
+                if (key === "actions" || key === "sno" || key === "sendMail") {
                     filterRow += "<th></th>";
                 } else {
                     filterRow += `<th>
-                <select class="column-filter form-select form-select-sm" data-index="${i}">
+                <select class="column-filter form-select form-select-sm" data-field="${key}">
                     <option value="">All</option>
                 </select>
             </th>`;
@@ -1933,105 +1961,43 @@
 
         function populateColumnFilterOptions() {
             $("#leadsTable thead .column-filter").each(function () {
-                const index = $(this).data("index");
+                const field = $(this).data("field");
 
-                const colName = $("#leadsTable thead th").eq(index).text().trim().toLowerCase();
+                let values = [...new Set(tableData.map(row => row[field]))]
+                    .filter(v => v !== null && v !== undefined && v !== "");
 
-                const isDateColumn =
-                    colName.includes("date") ||
-                    colName.includes("response") ||
-                    colName.includes("created");
-
-                const isNumericColumn =
-                    colName.includes("no. of resumes") || colName.includes("number of resumes");
-
-                let values = [...new Set(tableData.map(row => {
-                    let v = Object.values(row)[index];
-                    if (v === null || v === undefined || v === "") return "";
-
-                    if (typeof v === "string") v = v.trim();
-
-                    if (isNumericColumn) {
-                        v = parseInt(v, 10);
-                        if (isNaN(v)) return "";
-                    }
-
-                    return v;
-                }))];
-
-                values = values.filter(v => v !== "" && v !== null && v !== undefined);
-
-                values.sort((a, b) => {
-                    if (isDateColumn) {
-                        const da = new Date(a), db = new Date(b);
-                        if (!isNaN(da) && !isNaN(db)) return da - db;
-                    }
-                    if (isNumericColumn) {
-                        return a - b;
-                    }
-                    return a.toString().localeCompare(b.toString());
-                });
+                // Format date values properly
+                if (field.toLowerCase().includes("date")) {
+                    values = values.map(v => formatDate(v)).filter(v => v !== "");
+                }
 
                 values.forEach(v => {
-                    let displayText = v;
-                    if (isDateColumn) {
-                        const d = new Date(v);
-                        if (!isNaN(d)) {
-                            displayText = d.toLocaleDateString("en-GB", {
-                                day: "numeric",
-                                month: "long",
-                                year: "numeric"
-                            });
-                        }
-                    }
-                    $(this).append(`<option value="${v}">${displayText}</option>`);
+                    $(this).append(`<option value="${v}">${v}</option>`);
                 });
             });
         }
 
-        function applyFilters() {
-            const filters = {};
-            $(".column-filter").each(function () {
-                const index = $(this).data("index");
-                const value = $(this).val();
-                if (value) filters[index] = value;
-            });
-
-            $("#leadsTable tbody tr").each(function () {
-                let show = true;
-                $(this).find("td").each(function (i, td) {
-                    if (filters[i]) {
-                        const colName = $("#leadsTable thead th").eq(i).text().trim().toLowerCase();
-                        let cellText = $(td).text().trim();
-
-                        if (colName.includes("no. of resumes") || colName.includes("number of resumes")) {
-
-                            if (parseInt(cellText, 10) !== parseInt(filters[i], 10)) {
-                                show = false;
-                            }
-                        } else {
-                            if (cellText !== filters[i]) {
-                                show = false;
-                            }
-                        }
-                    }
-                });
-                $(this).toggle(show);
-            });
-        }
         function applyFilters() {
             filteredData = [...tableData];
+
             $("#leadsTable thead .column-filter").each(function () {
                 const value = $(this).val();
-                const index = $(this).data("index");
+                const field = $(this).data("field");
+
                 if (value) {
                     filteredData = filteredData.filter(row => {
-                        const cellValue = Object.values(row)[index] || "";
+                        let cellValue = row[field] || "";
 
-                        return cellValue.toLowerCase() === value.toLowerCase();
+                        // Format date before comparing
+                        if (field.toLowerCase().includes("date")) {
+                            cellValue = formatDate(cellValue);
+                        }
+
+                        return String(cellValue).toLowerCase() === String(value).toLowerCase();
                     });
                 }
             });
+
             currentPage = 1;
             renderTable();
             renderPagination();
@@ -2040,45 +2006,46 @@
         function makeCell(field, value) {
             let displayValue = value || "";
             return `<td data-field="${field}">
-            <span>${displayValue}</span>
-            <input type="text" value="${displayValue}">
-        </td>`;
+                <span>${displayValue}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
         }
 
         function makeNumberCell(field, value) {
             let displayValue = value || "";
             return `<td data-field="${field}">
-            <span>${displayValue}</span>
-            <input type="number" value="${displayValue}">
-        </td>`;
+                <span>${displayValue}</span>
+                <input type="number" value="${displayValue}">
+            </td>`;
         }
 
         function makeDateCell(field, value) {
             let displayValue = formatDate(value);
             let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
             return `<td data-field="${field}">
-            <span>${displayValue}</span>
-            <input type="text" class="date-picker" value="${rawValue}">
-        </td>`;
+                <span>${displayValue}</span>
+                <input type="text" class="date-picker" value="${rawValue}">
+            </td>`;
         }
 
         function makeDropdownCell(field, selectedValue, stateFilter = null, optionsList = null) {
             let options = optionsList || dropdowns[field] || [];
 
-            function capitalize(str) {
-                return str.replace(/\b\w/g, c => c.toUpperCase());
-            }
+            const formatLabel = (val) => {
+                if (!val) return "";
+                return val.charAt(0).toUpperCase() + val.slice(1);
+            };
 
-            let displaySelected = selectedValue ? capitalize(selectedValue) : "";
+            let displaySelected = formatLabel(selectedValue);
 
             let html = `<td data-field="${field}">
-            <span style="font-weight:bold;">${displaySelected}</span>
-            <select class="form-control select2">`;
+                <span style="font-weight:bold;">${displaySelected}</span>
+                <select class="form-control select2">`;
 
             html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
             options.forEach(opt => {
-                let sel = (opt === selectedValue) ? "selected" : "";
-                html += `<option value="${opt}" ${sel}>${capitalize(opt)}</option>`;
+                let sel = (opt.toLowerCase() === (selectedValue || "").toLowerCase()) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${formatLabel(opt)}</option>`;
             });
 
             html += `</select></td>`;
@@ -2103,17 +2070,9 @@
                 td.find("input,select").focus();
             });
 
-            $("#leadsTable td[data-field='mobileNumber']").off("dblclick").on("dblclick", function (e) {
-                e.preventDefault();
-                let td = $(this);
-                td.addClass("editing");
-                td.find("input").focus();
-            });
-
             $("#leadsTable td input, #leadsTable td select")
                 .off("blur change")
                 .on("blur change", function () {
-
                     if ($(this).hasClass("date-picker")) return;
 
                     let td = $(this).closest("td");
@@ -2122,50 +2081,25 @@
                     let field = td.data("field");
                     let value = $(this).val();
 
-                    function capitalize(str) {
-                        return str.replace(/\b\w/g, c => c.toUpperCase());
-                    }
-
-                    if ($(this).is("select")) {
-                        let displayText = capitalize(value);
-                        let bgColor = "";
-                        if (colorMap[field] && value) {
-                            bgColor = colorMap[field][value.toLowerCase()] || "";
-                        }
-                        td.css("background-color", bgColor);
-                        td.find("span").css("color", "black").css("font-weight", "bold").text(displayText);
-                    } else {
-                        td.find("span").text(value);
-                    }
+                    td.find("span").text(value);
                     td.removeClass("editing");
 
                     let payload = {};
                     payload[field] = value;
-
-                    let userData = JSON.parse(sessionStorage.getItem("user_data"));
                     if (userData && userData.user_id) {
                         payload["userId"] = userData.user_id;
                     }
 
                     $.ajax({
-                        url: `https://fundsaudit.com/api/v1/resumedetails/update/` + id,
+                        url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
                         method: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(payload),
                         success: function (res) {
-                            console.log("Payload:", payload);
                             console.log("Updated:", res);
-
-                            if (field === "state") {
-                                const cityTd = tr.find("td[data-field='city']");
-                                const newCityDropdown = makeDropdownCell("city", "", value);
-                                cityTd.replaceWith(newCityDropdown);
-                                attachCellEvents();
-                            }
                         },
                         error: function (err) {
                             console.error("Update failed", err);
-                            console.log("Payload:", payload);
                         }
                     });
                 });
@@ -2188,14 +2122,12 @@
 
                         let payload = {};
                         payload[field] = value;
-
-                        let userData = JSON.parse(sessionStorage.getItem("user_data"));
                         if (userData && userData.user_id) {
                             payload["userId"] = userData.user_id;
                         }
 
                         $.ajax({
-                            url: `https://fundsaudit.com/api/v1/resumedetails/update/` + id,
+                            url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
                             method: "PUT",
                             contentType: "application/json",
                             data: JSON.stringify(payload),
@@ -2216,14 +2148,40 @@
                 const id = $(this).data("id");
 
                 Swal.fire({
-                    title: "Are you sure?",
-                    text: "Do you want to send the Follow up mail?",
-                    icon: "question",
+                    title: "Send Follow-up Mail",
+                    html: `
+                        <input id="mailLink" class="swal2-input" placeholder="Enter Meeting Link" type="text">
+                        <input id="mailTime" class="swal2-input" type="time" value="11:30">
+                    `,
                     showCancelButton: true,
-                    confirmButtonText: "Yes, Send",
-                    cancelButtonText: "Cancel"
+                    confirmButtonText: "Send",
+                    cancelButtonText: "Cancel",
+                    preConfirm: () => {
+                        const link = document.getElementById("mailLink").value.trim();
+                        const timeRaw = document.getElementById("mailTime").value;
+
+                        if (!link) {
+                            Swal.showValidationMessage("Meeting link is required!");
+                            return false;
+                        }
+                        if (!timeRaw) {
+                            Swal.showValidationMessage("Time is required!");
+                            return false;
+                        }
+
+                        const [h, m] = timeRaw.split(":");
+                        let hour = parseInt(h, 10);
+                        const min = m;
+                        const ampm = hour >= 12 ? "PM" : "AM";
+                        hour = hour % 12 || 12;
+                        const formattedTime = `${hour}:${min} ${ampm}`;
+
+                        return { link, time: formattedTime };
+                    }
                 }).then((result) => {
-                    if (result.isConfirmed) {
+                    if (result.isConfirmed && result.value) {
+                        const { link, time } = result.value;
+
                         Swal.fire({
                             title: "Sending...",
                             text: "Please wait while the follow up mail is being sent",
@@ -2234,10 +2192,14 @@
                         });
 
                         $.ajax({
-                            url: "https://fundsaudit.com/api/v1/resumedetails/send-followup-email/" + id,
+                            url: `https://fundsaudit.com/api/v1/studentresume/send-mail/` + id,
                             method: "POST",
                             contentType: "application/json",
-                            data: JSON.stringify({ cc: [], bcc: [], userId: userData.user_id }),
+                            data: JSON.stringify({
+                                type: "hardcoded",
+                                time: time,
+                                link: link,
+                            }),
                             success: function (res) {
                                 Swal.fire({
                                     icon: "success",
@@ -2266,55 +2228,16 @@
                 return;
             }
 
-            const filtered = tableData.filter((row) =>
+            filteredData = tableData.filter((row) =>
                 Object.values(row).some((field) => {
                     const plainText = $('<div>').html(field).text().toLowerCase().trim();
                     return plainText.includes(value);
                 })
             );
 
-            const tbody = $("#leadsTable tbody");
-            tbody.empty();
-            filtered.forEach((row, index) => {
-                const tr = `<tr data-id="${row.id}">
-                    <td>
-                    <button class="btn btn-sm btn-danger delete-record" data-id="${row.id}" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-                <td>${row.sno}</td>
-
-                <!-- keep all these NON-editable / dropdown as before -->
-                <td>${row.collegeName || ""}</td>
-                <td>${row.coordinatorName || ""}</td>
-                <td>${row.mobileNumber || ""}</td>
-                <td>${row.emailId || ""}</td>
-                <td>${row.state || ""}</td>
-                <td>${row.city || ""}</td>
-                <td>${row.course || ""}</td>
-                <td>${row.connectedBy || ""}</td>
-                <td>${row.dateOfConnect || ""}</td>
-                <td>${row.callResponse || ""}</td>
-                <td>${row.internshipType || ""}</td>
-                <td>${row.detailedResponse || ""}</td>
-                ${makeDropdownCell("followUpBy", row.followUpBy || "", null, dropdowns.connectedBy)}
-                ${makeDateCell("followUpDate", row.followUpDate || "")}
-                ${makeDropdownCell("followUpResponse", row.followUpResponse || "", null, dropdowns.followUpResponse)}
-                ${makeNumberCell("resumeCount", row.resumeCount || "")}
-                ${makeDateCell("resumeDate", row.resumeDate || "")}
-                ${makeDateCell("expectedResponseDate", row.expectedResponseDate || "")}
-                <td>
-                    <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </td>
-                </tr>`;
-                tbody.append(tr);
-            });
-
-            $("#pagination").hide();
-            attachCellEvents();
-            attachSendMailEvents();
+            currentPage = 1;
+            renderTable();
+            renderPagination();
         };
 
         window.printTable = function () {
@@ -2328,65 +2251,566 @@
 
         window.exportToExcel = function () {
             const headers = [
-                "S No.",
+                "SR",
+                "Date of Resumes Received",
                 "College Name",
-                "Coordinator Name",
+                "Course",
+                "Internship Type",
+                "College Onboarded By",
+                "Name of Student",
                 "Mobile Number",
                 "Email ID",
-                "State",
-                "City",
-                "Course",
-                "Connected By",
-                "Date of Connect",
-                "Call Response",
-                "Internship Type",
-                "Detailed Response",
-                "Follow up by",
-                "Follow up date",
-                "Follow up response",
-                "Resume count",
-                "Resume date",
-                "Expected response date"
+                "Domain",
+                "Date of Interview Scheduled",
+                "Mail Sent At"
             ];
 
             const data = [headers];
 
-            tableData.forEach((row, index) => {
+            tableData.forEach((row) => {
                 data.push([
-                    index + 1,
+                    row.sno,
+                    row.resumeDate,
                     row.collegeName,
-                    row.coordinatorName,
+                    row.course,
+                    row.internshipType,
+                    row.followupBy,
+                    row.studentName,
                     row.mobileNumber,
                     row.emailId,
-                    row.state,
-                    row.city,
-                    row.course,
-                    row.connectedBy,
-                    row.dateOfConnect,
-                    row.callResponse,
-                    row.internshipType,
-                    row.detailedResponse,
-                    row.followUpBy,
-                    row.followUpDate,
-                    row.followUpResponse,
-                    row.resumeCount,
-                    row.resumeCount,
-                    row.expectedResponseDate
+                    row.domain,
+                    row.interviewDate,
+                    row.mailSentAt
                 ]);
             });
 
             const worksheet = XLSX.utils.aoa_to_sheet(data);
             const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "CollegeDetails");
-            XLSX.writeFile(workbook, "CollegeDetails_All.xlsx");
+            XLSX.utils.book_append_sheet(workbook, worksheet, "StudentResumes");
+            XLSX.writeFile(workbook, "StudentResumes_All.xlsx");
         };
 
         $(document).ready(function () {
-            loadCities().then(() => {
-                loadTableData();
-            });
+            loadTableData();
         });
     </script>
+
+    <script>
+        var userData2 = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData2);
+
+        const apiBase2 = "https://fundsaudit.com/api/v1/studentresume";
+
+        const dropdowns2 = {
+            domain: ["Marketing", "Finance", "HR", "Operations", "Others"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            course: ["mba", "pgdm", "mba+pgdm", "bba/bcom", "engineering", "other"]
+        };
+
+        const colorMap2 = {
+            internshipType: {
+                "fulltime": "#28a745",
+                "sip": "#0d6efd",
+                "liveproject": "#ffc107",
+                "wip": "#0d6efd",
+                "others": "#adb5bd"
+            }
+        };
+
+        let tableData2 = [];
+        let filteredData2 = [];
+        const rowsPerPage2 = 10;
+        let currentPage2 = 1;
+
+        function loadTableData2() {
+            $.ajax({
+                url: `https://fundsaudit.com/api/v1/studentresume/list/user/${userData2.user_id}`,
+                method: "GET",
+                success: function (res) {
+                    console.log("student resumes 2:", res);
+                    if (res.success && res.data) {
+                        if (res.users && Array.isArray(res.users)) {
+                            dropdowns.followupBy = res.users.map(u => u.firstName);
+                        }
+                        tableData2 = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            resumeDate: row.resumeDate || "",
+                            collegeName: row.collegeName || "",
+                            course: row.course || "",
+                            internshipType: row.internshipType || "",
+                            followupBy: row.followupBy || "",
+                            studentName: row.studentName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            domain: row.domain || "",
+                            interviewDate: row.interviewDate || "",
+                            mailSentAt: row.mailSentAt || "",
+                        }));
+
+                        const totalColleges2 = tableData2.length;
+                        document.getElementById("collegeCount2").textContent = totalColleges2;
+
+                        filteredData2 = [...tableData2];
+                        renderTable2();
+                        renderPagination2();
+                        renderColumnFilters2();
+                    }
+                }
+            });
+        }
+
+        function renderTable2() {
+            let tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+
+            const start = (currentPage2 - 1) * rowsPerPage2;
+            const end = start + rowsPerPage2;
+            const rows = filteredData2.slice(start, end);
+
+            rows.forEach((row) => {
+                let tr = `<tr data-id="${row.id}">
+            <td>
+                <button class="btn btn-sm btn-danger delete-record2" data-id="${row.id}" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            <td>${row.sno}</td>
+            ${makeDateCell2("resumeDate", row.resumeDate || "")}
+            ${makeCell2("collegeName", row.collegeName || "")}
+            ${makeDropdownCell2("course", row.course || "", null, dropdowns2.course)}
+            ${makeDropdownCell2("internshipType", row.internshipType || "", null, dropdowns2.internshipType)}
+            ${makeDropdownCell("followupBy", row.followupBy || "", null, dropdowns.connectedBy)}
+            ${makeCell2("studentName", row.studentName || "")}
+            ${makeCell2("mobileNumber", row.mobileNumber || "")}
+            ${makeCell2("emailId", row.emailId || "")}
+            ${makeDropdownCell2("domain", row.domain || "", null, dropdowns2.domain)}
+            ${makeDateCell2("interviewDate", row.interviewDate || "")}
+            <td>${row.mailSentAt}</td>
+            <td>
+                <button class="btn btn-sm btn-success send-mail2" data-id="${row.id}" title="Send JD">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </td>
+            </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents2();
+            attachSendMailEvents2();
+            setStickyColumns2();
+        }
+
+        const columnKeys2 = [
+            "actions",
+            "sno",
+            "resumeDate",
+            "collegeName",
+            "course",
+            "internshipType",
+            "followupBy",
+            "studentName",
+            "mobileNumber",
+            "emailId",
+            "domain",
+            "interviewDate",
+            "sendMail"
+        ];
+
+        function renderPagination2() {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            const pagination = $("#pagination2");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage2 - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage2 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage2 === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage2 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage2 = function (page) {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            if (page < 1 || page > totalPages) return;
+            currentPage2 = page;
+            renderTable2();
+            renderPagination2();
+        };
+
+        function renderColumnFilters2() {
+            const headerRow = $("#leadsTable2 thead tr.filters");
+            headerRow.remove();
+
+            let filterRow = "<tr class='filters'>";
+            columnKeys2.forEach((key, i) => {
+                if (key === "actions" || key === "sno" || key === "sendMail") {
+                    filterRow += "<th></th>";
+                } else {
+                    filterRow += `<th>
+                <select class="column-filter2 form-select form-select-sm" data-field="${key}">
+                    <option value="">All</option>
+                </select>
+            </th>`;
+                }
+            });
+            filterRow += "</tr>";
+            $("#leadsTable2 thead").append(filterRow);
+
+            populateColumnFilterOptions2();
+
+            $(".column-filter2").off("change").on("change", function () {
+                applyFilters2();
+            });
+        }
+
+        function populateColumnFilterOptions2() {
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const field = $(this).data("field");
+
+                let values = [...new Set(tableData2.map(row => row[field]))]
+                    .filter(v => v !== null && v !== undefined && v !== "");
+
+                if (field.toLowerCase().includes("date")) {
+                    values = values.map(v => formatDate2(v)).filter(v => v !== "");
+                }
+
+                values.forEach(v => {
+                    $(this).append(`<option value="${v}">${v}</option>`);
+                });
+            });
+        }
+
+        function applyFilters2() {
+            filteredData2 = [...tableData2];
+
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const value = $(this).val();
+                const field = $(this).data("field");
+
+                if (value) {
+                    filteredData2 = filteredData2.filter(row => {
+                        let cellValue = row[field] || "";
+
+                        if (field.toLowerCase().includes("date")) {
+                            cellValue = formatDate2(cellValue);
+                        }
+
+                        return String(cellValue).toLowerCase() === String(value).toLowerCase();
+                    });
+                }
+            });
+
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        }
+
+        function makeCell2(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeNumberCell2(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="number" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeDateCell2(field, value) {
+            let displayValue = formatDate2(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" class="date-picker2" value="${rawValue}">
+            </td>`;
+        }
+
+        function makeDropdownCell2(field, selectedValue, stateFilter = null, optionsList = null) {
+            let options = optionsList || dropdowns2[field] || [];
+
+            const formatLabel = (val) => {
+                if (!val) return "";
+                return val.charAt(0).toUpperCase() + val.slice(1);
+            };
+
+            let displaySelected = formatLabel(selectedValue);
+
+            let html = `<td data-field="${field}">
+                <span style="font-weight:bold;">${displaySelected}</span>
+                <select class="form-control select22">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+            options.forEach(opt => {
+                let sel = (opt.toLowerCase() === (selectedValue || "").toLowerCase()) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${formatLabel(opt)}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function formatDate2(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function attachCellEvents2() {
+            $("#leadsTable2 td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable2 td input, #leadsTable2 td select")
+                .off("blur change")
+                .on("blur change", function () {
+                    if ($(this).hasClass("date-picker2")) return;
+
+                    let td = $(this).closest("td");
+                    let tr = $(this).closest("tr");
+                    let id = tr.data("id");
+                    let field = td.data("field");
+                    let value = $(this).val();
+
+                    td.find("span").text(value);
+                    td.removeClass("editing");
+
+                    let payload = {};
+                    payload[field] = value;
+                    if (userData2 && userData2.user_id) {
+                        payload["userId"] = userData2.user_id;
+                    }
+
+                    $.ajax({
+                        url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                        method: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify(payload),
+                        success: function (res) {
+                            console.log("Updated 2:", res);
+                        },
+                        error: function (err) {
+                            console.error("Update failed 2", err);
+                        }
+                    });
+                });
+
+            $(".date-picker2").each(function () {
+                const input = $(this);
+                input.flatpickr({
+                    dateFormat: "Y-m-d",
+                    onChange: function (selectedDates, dateStr) {
+                        if (!dateStr) return;
+
+                        let td = input.closest("td");
+                        let tr = input.closest("tr");
+                        let id = tr.data("id");
+                        let field = td.data("field");
+                        let value = new Date(dateStr).toISOString().split("T")[0];
+
+                        td.find("span").text(formatDate2(value));
+                        td.removeClass("editing");
+
+                        let payload = {};
+                        payload[field] = value;
+                        if (userData2 && userData2.user_id) {
+                            payload["userId"] = userData2.user_id;
+                        }
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                            method: "PUT",
+                            contentType: "application/json",
+                            data: JSON.stringify(payload),
+                            success: function (res) {
+                                console.log("Updated 2:", res);
+                            },
+                            error: function (err) {
+                                console.error("Update failed 2", err);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function attachSendMailEvents2() {
+            $(".send-mail2").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Send Follow-up Mail",
+                    html: `
+                        <input id="mailLink2" class="swal2-input" placeholder="Enter Meeting Link" type="text">
+                        <input id="mailTime2" class="swal2-input" type="time" value="11:30">
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: "Send",
+                    cancelButtonText: "Cancel",
+                    preConfirm: () => {
+                        const link = document.getElementById("mailLink2").value.trim();
+                        const timeRaw = document.getElementById("mailTime2").value;
+
+                        if (!link) {
+                            Swal.showValidationMessage("Meeting link is required!");
+                            return false;
+                        }
+                        if (!timeRaw) {
+                            Swal.showValidationMessage("Time is required!");
+                            return false;
+                        }
+
+                        const [h, m] = timeRaw.split(":");
+                        let hour = parseInt(h, 10);
+                        const min = m;
+                        const ampm = hour >= 12 ? "PM" : "AM";
+                        hour = hour % 12 || 12;
+                        const formattedTime = `${hour}:${min} ${ampm}`;
+
+                        return { link, time: formattedTime };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed && result.value) {
+                        const { link, time } = result.value;
+
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the follow up mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/send-mail/` + id,
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                type: "hardcoded",
+                                time: time,
+                                link: link,
+                            }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The Follow up mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the Follow up mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        window.filterTable2 = function () {
+            const value = $("#searchInput2").val().toLowerCase().trim();
+            if (!value) {
+                renderTable2();
+                renderPagination2();
+                return;
+            }
+
+            filteredData2 = tableData2.filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        };
+
+        window.printTable2 = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable2")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        window.exportToExcel2 = function () {
+            const headers = [
+                "SR",
+                "Date of Resumes Received",
+                "College Name",
+                "Course",
+                "Internship Type",
+                "College Onboarded By",
+                "Name of Student",
+                "Mobile Number",
+                "Email ID",
+                "Domain",
+                "Date of Interview Scheduled",
+                "Mail Sent At"
+            ];
+
+            const data = [headers];
+
+            tableData2.forEach((row) => {
+                data.push([
+                    row.sno,
+                    row.resumeDate,
+                    row.collegeName,
+                    row.course,
+                    row.internshipType,
+                    row.followupBy,
+                    row.studentName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.domain,
+                    row.interviewDate,
+                    row.mailSentAt
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "StudentResumes2");
+            XLSX.writeFile(workbook, "StudentResumes2_All.xlsx");
+        };
+
+        $(document).ready(function () {
+            loadTableData2();
+        });
+    </script>
+
 
 </body>
 
