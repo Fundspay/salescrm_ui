@@ -601,39 +601,33 @@
                                 </div>
                             </div>
 
-                        <div class="card-body custom-card-action p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0" id="leadsTable2">
-                                    <thead class="table-light">
-                                        <tr class="border-b">
-                                            <th>Delete</th>
-                                            <th>SR</th>
-                                            <th>College Name</th>
-                                            <th>Co-ordinator Name</th>
-                                            <th>Mobile Number</th>
-                                            <th>Email</th>
-                                            <th>State</th>
-                                            <th>City</th>
-                                            <th>Course</th>
-                                            <th>Connected by</th>
-                                            <th>Date of connect</th>
-                                            <th>Call Response</th>
-                                            <th>Type of INT</th>
-                                            <th>Detailed Response</th>
-                                            <th>Follow up by</th>
-                                            <th>Follow up date</th>
-                                            <th>Response of follow up</th>
-                                            <th>No. of resumes</th>
-                                            <th>Date of resume</th>
-                                            <th>Expected response date</th>
-                                            <th>Follow up mail</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                            <div class="card-body custom-card-action p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover mb-0" id="leadsTable2">
+                                        <thead class="table-light">
+                                            <tr class="border-b">
+                                                <th>Delete</th>
+                                                <th>SR</th>
+                                                <th>DATE OF RESUMES RECEIVED</th>
+                                                <th>COLLEGE NAME</th>
+                                                <th>COURSE</th>
+                                                <th>INTERNSHIP TYPE</th>
+                                                <th>COLLEGE ONBOARDED BY</th>
+                                                <th>NAME OF STUDENT</th>
+                                                <th>MOBILE NUMBER</th>
+                                                <th>EMAIL ID</th>
+                                                <th>DOMAIN</th>
+                                                <th>DATE OF INTERVIEW SCHEDULED</th>
+                                                <th>TIME OF INTERVIEW</th>
+                                                <th>MAIL SENT ON</th>
+                                                <th>Send Resume</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
 
                             <div class="card-footer">
                                 <div class="d-flex justify-content-between align-items-center">
@@ -653,13 +647,13 @@
                         </div>
                     </div>
 
-                <script>
-                    const userData5 = JSON.parse(sessionStorage.getItem("user_data"));
-                    if (userData5 && userData5.name) {
-                        document.getElementById("reSheetTitle").innerHTML =
-                            `${userData5.name}'s RE Sheet (Total colleges: <span id="collegeCount2">0</span>)`;
-                    }
-                </script>
+                    <script>
+                        const userData5 = JSON.parse(sessionStorage.getItem("user_data"));
+                        if (userData5 && userData5.name) {
+                            document.getElementById("reSheetTitle").innerHTML =
+                                `${userData5.name}'s RESUME Sheet (Total colleges: <span id="collegeCount2">0</span>)`;
+                        }
+                    </script>
 
                     <style>
                         #dateRangePicker2::placeholder {
@@ -753,15 +747,15 @@
 
                     <div class="row">
 
-                    <div class="col-12">
-                        <div class="card stretch stretch-full">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">RE MASTER SHEET (Total colleges: <span id="collegeCount">
-                                            0</span>)</h5>
-                                </div>
-                                <div class="card-header-action">
-                                    <!-- <div data-bs-toggle="tooltip" title="Refresh">
+                        <div class="col-12">
+                            <div class="card stretch stretch-full">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title">RESUME MASTER SHEET (Total colleges: <span
+                                                id="collegeCount2">0</span>)</h5>
+                                    </div>
+                                    <div class="card-header-action">
+                                        <!-- <div data-bs-toggle="tooltip" title="Refresh">
                                         <a href="javascript:void(0);" class="avatar-text avatar-xs bg-warning"
                                             onclick="loadTableData()"> </a>
                                     </div> -->
@@ -784,58 +778,52 @@
                                     </div>
                                 </div>
 
-                            <div class="card-body custom-card-action p-0">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover mb-0" id="leadsTable">
-                                        <thead class="table-light">
-                                            <tr class="border-b">
-                                                <th>Delete</th>
-                                                <th>SR</th>
-                                                <th>College Name</th>
-                                                <th>Co-ordinator Name</th>
-                                                <th>Mobile Number</th>
-                                                <th>Email</th>
-                                                <th>State</th>
-                                                <th>City</th>
-                                                <th>Course</th>
-                                                <th>Connected by</th>
-                                                <th>Date of connect</th>
-                                                <th>Call Response</th>
-                                                <th>Type of INT</th>
-                                                <th>Detailed Response</th>
-                                                <th>Follow up by</th>
-                                                <th>Follow up date</th>
-                                                <th>Response of follow up</th>
-                                                <th>No. of resumes</th>
-                                                <th>Date of resume</th>
-                                                <th>Expected response date</th>
-                                                <th>Follow up mail</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Rows dynamically injected here -->
-                                        </tbody>
-                                    </table>
+                                <div class="card-body custom-card-action p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover mb-0" id="leadsTable">
+                                            <thead class="table-light">
+                                                <tr class="border-b">
+                                                    <th>Delete</th>
+                                                    <th>SR</th>
+                                                    <th>DATE OF RESUMES RECEIVED</th>
+                                                    <th>COLLEGE NAME</th>
+                                                    <th>COURSE</th>
+                                                    <th>INTERNSHIP TYPE</th>
+                                                    <th>COLLEGE ONBOARDED BY</th>
+                                                    <th>NAME OF STUDENT</th>
+                                                    <th>MOBILE NUMBER</th>
+                                                    <th>EMAIL ID</th>
+                                                    <th>DOMAIN</th>
+                                                    <th>DATE OF INTERVIEW SCHEDULED</th>
+                                                    <th>TIME OF INTERVIEW</th>
+                                                    <th>MAIL SENT ON</th>
+                                                    <th>Send Resume</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Rows dynamically injected here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
-                                        id="pagination">
-                                        <!-- Pagination links will be dynamically populated here -->
-                                    </ul>
-                                    <div class="d-flex gap-2">
-                                        <button class="btn btn-primary" onclick="printTable()">
-                                            <i class="bi bi-printer"></i> Print
-                                        </button>
-                                        <button class="btn btn-success" onclick="exportToExcel()">
-                                            <i class="bi bi-file-earmark-excel"></i> Excel
-                                        </button>
+                                <div class="card-footer">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <ul class="list-unstyled d-flex align-items-center gap-2 mb-0 pagination-common-style"
+                                            id="pagination">
+                                            <!-- Pagination links will be dynamically populated here -->
+                                        </ul>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-primary" onclick="printTable()">
+                                                <i class="bi bi-printer"></i> Print
+                                            </button>
+                                            <button class="btn btn-success" onclick="exportToExcel()">
+                                                <i class="bi bi-file-earmark-excel"></i> Excel
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                         <style>
                             #dateRangePicker2::placeholder {
@@ -1726,23 +1714,15 @@
                             collegeName: row.collegeName || "",
                             course: row.course || "",
                             internshipType: row.internshipType || "",
-                            detailedResponse: row.detailedResponse || "",
-                            followUpBy: row.followUpBy || "",
-                            followUpDate: row.followUpDate || "",
-                            followUpResponse: row.followUpResponse || "",
-                            resumeCount: row.resumeCount || "",
-                            resumeDate: row.resumeDate || "",
-                            expectedResponseDate: row.expectedResponseDate || ""
+                            followupBy: row.followupBy || "",
+                            studentName: row.studentName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            domain: row.domain || "",
+                            interviewDate: row.interviewDate || "",
+                            interviewTime: row.interviewTime || "",
+                            mailSentAt: row.mailSentAt || "",
                         }));
-
-                        dropdowns.connectedBy = res.users.map(u => u.firstName);
-                        dropdowns.connectedBy.push("Other");
-                        console.log("ConnectedBy options:", dropdowns.connectedBy);
-
-                        sessionStorage.setItem("users_list", JSON.stringify(res.users));
-
-                        const totalColleges = tableData.length;
-                        document.getElementById("collegeCount").textContent = totalColleges;
 
                         filteredData = [...tableData];
                         renderTable();
@@ -1797,7 +1777,17 @@
             </td>
             <td>${row.sno}</td>
             ${makeDateCell("resumeDate", row.resumeDate || "")}
-            ${makeDateCell("expectedResponseDate", row.expectedResponseDate || "")}
+            ${makeCell("collegeName", row.collegeName || "")}
+            ${makeDropdownCell("course", row.course || "", null, dropdowns.course)}
+            ${makeDropdownCell("internshipType", row.internshipType || "", null, dropdowns.internshipType)}
+            ${makeDropdownCell("followupBy", row.followupBy || "", null, dropdowns.connectedBy)}
+            ${makeCell("studentName", row.studentName || "")}
+            ${makeCell("mobileNumber", row.mobileNumber || "")}
+            ${makeCell("emailId", row.emailId || "")}
+            ${makeDropdownCell("domain", row.domain || "", null, dropdowns.domain)}
+            ${makeDateCell("interviewDate", row.interviewDate || "")}
+            <td>${formatTimeHM(row.interviewTime)}</td>
+            <td>${formatDateTime(row.mailSentAt)}</td>
             <td>
                 <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
                     <i class="fas fa-paper-plane"></i>
@@ -1811,6 +1801,24 @@
             attachSendMailEvents();
             setStickyColumns();
         }
+
+        const columnKeys = [
+            "actions",
+            "sno",
+            "resumeDate",
+            "collegeName",
+            "course",
+            "internshipType",
+            "followupBy",
+            "studentName",
+            "mobileNumber",
+            "emailId",
+            "domain",
+            "interviewDate",
+            "interviewTime",
+            "mailSentAt",
+            "sendMail"
+        ];
 
         function renderPagination() {
             const totalPages = Math.ceil(filteredData.length / rowsPerPage);
@@ -1876,32 +1884,16 @@
             $("#leadsTable thead .column-filter").each(function () {
                 const field = $(this).data("field");
 
-                let values = [...new Set(tableData.map(row => {
-                    let v = Object.values(row)[index];
-                    if (v === null || v === undefined || v === "") return "";
+                let values = [...new Set(tableData.map(row => row[field]))]
+                    .filter(v => v !== null && v !== undefined && v !== "");
 
-                    if (typeof v === "string") v = v.trim();
-
-                    if (isNumericColumn) {
-                        v = parseInt(v, 10);
-                        if (isNaN(v)) return "";
-                    }
-
-                    return v;
-                }))];
-
-                values = values.filter(v => v !== "" && v !== null && v !== undefined);
-
-                values.sort((a, b) => {
-                    if (isDateColumn) {
-                        const da = new Date(a), db = new Date(b);
-                        if (!isNaN(da) && !isNaN(db)) return da - db;
-                    }
-                    if (isNumericColumn) {
-                        return a - b;
-                    }
-                    return a.toString().localeCompare(b.toString());
-                });
+                if (field.toLowerCase().includes("date")) {
+                    values = values.map(v => formatDate(v)).filter(v => v !== "");
+                } else if (field.toLowerCase().includes("time")) {
+                    values = values.map(v => formatTimeHM(v)).filter(v => v !== "");
+                } else if (field === "mailSentAt") {
+                    values = values.map(v => formatDateTime(v)).filter(v => v !== "");
+                }
 
                 values.forEach(v => {
                     $(this).append(`<option value="${v}">${v}</option>`);
@@ -1909,36 +1901,7 @@
             });
         }
 
-        function applyFilters() {
-            const filters = {};
-            $(".column-filter").each(function () {
-                const index = $(this).data("index");
-                const value = $(this).val();
-                if (value) filters[index] = value;
-            });
 
-            $("#leadsTable tbody tr").each(function () {
-                let show = true;
-                $(this).find("td").each(function (i, td) {
-                    if (filters[i]) {
-                        const colName = $("#leadsTable thead th").eq(i).text().trim().toLowerCase();
-                        let cellText = $(td).text().trim();
-
-                        if (colName.includes("no. of resumes") || colName.includes("number of resumes")) {
-
-                            if (parseInt(cellText, 10) !== parseInt(filters[i], 10)) {
-                                show = false;
-                            }
-                        } else {
-                            if (cellText !== filters[i]) {
-                                show = false;
-                            }
-                        }
-                    }
-                });
-                $(this).toggle(show);
-            });
-        }
         function applyFilters() {
             filteredData = [...tableData];
 
@@ -1948,9 +1911,17 @@
 
                 if (value) {
                     filteredData = filteredData.filter(row => {
-                        const cellValue = Object.values(row)[index] || "";
+                        let cellValue = row[field] || "";
 
-                        return cellValue.toLowerCase() === value.toLowerCase();
+                        if (field.toLowerCase().includes("date")) {
+                            cellValue = formatDate(cellValue);
+                        } else if (field.toLowerCase().includes("time")) {
+                            cellValue = formatTimeHM(cellValue);
+                        } else if (field === "mailSentAt") {
+                            cellValue = formatDateTime(cellValue);
+                        }
+
+                        return String(cellValue).toLowerCase() === String(value).toLowerCase();
                     });
                 }
             });
@@ -2192,51 +2163,567 @@
                 })
             );
 
-            const tbody = $("#leadsTable tbody");
-            tbody.empty();
-            filtered.forEach((row, index) => {
-                const tr = `<tr data-id="${row.id}">
-                    <td>
-                    <button class="btn btn-sm btn-danger delete-record" data-id="${row.id}" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-                <td>${row.sno}</td>
-
-                <!-- keep all these NON-editable / dropdown as before -->
-                <td>${row.collegeName || ""}</td>
-                <td>${row.coordinatorName || ""}</td>
-                <td>${row.mobileNumber || ""}</td>
-                <td>${row.emailId || ""}</td>
-                <td>${row.state || ""}</td>
-                <td>${row.city || ""}</td>
-                <td>${row.course || ""}</td>
-                <td>${row.connectedBy || ""}</td>
-                <td>${row.dateOfConnect || ""}</td>
-                <td>${row.callResponse || ""}</td>
-                <td>${row.internshipType || ""}</td>
-                <td>${row.detailedResponse || ""}</td>
-                ${makeDropdownCell("followUpBy", row.followUpBy || "", null, dropdowns.connectedBy)}
-                ${makeDateCell("followUpDate", row.followUpDate || "")}
-                ${makeDropdownCell("followUpResponse", row.followUpResponse || "", null, dropdowns.followUpResponse)}
-                ${makeNumberCell("resumeCount", row.resumeCount || "")}
-                ${makeDateCell("resumeDate", row.resumeDate || "")}
-                ${makeDateCell("expectedResponseDate", row.expectedResponseDate || "")}
-                <td>
-                    <button class="btn btn-sm btn-success send-mail" data-id="${row.id}" title="Send JD">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </td>
-                </tr>`;
-                tbody.append(tr);
-            });
-
-            $("#pagination").hide();
-            attachCellEvents();
-            attachSendMailEvents();
+            currentPage = 1;
+            renderTable();
+            renderPagination();
         };
 
         window.printTable = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        window.exportToExcel = function () {
+            const headers = [
+                "SR",
+                "Date of Resumes Received",
+                "College Name",
+                "Course",
+                "Internship Type",
+                "College Onboarded By",
+                "Name of Student",
+                "Mobile Number",
+                "Email ID",
+                "Domain",
+                "Date of Interview Scheduled",
+                "Mail Sent At"
+            ];
+
+            const data = [headers];
+
+            tableData.forEach((row) => {
+                data.push([
+                    row.sno,
+                    row.resumeDate,
+                    row.collegeName,
+                    row.course,
+                    row.internshipType,
+                    row.followupBy,
+                    row.studentName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.domain,
+                    row.interviewDate,
+                    row.mailSentAt
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "StudentResumes");
+            XLSX.writeFile(workbook, "StudentResumes_All.xlsx");
+        };
+
+        $(document).ready(function () {
+            loadTableData();
+        });
+    </script>
+
+    <script>
+        var userData2 = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData2);
+
+        const apiBase2 = "https://fundsaudit.com/api/v1/studentresume";
+
+        const dropdowns2 = {
+            domain: ["Marketing", "Finance", "HR", "Operations", "Others"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            course: ["mba", "pgdm", "mba+pgdm", "bba/bcom", "engineering", "other"]
+        };
+
+        const colorMap2 = {
+            internshipType: {
+                "fulltime": "#28a745",
+                "sip": "#0d6efd",
+                "liveproject": "#ffc107",
+                "wip": "#0d6efd",
+                "others": "#adb5bd"
+            }
+        };
+
+        let tableData2 = [];
+        let filteredData2 = [];
+        const rowsPerPage2 = 10;
+        let currentPage2 = 1;
+
+        function loadTableData2() {
+            $.ajax({
+                url: `https://fundsaudit.com/api/v1/studentresume/list/user/${userData2.user_id}`,
+                method: "GET",
+                success: function (res) {
+                    console.log("student resumes 2:", res);
+                    if (res.success && res.data) {
+                        if (res.users && Array.isArray(res.users)) {
+                            dropdowns.followupBy = res.users.map(u => u.firstName);
+                        }
+                        tableData2 = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            resumeDate: row.resumeDate || "",
+                            collegeName: row.collegeName || "",
+                            course: row.course || "",
+                            internshipType: row.internshipType || "",
+                            followupBy: row.followupBy || "",
+                            studentName: row.studentName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            domain: row.domain || "",
+                            interviewDate: row.interviewDate || "",
+                            interviewTime: row.interviewTime || "",
+                            mailSentAt: row.mailSentAt || "",
+                        }));
+
+                        const totalColleges2 = tableData2.length;
+                        document.getElementById("collegeCount2").textContent = totalColleges2;
+
+                        filteredData2 = [...tableData2];
+                        renderTable2();
+                        renderPagination2();
+                        renderColumnFilters2();
+                    }
+                }
+            });
+        }
+
+        function formatDateTime(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+
+            const options = { day: "2-digit", month: "long", year: "numeric" };
+            const datePart = date.toLocaleDateString("en-GB", options);
+
+            let hours = date.getHours();
+            let minutes = date.getMinutes().toString().padStart(2, "0");
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12;
+
+            const timePart = `${hours}:${minutes} ${ampm}`;
+            return `${datePart} / ${timePart}`;
+        }
+
+        function formatTimeHM(timeStr) {
+            if (!timeStr) return "";
+            const [h, m] = timeStr.split(":");
+            let hour = parseInt(h, 10);
+            const min = m;
+            const ampm = hour >= 12 ? "PM" : "AM";
+            hour = hour % 12 || 12;
+            return `${hour}:${min} ${ampm}`;
+        }
+
+        function renderTable2() {
+            let tbody = $("#leadsTable2 tbody");
+            tbody.empty();
+
+            const start = (currentPage2 - 1) * rowsPerPage2;
+            const end = start + rowsPerPage2;
+            const rows = filteredData2.slice(start, end);
+
+            rows.forEach((row) => {
+                let tr = `<tr data-id="${row.id}">
+            <td>
+                <button class="btn btn-sm btn-danger delete-record2" data-id="${row.id}" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            <td>${row.sno}</td>
+            ${makeDateCell2("resumeDate", row.resumeDate || "")}
+            ${makeCell2("collegeName", row.collegeName || "")}
+            ${makeDropdownCell2("course", row.course || "", null, dropdowns2.course)}
+            ${makeDropdownCell2("internshipType", row.internshipType || "", null, dropdowns2.internshipType)}
+            ${makeDropdownCell("followupBy", row.followupBy || "", null, dropdowns.connectedBy)}
+            ${makeCell2("studentName", row.studentName || "")}
+            ${makeCell2("mobileNumber", row.mobileNumber || "")}
+            ${makeCell2("emailId", row.emailId || "")}
+            ${makeDropdownCell2("domain", row.domain || "", null, dropdowns2.domain)}
+            ${makeDateCell2("interviewDate", row.interviewDate || "")}
+            <td>${formatTimeHM(row.interviewTime)}</td>
+            <td>${formatDateTime(row.mailSentAt)}</td>
+            <td>
+                <button class="btn btn-sm btn-success send-mail2" data-id="${row.id}" title="Send JD">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </td>
+            </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents2();
+            attachSendMailEvents2();
+            setStickyColumns2();
+        }
+
+        const columnKeys2 = [
+            "actions",
+            "sno",
+            "resumeDate",
+            "collegeName",
+            "course",
+            "internshipType",
+            "followupBy",
+            "studentName",
+            "mobileNumber",
+            "emailId",
+            "domain",
+            "interviewDate",
+            "interviewTime",
+            "mailSentAt",
+            "sendMail"
+        ];
+
+        function renderPagination2() {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            const pagination = $("#pagination2");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage2 - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage2 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage2 === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage2 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage2 = function (page) {
+            const totalPages = Math.ceil(filteredData2.length / rowsPerPage2);
+            if (page < 1 || page > totalPages) return;
+            currentPage2 = page;
+            renderTable2();
+            renderPagination2();
+        };
+
+        function renderColumnFilters2() {
+            const headerRow = $("#leadsTable2 thead tr.filters");
+            headerRow.remove();
+
+            let filterRow = "<tr class='filters'>";
+            columnKeys2.forEach((key, i) => {
+                if (key === "actions" || key === "sno" || key === "sendMail") {
+                    filterRow += "<th></th>";
+                } else {
+                    filterRow += `<th>
+                <select class="column-filter2 form-select form-select-sm" data-field="${key}">
+                    <option value="">All</option>
+                </select>
+            </th>`;
+                }
+            });
+            filterRow += "</tr>";
+            $("#leadsTable2 thead").append(filterRow);
+
+            populateColumnFilterOptions2();
+
+            $(".column-filter2").off("change").on("change", function () {
+                applyFilters2();
+            });
+        }
+
+        function populateColumnFilterOptions2() {
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const field = $(this).data("field");
+
+                let values = [...new Set(tableData2.map(row => row[field]))]
+                    .filter(v => v !== null && v !== undefined && v !== "");
+
+                if (field.toLowerCase().includes("date")) {
+                    values = values.map(v => formatDate2(v)).filter(v => v !== "");
+                } else if (field.toLowerCase().includes("time")) {
+                    values = values.map(v => formatTimeHM(v)).filter(v => v !== "");
+                } else if (field === "mailSentAt") {
+                    values = values.map(v => formatDateTime(v)).filter(v => v !== "");
+                }
+
+                values.forEach(v => {
+                    $(this).append(`<option value="${v}">${v}</option>`);
+                });
+            });
+        }
+
+        function applyFilters2() {
+            filteredData2 = [...tableData2];
+
+            $("#leadsTable2 thead .column-filter2").each(function () {
+                const value = $(this).val();
+                const field = $(this).data("field");
+
+                if (value) {
+                    filteredData2 = filteredData2.filter(row => {
+                        let cellValue = row[field] || "";
+
+                        if (field.toLowerCase().includes("date")) {
+                            cellValue = formatDate(cellValue);
+                        } else if (field.toLowerCase().includes("time")) {
+                            cellValue = formatTimeHM(cellValue);
+                        } else if (field === "mailSentAt") {
+                            cellValue = formatDateTime(cellValue);
+                        }
+
+                        return String(cellValue).toLowerCase() === String(value).toLowerCase();
+                    });
+                }
+            });
+
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        }
+
+        function makeCell2(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeNumberCell2(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="number" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeDateCell2(field, value) {
+            let displayValue = formatDate2(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" class="date-picker2" value="${rawValue}">
+            </td>`;
+        }
+
+        function makeDropdownCell2(field, selectedValue, stateFilter = null, optionsList = null) {
+            let options = optionsList || dropdowns2[field] || [];
+
+            const formatLabel = (val) => {
+                if (!val) return "";
+                return val.charAt(0).toUpperCase() + val.slice(1);
+            };
+
+            let displaySelected = formatLabel(selectedValue);
+
+            let html = `<td data-field="${field}">
+                <span style="font-weight:bold;">${displaySelected}</span>
+                <select class="form-control select22">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+            options.forEach(opt => {
+                let sel = (opt.toLowerCase() === (selectedValue || "").toLowerCase()) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${formatLabel(opt)}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function formatDate2(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function attachCellEvents2() {
+            $("#leadsTable2 td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable2 td input, #leadsTable2 td select")
+                .off("blur change")
+                .on("blur change", function () {
+                    if ($(this).hasClass("date-picker2")) return;
+
+                    let td = $(this).closest("td");
+                    let tr = $(this).closest("tr");
+                    let id = tr.data("id");
+                    let field = td.data("field");
+                    let value = $(this).val();
+
+                    td.find("span").text(value);
+                    td.removeClass("editing");
+
+                    let payload = {};
+                    payload[field] = value;
+                    if (userData2 && userData2.user_id) {
+                        payload["userId"] = userData2.user_id;
+                    }
+
+                    $.ajax({
+                        url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                        method: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify(payload),
+                        success: function (res) {
+                            console.log("Updated 2:", res);
+                        },
+                        error: function (err) {
+                            console.error("Update failed 2", err);
+                        }
+                    });
+                });
+
+            $(".date-picker2").each(function () {
+                const input = $(this);
+                input.flatpickr({
+                    dateFormat: "Y-m-d",
+                    onChange: function (selectedDates, dateStr) {
+                        if (!dateStr) return;
+
+                        let td = input.closest("td");
+                        let tr = input.closest("tr");
+                        let id = tr.data("id");
+                        let field = td.data("field");
+                        let value = new Date(dateStr).toISOString().split("T")[0];
+
+                        td.find("span").text(formatDate2(value));
+                        td.removeClass("editing");
+
+                        let payload = {};
+                        payload[field] = value;
+                        if (userData2 && userData2.user_id) {
+                            payload["userId"] = userData2.user_id;
+                        }
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                            method: "PUT",
+                            contentType: "application/json",
+                            data: JSON.stringify(payload),
+                            success: function (res) {
+                                console.log("Updated 2:", res);
+                            },
+                            error: function (err) {
+                                console.error("Update failed 2", err);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function attachSendMailEvents2() {
+            $(".send-mail2").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Send Follow-up Mail",
+                    html: `
+                        <input id="mailLink2" class="swal2-input" placeholder="Enter Meeting Link" type="text">
+                        <input id="mailTime2" class="swal2-input" type="time" value="11:30">
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: "Send",
+                    cancelButtonText: "Cancel",
+                    preConfirm: () => {
+                        const link = document.getElementById("mailLink2").value.trim();
+                        const timeRaw = document.getElementById("mailTime2").value;
+
+                        if (!link) {
+                            Swal.showValidationMessage("Meeting link is required!");
+                            return false;
+                        }
+                        if (!timeRaw) {
+                            Swal.showValidationMessage("Time is required!");
+                            return false;
+                        }
+
+                        const [h, m] = timeRaw.split(":");
+                        let hour = parseInt(h, 10);
+                        const min = m;
+                        const ampm = hour >= 12 ? "PM" : "AM";
+                        hour = hour % 12 || 12;
+                        const formattedTime = `${hour}:${min} ${ampm}`;
+
+                        return { link, time: formattedTime };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed && result.value) {
+                        const { link, time } = result.value;
+
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the follow up mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/send-mail/` + id,
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                type: "hardcoded",
+                                time: time,
+                                link: link,
+                            }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The Follow up mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the Follow up mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        window.filterTable2 = function () {
+            const value = $("#searchInput2").val().toLowerCase().trim();
+            if (!value) {
+                renderTable2();
+                renderPagination2();
+                return;
+            }
+
+            filteredData2 = tableData2.filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        };
+
+        window.printTable2 = function () {
             const printWindow = window.open('', '', 'height=600,width=800');
             printWindow.document.write('<html><head><title>Print Table</title></head><body>');
             printWindow.document.write($("#leadsTable2")[0].outerHTML);
@@ -2268,11 +2755,6 @@
                     row.sno,
                     row.resumeDate,
                     row.collegeName,
-                    row.coordinatorName,
-                    row.mobileNumber,
-                    row.emailId,
-                    row.state,
-                    row.city,
                     row.course,
                     row.internshipType,
                     row.followupBy,
@@ -2287,17 +2769,797 @@
 
             const worksheet = XLSX.utils.aoa_to_sheet(data);
             const workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "CollegeDetails");
-            XLSX.writeFile(workbook, "CollegeDetails_All.xlsx");
+            XLSX.utils.book_append_sheet(workbook, worksheet, "StudentResumes2");
+            XLSX.writeFile(workbook, "StudentResumes2_All.xlsx");
         };
 
         $(document).ready(function () {
-            loadCities().then(() => {
-                loadTableData();
-            });
+            loadTableData2();
         });
     </script>
 
+    <script>
+        var userData3 = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData3);
+
+        const apiBase3 = "https://fundsaudit.com/api/v1/studentresume";
+
+        const dropdowns3 = {
+            domain: ["Marketing", "Finance", "HR", "Operations", "Others"],
+            internshipType: ["fulltime", "sip", "liveproject", "wip", "others"],
+            course: ["mba", "pgdm", "mba+pgdm", "bba/bcom", "engineering", "other"]
+        };
+
+        const colorMap3 = {
+            internshipType: {
+                "fulltime": "#28a745",
+                "sip": "#0d6efd",
+                "liveproject": "#ffc107",
+                "wip": "#0d6efd",
+                "others": "#adb5bd"
+            }
+        };
+
+        let tableData3 = [];
+        let filteredData3 = [];
+        const rowsPerPage3 = 10;
+        let currentPage3 = 1;
+
+        function loadTableData3() {
+            $.ajax({
+                url: `https://fundsaudit.com/api/v1/studentresume/list/user/future/${userData3.user_id}`,
+                method: "GET",
+                success: function (res) {
+                    console.log("student resumes 3:", res);
+                    if (res.success && res.data) {
+                        if (res.users && Array.isArray(res.users)) {
+                            dropdowns.followupBy = res.users.map(u => u.firstName);
+                        }
+                        tableData3 = res.data.map((row, index) => ({
+                            sno: index + 1,
+                            id: row.id,
+                            resumeDate: row.resumeDate || "",
+                            collegeName: row.collegeName || "",
+                            course: row.course || "",
+                            internshipType: row.internshipType || "",
+                            followupBy: row.followupBy || "",
+                            studentName: row.studentName || "",
+                            mobileNumber: row.mobileNumber || "",
+                            emailId: row.emailId || "",
+                            domain: row.domain || "",
+                            interviewDate: row.interviewDate || "",
+                            interviewTime: row.interviewTime || "",
+                            mailSentAt: row.mailSentAt || "",
+                        }));
+
+                        filteredData3 = [...tableData3];
+                        renderTable3();
+                        renderPagination3();
+                        renderColumnFilters3();
+                    }
+                }
+            });
+        }
+
+        function formatDateTime3(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+
+            const options = { day: "2-digit", month: "long", year: "numeric" };
+            const datePart = date.toLocaleDateString("en-GB", options);
+
+            let hours = date.getHours();
+            let minutes = date.getMinutes().toString().padStart(2, "0");
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12;
+
+            const timePart = `${hours}:${minutes} ${ampm}`;
+            return `${datePart} / ${timePart}`;
+        }
+
+        function formatTimeHM3(timeStr) {
+            if (!timeStr) return "";
+            const [h, m] = timeStr.split(":");
+            let hour = parseInt(h, 10);
+            const min = m;
+            const ampm = hour >= 12 ? "PM" : "AM";
+            hour = hour % 12 || 12;
+            return `${hour}:${min} ${ampm}`;
+        }
+
+        function renderTable3() {
+            let tbody = $("#leadsTable3 tbody");
+            tbody.empty();
+
+            const start = (currentPage3 - 1) * rowsPerPage3;
+            const end = start + rowsPerPage3;
+            const rows = filteredData3.slice(start, end);
+
+            rows.forEach((row) => {
+                let tr = `<tr data-id="${row.id}">
+            <td>
+                <button class="btn btn-sm btn-danger delete-record3" data-id="${row.id}" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+            <td>${row.sno}</td>
+            ${makeDateCell3("resumeDate", row.resumeDate || "")}
+            ${makeCell3("collegeName", row.collegeName || "")}
+            ${makeDropdownCell3("course", row.course || "", null, dropdowns3.course)}
+            ${makeDropdownCell3("internshipType", row.internshipType || "", null, dropdowns3.internshipType)}
+            ${makeDropdownCell("followupBy", row.followupBy || "", null, dropdowns.connectedBy)}
+            ${makeCell3("studentName", row.studentName || "")}
+            ${makeCell3("mobileNumber", row.mobileNumber || "")}
+            ${makeCell3("emailId", row.emailId || "")}
+            ${makeDropdownCell3("domain", row.domain || "", null, dropdowns3.domain)}
+            ${makeDateCell3("interviewDate", row.interviewDate || "")}
+            <td>${formatTimeHM3(row.interviewTime)}</td>
+            <td>${formatDateTime3(row.mailSentAt)}</td>
+            <td>
+                <button class="btn btn-sm btn-success send-mail3" data-id="${row.id}" title="Send JD">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </td>
+            </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents3();
+            attachSendMailEvents3();
+            setStickyColumns3();
+        }
+
+        const columnKeys3 = [
+            "actions",
+            "sno",
+            "resumeDate",
+            "collegeName",
+            "course",
+            "internshipType",
+            "followupBy",
+            "studentName",
+            "mobileNumber",
+            "emailId",
+            "domain",
+            "interviewDate",
+            "interviewTime",
+            "mailSentAt",
+            "sendMail"
+        ];
+
+        function renderPagination3() {
+            const totalPages = Math.ceil(filteredData3.length / rowsPerPage3);
+            const pagination = $("#pagination3");
+            pagination.empty();
+
+            const visiblePageCount = 3;
+            let startPage = Math.max(currentPage3 - 1, 1);
+            let endPage = startPage + visiblePageCount - 1;
+            if (endPage > totalPages) {
+                endPage = totalPages;
+                startPage = Math.max(endPage - visiblePageCount + 1, 1);
+            }
+
+            const prevDisabled = currentPage3 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage3 === totalPages ? 'disabled' : '';
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage3(${currentPage3 - 1})">&laquo;</a></li>`);
+
+            for (let i = startPage; i <= endPage; i++) {
+                const active = i === currentPage3 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage3(${i})">${i}</a></li>`);
+            }
+
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage3(${currentPage3 + 1})">&raquo;</a></li>`);
+        }
+
+        window.changePage3 = function (page) {
+            const totalPages = Math.ceil(filteredData3.length / rowsPerPage3);
+            if (page < 1 || page > totalPages) return;
+            currentPage3 = page;
+            renderTable3();
+            renderPagination3();
+        };
+
+        function renderColumnFilters3() {
+            const headerRow = $("#leadsTable3 thead tr.filters");
+            headerRow.remove();
+
+            let filterRow = "<tr class='filters'>";
+            columnKeys3.forEach((key, i) => {
+                if (key === "actions" || key === "sno" || key === "sendMail") {
+                    filterRow += "<th></th>";
+                } else {
+                    filterRow += `<th>
+                <select class="column-filter3 form-select form-select-sm" data-field="${key}">
+                    <option value="">All</option>
+                </select>
+            </th>`;
+                }
+            });
+            filterRow += "</tr>";
+            $("#leadsTable3 thead").append(filterRow);
+
+            populateColumnFilterOptions3();
+
+            $(".column-filter3").off("change").on("change", function () {
+                applyFilters3();
+            });
+        }
+
+        function populateColumnFilterOptions3() {
+            $("#leadsTable3 thead .column-filter3").each(function () {
+                const field = $(this).data("field");
+
+                let values = [...new Set(tableData3.map(row => row[field]))]
+                    .filter(v => v !== null && v !== undefined && v !== "");
+
+                if (field.toLowerCase().includes("date")) {
+                    values = values.map(v => formatDate3(v)).filter(v => v !== "");
+                } else if (field.toLowerCase().includes("time")) {
+                    values = values.map(v => formatTimeHM3(v)).filter(v => v !== "");
+                } else if (field === "mailSentAt") {
+                    values = values.map(v => formatDateTime3(v)).filter(v => v !== "");
+                }
+
+                values.forEach(v => {
+                    $(this).append(`<option value="${v}">${v}</option>`);
+                });
+            });
+        }
+
+        function applyFilters3() {
+            filteredData3 = [...tableData3];
+
+            $("#leadsTable3 thead .column-filter3").each(function () {
+                const value = $(this).val();
+                const field = $(this).data("field");
+
+                if (value) {
+                    filteredData3 = filteredData3.filter(row => {
+                        let cellValue = row[field] || "";
+
+                        if (field.toLowerCase().includes("date")) {
+                            cellValue = formatDate(cellValue);
+                        } else if (field.toLowerCase().includes("time")) {
+                            cellValue = formatTimeHM3(cellValue);
+                        } else if (field === "mailSentAt") {
+                            cellValue = formatDateTime3(cellValue);
+                        }
+
+                        return String(cellValue).toLowerCase() === String(value).toLowerCase();
+                    });
+                }
+            });
+
+            currentPage3 = 1;
+            renderTable3();
+            renderPagination3();
+        }
+
+        function makeCell3(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeNumberCell3(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="number" value="${displayValue}">
+            </td>`;
+        }
+
+        function makeDateCell3(field, value) {
+            let displayValue = formatDate3(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
+            return `<td data-field="${field}">
+                <span>${displayValue}</span>
+                <input type="text" class="date-picker3" value="${rawValue}">
+            </td>`;
+        }
+
+        function makeDropdownCell3(field, selectedValue, stateFilter = null, optionsList = null) {
+            let options = optionsList || dropdowns3[field] || [];
+
+            const formatLabel = (val) => {
+                if (!val) return "";
+                return val.charAt(0).toUpperCase() + val.slice(1);
+            };
+
+            let displaySelected = formatLabel(selectedValue);
+
+            let html = `<td data-field="${field}">
+                <span style="font-weight:bold;">${displaySelected}</span>
+                <select class="form-control select33">`;
+
+            html += `<option value="" ${!selectedValue ? "selected" : ""}></option>`;
+            options.forEach(opt => {
+                let sel = (opt.toLowerCase() === (selectedValue || "").toLowerCase()) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${formatLabel(opt)}</option>`;
+            });
+
+            html += `</select></td>`;
+            return html;
+        }
+
+        function formatDate3(dateStr) {
+            if (!dateStr) return "";
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            });
+        }
+
+        function attachCellEvents3() {
+            $("#leadsTable3 td").off("dblclick").on("dblclick", function () {
+                let td = $(this);
+                td.addClass("editing");
+                td.find("input,select").focus();
+            });
+
+            $("#leadsTable3 td input, #leadsTable3 td select")
+                .off("blur change")
+                .on("blur change", function () {
+                    if ($(this).hasClass("date-picker3")) return;
+
+                    let td = $(this).closest("td");
+                    let tr = $(this).closest("tr");
+                    let id = tr.data("id");
+                    let field = td.data("field");
+                    let value = $(this).val();
+
+                    td.find("span").text(value);
+                    td.removeClass("editing");
+
+                    let payload = {};
+                    payload[field] = value;
+                    if (userData3 && userData3.user_id) {
+                        payload["userId"] = userData3.user_id;
+                    }
+
+                    $.ajax({
+                        url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                        method: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify(payload),
+                        success: function (res) {
+                            console.log("Updated 3:", res);
+                        },
+                        error: function (err) {
+                            console.error("Update failed 3", err);
+                        }
+                    });
+                });
+
+            $(".date-picker3").each(function () {
+                const input = $(this);
+                input.flatpickr({
+                    dateFormat: "Y-m-d",
+                    onChange: function (selectedDates, dateStr) {
+                        if (!dateStr) return;
+
+                        let td = input.closest("td");
+                        let tr = input.closest("tr");
+                        let id = tr.data("id");
+                        let field = td.data("field");
+                        let value = new Date(dateStr).toISOString().split("T")[0];
+
+                        td.find("span").text(formatDate3(value));
+                        td.removeClass("editing");
+
+                        let payload = {};
+                        payload[field] = value;
+                        if (userData3 && userData3.user_id) {
+                            payload["userId"] = userData3.user_id;
+                        }
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/update/` + id,
+                            method: "PUT",
+                            contentType: "application/json",
+                            data: JSON.stringify(payload),
+                            success: function (res) {
+                                console.log("Updated 3:", res);
+                            },
+                            error: function (err) {
+                                console.error("Update failed 3", err);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        function attachSendMailEvents3() {
+            $(".send-mail3").off("click").on("click", function () {
+                const id = $(this).data("id");
+
+                Swal.fire({
+                    title: "Send Follow-up Mail",
+                    html: `
+                        <input id="mailLink3" class="swal2-input" placeholder="Enter Meeting Link" type="text">
+                        <input id="mailTime3" class="swal2-input" type="time" value="11:30">
+                    `,
+                    showCancelButton: true,
+                    confirmButtonText: "Send",
+                    cancelButtonText: "Cancel",
+                    preConfirm: () => {
+                        const link = document.getElementById("mailLink3").value.trim();
+                        const timeRaw = document.getElementById("mailTime3").value;
+
+                        if (!link) {
+                            Swal.showValidationMessage("Meeting link is required!");
+                            return false;
+                        }
+                        if (!timeRaw) {
+                            Swal.showValidationMessage("Time is required!");
+                            return false;
+                        }
+
+                        const [h, m] = timeRaw.split(":");
+                        let hour = parseInt(h, 10);
+                        const min = m;
+                        const ampm = hour >= 12 ? "PM" : "AM";
+                        hour = hour % 12 || 12;
+                        const formattedTime = `${hour}:${min} ${ampm}`;
+
+                        return { link, time: formattedTime };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed && result.value) {
+                        const { link, time } = result.value;
+
+                        Swal.fire({
+                            title: "Sending...",
+                            text: "Please wait while the follow up mail is being sent",
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                                Swal.showLoading();
+                            }
+                        });
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/send-mail/` + id,
+                            method: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify({
+                                type: "hardcoded",
+                                time: time,
+                                link: link,
+                            }),
+                            success: function (res) {
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Mail Sent!",
+                                    text: "The Follow up mail was sent successfully."
+                                });
+                            },
+                            error: function (err) {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Error",
+                                    text: "Failed to send the Follow up mail."
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        window.filterTable3 = function () {
+            const value = $("#searchInput3").val().toLowerCase().trim();
+            if (!value) {
+                renderTable3();
+                renderPagination3();
+                return;
+            }
+
+            filteredData3 = tableData3.filter((row) =>
+                Object.values(row).some((field) => {
+                    const plainText = $('<div>').html(field).text().toLowerCase().trim();
+                    return plainText.includes(value);
+                })
+            );
+
+            currentPage3 = 1;
+            renderTable3();
+            renderPagination3();
+        };
+
+        window.printTable3 = function () {
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write('<html><head><title>Print Table</title></head><body>');
+            printWindow.document.write($("#leadsTable3")[0].outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        };
+
+        window.exportToExcel3 = function () {
+            const headers = [
+                "SR",
+                "Date of Resumes Received",
+                "College Name",
+                "Course",
+                "Internship Type",
+                "College Onboarded By",
+                "Name of Student",
+                "Mobile Number",
+                "Email ID",
+                "Domain",
+                "Date of Interview Scheduled",
+                "Mail Sent At"
+            ];
+
+            const data = [headers];
+
+            tableData3.forEach((row) => {
+                data.push([
+                    row.sno,
+                    row.resumeDate,
+                    row.collegeName,
+                    row.course,
+                    row.internshipType,
+                    row.followupBy,
+                    row.studentName,
+                    row.mobileNumber,
+                    row.emailId,
+                    row.domain,
+                    row.interviewDate,
+                    row.mailSentAt
+                ]);
+            });
+
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "StudentResumes3");
+            XLSX.writeFile(workbook, "StudentResumes3_All.xlsx");
+        };
+
+        $(document).ready(function () {
+            loadTableData3();
+        });
+
+    </script>
+
+    <script>
+        var userData = JSON.parse(sessionStorage.getItem("user_data"));
+        console.log(userData);
+
+        let analysisChart = null;
+
+        function formatDateUI(dateStr) {
+            const parts = dateStr.split("-");
+            if (parts.length === 3) {
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+            return dateStr;
+        }
+
+        function formatDateWithDay(dateStr) {
+            const date = new Date(dateStr);
+
+            // Format date as dd/mm/yyyy
+            const formattedDate = date.toLocaleDateString("en-GB", {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+            }).replace(/\//g, "-");
+
+            // Get full day name
+            const dayName = date.toLocaleDateString("en-GB", { weekday: "long" });
+
+            return `${formattedDate} (${dayName})`;
+        }
+
+
+        // ---- Updated Dashboard Data Loader ----
+        function loadDashboardData(startDate = null, endDate = null) {
+            let url = `https://fundsaudit.com/api/v1/studentresume/work-analysis?userId=${userData.user_id}`;
+
+            if (startDate && endDate) {
+                url += `&fromDate=${startDate}&toDate=${endDate}`;
+            }
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (response) {
+                    console.log("Dashboard summary response:", response);
+
+                    if (response.success && response.data && response.data.length > 0) {
+                        const totals = response.data[0];
+
+                        // ---- College Count ----
+                        $("#totalColleges").text(totals.collegesAchieved || 0);
+                        $("#targetColleges").text(totals.collegeTarget || 0);
+
+                        let collegesPercent = (totals.collegeTarget > 0)
+                            ? ((totals.collegesAchieved / totals.collegeTarget) * 100).toFixed(1)
+                            : 0;
+                        $("#collegesPercent").text(collegesPercent + "%");
+
+                        // ---- Resume Count ----
+                        $("#totalResumes").text(totals.resumesAchieved || 0);
+                        $("#targetResumes").text(totals.resumesReceivedTarget || 0);
+
+                        let resumesPercent = (totals.resumesReceivedTarget > 0)
+                            ? ((totals.resumesAchieved / totals.resumesReceivedTarget) * 100).toFixed(1)
+                            : 0;
+                        $("#resumesPercent").text(resumesPercent + "%");
+
+                        // ---- Interviews Scheduled ----
+                        $("#totalInterviews").text(totals.interviewsAchieved || 0);
+                        $("#targetInterviews").text(totals.interviewsTarget || 0);
+
+                        let interviewsPercent = (totals.interviewsTarget > 0)
+                            ? ((totals.interviewsAchieved / totals.interviewsTarget) * 100).toFixed(1)
+                            : 0;
+                        $("#interviewsPercent").text(interviewsPercent + "%");
+
+                        // ---- New: Resume Achieved (Card 1) ----
+                        $("#totalResumes3").text(totals.resumesAchieved || 0);
+
+                        // ---- New: Interviews Achieved (Card 2) ----
+                        $("#totalInterviews3").text(totals.interviewsAchieved || 0);
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching dashboard summary:", err);
+                }
+            });
+        }
+
+        // ---- Work Analysis Chart ----
+        function loadAnalysisChart(startDate = null, endDate = null) {
+            let url = `https://fundsaudit.com/api/v1/studentresume/work-analysis?userId=${userData.user_id}`;
+
+            if (startDate && endDate) {
+                url += `&fromDate=${startDate}&toDate=${endDate}`;
+            }
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                success: function (res) {
+                    console.log("Work Analysis Data:", res);
+                    const jdList = $("#jdList");
+                    jdList.empty();
+
+                    if (res.success && res.data && res.data.length > 0) {
+                        // ---- Aggregate by date ----
+                        const dateMap = {}; // { "02 September 2025": { resumes: X, interviews: Y } }
+
+                        res.data.forEach(person => {
+                            // Count resumes
+                            person.resumeDates.forEach(d => {
+                                const cleanDate = d.split(", ")[1]; // e.g. "02 September 2025"
+                                if (!dateMap[cleanDate]) dateMap[cleanDate] = { resumes: 0, interviews: 0 };
+                                dateMap[cleanDate].resumes++;
+                            });
+
+                            // Count interviews
+                            person.interviewDates.forEach(d => {
+                                const cleanDate = d.split(", ")[1];
+                                if (!dateMap[cleanDate]) dateMap[cleanDate] = { resumes: 0, interviews: 0 };
+                                dateMap[cleanDate].interviews++;
+                            });
+                        });
+
+                        // Convert map → arrays
+                        const fullDates = Object.keys(dateMap); // full for jdList
+                        const dates = fullDates.map(d => d.split(" ")[0]); // only day number for chart
+                        const resumeCounts = fullDates.map(d => dateMap[d].resumes);
+                        const interviewCounts = fullDates.map(d => dateMap[d].interviews);
+
+                        // ---- Sync jdList (date + day in one row) ----
+                        fullDates.forEach((d, idx) => {
+                            const formattedWithDay = formatDateWithDay(d);
+                            jdList.append(`
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>${formattedWithDay}</span>
+                                <span class="fw-bold">Resumes: ${resumeCounts[idx]} | Interviews: ${interviewCounts[idx]}</span>
+                            </li>
+                        `);
+                        });
+
+                        // ---- Update / Create Chart ----
+                        if (analysisChart) {
+                            analysisChart.updateOptions({
+                                series: [
+                                    { name: "Resumes Achieved", data: resumeCounts },
+                                    { name: "Interviews Achieved", data: interviewCounts }
+                                ],
+                                xaxis: {
+                                    categories: dates,
+                                    labels: {
+                                        show: true,
+                                        style: { colors: "#fff", fontFamily: "Roboto" }
+                                    },
+                                    axisBorder: { show: false }
+                                }
+                            });
+                        } else {
+                            analysisChart = new ApexCharts(document.querySelector("#conversion-statistic-bar-chart"), {
+                                series: [
+                                    { name: "Resumes Achieved", data: resumeCounts },
+                                    { name: "Interviews Achieved", data: interviewCounts }
+                                ],
+                                chart: { type: "bar", height: 200, toolbar: { show: false } },
+                                plotOptions: { bar: { horizontal: false, endingShape: "rounded", columnWidth: "30%" } },
+                                colors: ["#fff", "#ffb74d"],
+                                grid: { show: false },
+                                legend: { show: true },
+                                dataLabels: { enabled: false },
+                                xaxis: {
+                                    categories: dates,
+                                    labels: { show: true, style: { colors: "#fff", fontFamily: "Roboto" } },
+                                    axisBorder: { show: false }
+                                },
+                                yaxis: { labels: { show: true, style: { colors: "#fff" } } },
+                                tooltip: {
+                                    theme: "dark",
+                                    y: { formatter: (val, opts) => opts.seriesIndex === 0 ? val + " Resumes" : val + " Interviews" },
+                                    style: { colors: "#000", fontFamily: "Roboto" }
+                                }
+                            });
+                            analysisChart.render();
+                        }
+                    } else {
+                        console.warn("No work analysis data found.");
+                        jdList.append(`<li><span class="date">No Data</span><span class="count">0/0</span></li>`);
+                        if (analysisChart) {
+                            analysisChart.updateOptions({
+                                series: [
+                                    { name: "Resumes Achieved", data: [] },
+                                    { name: "Interviews Achieved", data: [] }
+                                ],
+                                xaxis: { categories: [] }
+                            });
+                        }
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching work analysis data", err);
+                }
+            });
+        }
+
+        let fromDate = null;
+        let toDate = null;
+
+        flatpickr("#dateRangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onClose: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate = instance.formatDate(selectedDates[1], "Y-m-d");
+
+                    console.log("From:", fromDate, "To:", toDate);
+
+                    loadDashboardData(fromDate, toDate);
+                    loadAnalysisChart(fromDate, toDate);
+                }
+            }
+        });
+
+        $(document).ready(function () {
+            const today = new Date().toISOString().split("T")[0];
+            loadDashboardData(today, today);
+            loadAnalysisChart(today, today);
+        });
+    </script>
 
 </body>
 
