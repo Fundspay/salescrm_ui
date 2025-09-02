@@ -3561,6 +3561,51 @@
         });
     </script>
 
+    <script>
+        document.addEventListener("click", function (e) {
+            if (e.target.closest(".delete-record")) {
+                let button = e.target.closest(".delete-record");
+                let recordId = button.getAttribute("data-id");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#6c757d",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log("Deleting record with ID:", recordId);
+
+                        $.ajax({
+                            url: `https://fundsaudit.com/api/v1/studentresume/delete/${recordId}`,
+                            method: "DELETE",
+                            success: function (res) {
+                                Swal.fire(
+                                    "Deleted!",
+                                    "The record has been deleted.",
+                                    "success"
+                                ).then(() => {
+                                    $(button).closest("tr").remove();
+                                });
+                            },
+                            error: function (err) {
+                                console.error("Delete failed", err);
+                                Swal.fire(
+                                    "Error!",
+                                    "Failed to delete the record.",
+                                    "error"
+                                );
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
