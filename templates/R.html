@@ -578,7 +578,7 @@
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="card-title" id="reSheetTitle">
-                                        INDIVIDUAL RE SHEET (Total colleges: <span id="collegeCount2">0</span>)
+                                        INDIVIDUAL RE SHEET (Total count: <span id="collegeCount2">0</span>)
                                     </h5>
                                 </div>
                                 <div class="card-header-action">
@@ -651,7 +651,7 @@
                         const userData5 = JSON.parse(sessionStorage.getItem("user_data"));
                         if (userData5 && userData5.name) {
                             document.getElementById("reSheetTitle").innerHTML =
-                                `${userData5.name}'s RESUME Sheet (Total colleges: <span id="collegeCount2">0</span>)`;
+                                `${userData5.name}'s RESUME Sheet (Total count: <span id="collegeCount2">0</span>)`;
                         }
                     </script>
 
@@ -751,8 +751,8 @@
                             <div class="card stretch stretch-full">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title">RESUME MASTER SHEET (Total colleges: <span
-                                                id="collegeCount2">0</span>)</h5>
+                                        <h5 class="card-title">RESUME MASTER SHEET (Total count: <span
+                                                id="collegeCount">0</span>)</h5>
                                     </div>
                                     <div class="card-header-action">
                                         <!-- <div data-bs-toggle="tooltip" title="Refresh">
@@ -1173,7 +1173,7 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <div>
-                                                    <p class="m-0">Interviews:</p>
+                                                    <p class="m-0">Interviews scheduled:</p>
                                                     <h4 id="totalInterviews3" style="color: white;">0</h4>
                                                 </div>
                                             </div>
@@ -1199,7 +1199,8 @@
                             <!-- Header -->
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">FUTURE DETAILS</h5>
+                                    <h5 class="card-title">FUTURE DETAILS(Total Count: <span
+                                                id="collegeCount3">0</span>)</h5>
                                 </div>
 
                                 <div class="card-header-action d-flex align-items-center gap-2">
@@ -1723,6 +1724,8 @@
                             interviewTime: row.interviewTime || "",
                             mailSentAt: row.mailSentAt || "",
                         }));
+
+                        $("#collegeCount").text(tableData.length);
 
                         filteredData = [...tableData];
                         renderTable();
@@ -2831,6 +2834,8 @@
                             interviewTime: row.interviewTime || "",
                             mailSentAt: row.mailSentAt || "",
                         }));
+
+                         $("#collegeCount3").text(tableData3.length);
 
                         filteredData3 = [...tableData3];
                         renderTable3();
