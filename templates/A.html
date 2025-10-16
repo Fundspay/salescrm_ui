@@ -563,7 +563,7 @@
                 </div>
 
 
-                <div class="col-xxl-12 col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
+                <!-- <div class="col-xxl-12 col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
                     <div class="card stretch stretch-full" id="remainingCallsCard"
                         style="width: 100%; max-width: 1400px;">
                         <div class="card-body">
@@ -577,7 +577,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <!-- Add this button at the top of your page -->
@@ -592,8 +592,7 @@
                         <div class="card stretch stretch-full">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">INDIVIDUAL SHEET (Total Count: <span
-                                            id="collegeCount2">
+                                    <h5 class="card-title">INDIVIDUAL SHEET (Total Count: <span id="collegeCount2">
                                             0</span>)</h5>
                                 </div>
                                 <div class="card-header-action d-flex align-items-center gap-2">
@@ -1242,29 +1241,25 @@
                                     <div class="card bg-danger text-white h-100">
                                         <div class="card-body">
                                             <div class="text-start">
-
-                                                <p class="text-reset m-0">CNA:
-                                                <h4 class="text-reset"></h4>
+                                                <p class="text-reset m-0">
+                                                    CNA:
+                                                <h4 class="text-reset" id="cnaCount">0</h4>
                                                 </p>
                                             </div>
-                                            <span
-                                                class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a href="tables/busy.html" class="text-decoration-none">
+                                <a href="tables/not-interested.html" class="text-decoration-none">
                                     <div class="card bg-warning text-white h-100">
                                         <div class="card-body">
                                             <div class="text-start">
-
-                                                <p class="text-reset m-0">Busy:
-                                                <h4 class="text-reset"></h4>
+                                                <p class="text-reset m-0">
+                                                    Not Interested:
+                                                <h4 class="text-reset" id="notInterestedCount">0</h4>
                                                 </p>
                                             </div>
-                                            <span
-                                                class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
                                         </div>
                                     </div>
                                 </a>
@@ -1272,21 +1267,20 @@
                         </div>
                     </div>
 
+
                     <div class="col-lg-6">
                         <div class="row g-3 h-100">
                             <!-- Second Row of Cards -->
                             <div class="col-md-6">
-                                <a href="tables/invalid.html" class="text-decoration-none">
+                                <a href="tables/wrong-number.html" class="text-decoration-none">
                                     <div class="card bg-secondary text-white h-100">
                                         <div class="card-body">
                                             <div class="text-start">
-
-                                                <p class="text-reset m-0">Invalid:
-                                                <h4 class="text-reset"></h4>
+                                                <p class="text-reset m-0">
+                                                    Wrong Number:
+                                                <h4 class="text-reset" id="wrongNumberCount">0</h4>
                                                 </p>
                                             </div>
-                                            <span
-                                                class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
                                         </div>
                                     </div>
                                 </a>
@@ -1295,22 +1289,18 @@
                                 <a href="tables/others.html" class="text-decoration-none">
                                     <div class="card bg-primary text-white h-100">
                                         <div class="card-body">
-
                                             <div class="text-start">
-
-                                                <p class="text-reset m-0">Switch off:
-                                                <h4 class="text-reset"></h4>
+                                                <p class="text-reset m-0">
+                                                    Switch off:
+                                                <h4 class="text-reset" id="switchOffCount">0</h4>
                                                 </p>
                                             </div>
-                                            <span
-                                                class="badge bg-soft-primary text-primary text-dark float-end">23%</span>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <hr style="border: none; border-top: 10px dotted #000000; margin-top: 10px;">
 
@@ -1690,50 +1680,50 @@
             });
         }
 
-       function loadDashboardData(startDate = null, endDate = null) {
-    let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
+        function loadDashboardData(startDate = null, endDate = null) {
+            let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-    // Append date range if provided
-    if (startDate && endDate) {
-        url += `&startDate=${startDate}&endDate=${endDate}`;
-    }
-
-    $.ajax({
-        url: url,
-        type: "GET",
-        success: function (response) {
-            console.log("Dashboard API response:", response);
-
-            if (response.success) {
-                // Get totals from API
-                const totalC1Target = response.totalC1Target || 0;
-                const totalToken = response.totalToken || 0;
-                const achievedTarget = response.achievedC1Target || 0;
-
-                // Achieved values are not available yet, so show "-"
-               
-                const tokenAchieved = "0";
-
-                // Update Target box
-                $("#targetAchieved").text(achievedTarget);
-                $("#targetTotal").text(totalC1Target);
-
-                let targetPercent = "0"; // no achieved value yet
-                $("#targetPercent").text(targetPercent + "%");
-
-                // Update Tokens box
-                $("#tokesAchieved").text(tokenAchieved);
-                $("#tokesTotal").text(totalToken);
-
-                let tokesPercent = "0"; // no achieved value yet
-                $("#tokesPercent").text(tokesPercent + "%");
+            // Append date range if provided
+            if (startDate && endDate) {
+                url += `&startDate=${startDate}&endDate=${endDate}`;
             }
-        },
-        error: function (err) {
-            console.error("Error fetching dashboard data", err);
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (response) {
+                    console.log("Dashboard API response:", response);
+
+                    if (response.success) {
+                        // Get totals from API
+                        const totalC1Target = response.totalC1Target || 0;
+                        const totalToken = response.totalToken || 0;
+                        const achievedTarget = response.achievedC1Target || 0;
+
+                        // Achieved values are not available yet, so show "-"
+
+                        const tokenAchieved = "0";
+
+                        // Update Target box
+                        $("#targetAchieved").text(achievedTarget);
+                        $("#targetTotal").text(totalC1Target);
+
+                        let targetPercent = "0"; // no achieved value yet
+                        $("#targetPercent").text(targetPercent + "%");
+
+                        // Update Tokens box
+                        $("#tokesAchieved").text(tokenAchieved);
+                        $("#tokesTotal").text(totalToken);
+
+                        let tokesPercent = "0"; // no achieved value yet
+                        $("#tokesPercent").text(tokesPercent + "%");
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching dashboard data", err);
+                }
+            });
         }
-    });
-}
         $(document).ready(function () {
             loadAnalysisChart();
             loadDashboardData();
@@ -2985,70 +2975,57 @@
     </script>
 
     <script>
-        let fromDate2 = null;
-        let toDate2 = null;
+let fromDate2 = null;
+let toDate2 = null;
 
-        function loadAnalysisCounts() {
-            let apiUrl = `https://fundsaudit.com/api/v1/analysis/counts/${userData.user_id}`;
+function loadAnalysisCounts() {
+    let apiUrl = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-            if (fromDate2 && toDate2) {
-                apiUrl += `?fromDate=${fromDate2}&toDate=${toDate2}`;
+    // Append date range if selected
+    if (fromDate2 && toDate2) {
+        apiUrl += `&startDate=${fromDate2}&endDate=${toDate2}`;
+    }
+
+    $.ajax({
+        url: apiUrl,
+        method: "GET",
+        success: function (res) {
+            if (res.success) {
+                console.log("mytarget API response:", res);
+
+                // Update only card counts
+                $("#cnaCount").text(res.CNA || 0);
+                $("#switchOffCount").text(res.SwitchOff || 0);
+                $("#notInterestedCount").text(res.NotInterested || 0);
+                $("#wrongNumberCount").text(res.WrongNumber || 0);
+
+            } else {
+                console.error("No data found in response", res);
             }
-
-            $.ajax({
-                url: apiUrl,
-                method: "GET",
-                success: function (res) {
-                    if (res.success && res.counts) {
-                        console.log("analytics metrics response:", res);
-                        const counts = res.counts;
-
-                        const cnaCount = counts.notAnswered.count || 0;
-                        $(".card:has(p:contains('CNA')) h4").text(cnaCount);
-
-                        const busyCount = counts.busy.count || 0;
-                        $(".card:has(p:contains('Busy')) h4").text(busyCount);
-
-                        const invalidCount = counts.invalid.count || 0;
-                        $(".card:has(p:contains('Invalid')) h4").text(invalidCount);
-
-                        const switchOffCount = counts.switchOff.count || 0;
-                        $(".card:has(p:contains('Switch off')) h4").text(switchOffCount);
-
-                        // const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1;
-                        // $(".card:has(p:contains('CNA')) .badge").text(Math.round((cnaCount / total) * 100) + "%");
-                        // $(".card:has(p:contains('Busy')) .badge").text(Math.round((busyCount / total) * 100) + "%");
-                        // $(".card:has(p:contains('Invalid')) .badge").text(Math.round((invalidCount / total) * 100) + "%");
-                        // $(".card:has(p:contains('Switch off')) .badge").text(Math.round((switchOffCount / total) * 100) + "%");
-                    } else {
-                        console.error("No counts found in response", res);
-                    }
-                },
-                error: function (err) {
-                    console.error("Error fetching analysis counts:", err);
-                }
-            });
+        },
+        error: function (err) {
+            console.error("Error fetching counts:", err);
         }
+    });
+}
 
-        $(document).ready(function () {
+$(document).ready(function () {
+    loadAnalysisCounts();
+});
+
+flatpickr("#dateRangePicker2", {
+    mode: "range",
+    dateFormat: "Y-m-d",
+    onClose: function (selectedDates, dateStr, instance) {
+        if (selectedDates.length === 2) {
+            fromDate2 = instance.formatDate(selectedDates[0], "Y-m-d");
+            toDate2 = instance.formatDate(selectedDates[1], "Y-m-d");
             loadAnalysisCounts();
-        });
+        }
+    }
+});
+</script>
 
-        flatpickr("#dateRangePicker2", {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            onClose: function (selectedDates, dateStr, instance) {
-                if (selectedDates.length === 2) {
-                    fromDate2 = instance.formatDate(selectedDates[0], "Y-m-d");
-                    toDate2 = instance.formatDate(selectedDates[1], "Y-m-d");
-
-                    console.log("date picker 2:", "From:", fromDate2, "To:", toDate2);
-
-                    loadAnalysisCounts();
-                }
-            }
-        });
-    </script>
 
     <div class="modal fade" id="manualEntryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
