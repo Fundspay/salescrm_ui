@@ -395,7 +395,7 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                    <div class="row mb-4 align-items-center">
+                                    <!-- <div class="row mb-4 align-items-center">
                                         <div class="col-lg-4">
                                             <label for="type" class="fw-semibold">Designation: </label>
                                         </div>
@@ -406,7 +406,7 @@
                                                     placeholder="Designation" readonly>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row mb-4 align-items-center">
                                         <div class="col-lg-4">
                                             <label for="gender" class="fw-semibold">Gender: </label>
@@ -532,11 +532,11 @@
                         $("#lastName").val(user.lastName || "");
                         $("#email").val(user.email || "");
                         $("#phone").val(user.phoneNumber || "");
-                        $("#type").val(
-                            user.UserType && user.UserType.name
-                                ? user.UserType.name.charAt(0).toUpperCase() + user.UserType.name.slice(1).toLowerCase()
-                                : ""
-                        );
+                        // $("#type").val(
+                        //     user.UserType && user.UserType.name
+                        //         ? user.UserType.name.charAt(0).toUpperCase() + user.UserType.name.slice(1).toLowerCase()
+                        //         : ""
+                        // );
                         $("#gender").val(user.Gender ? user.Gender.name : "");
                         // $("#myTarget").val(user.MyTarget || "");
                     }
@@ -564,8 +564,8 @@
                 let gender = (genderVal === "male" || genderVal === "1") ? 1 : 2;
 
                 // Convert type name to numeric value
-                let typeVal = $("#type").val().toLowerCase();
-                let type = (typeVal === "employee" || typeVal === "1") ? 1 : 2;
+                // let typeVal = $("#type").val().toLowerCase();
+                // let type = (typeVal === "employee" || typeVal === "1") ? 1 : 2;
 
                 const updatedUser = {
                     firstName: $("#firstName").val(),
