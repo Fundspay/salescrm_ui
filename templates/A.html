@@ -10,7 +10,7 @@
     <meta name="author" content="Fundsroom" />
     <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
     <!--! BEGIN: Apps Title-->
-    <title>Fundsroom HR || CO</title>
+    <title>Fundsweb Sales || A Sheet</title>
     <!--! END:  Apps Title-->
     <!--! BEGIN: Favicon-->
     <link rel="shortcut icon" type="image/x-icon" href="./../assets/images/FundsAuditLogo.png" />
@@ -268,16 +268,16 @@
                     <li class="nxl-item">
                         <a href="RE.html" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-share-2"></i></span>
-                            <span class="nxl-mtext">RE (Reach)</span><span class="nxl-arrow"><i></i></span>
+                            <span class="nxl-mtext">I (Interact)</span><span class="nxl-arrow"><i></i></span>
                         </a>
                     </li>
                     <li class="nxl-item">
                         <a href="R.html" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-file-text"></i></span>
-                            <span class="nxl-mtext">R (Resume)</span><span class="nxl-arrow"><i></i></span>
+                            <span class="nxl-mtext">M (Manage)</span><span class="nxl-arrow"><i></i></span>
                         </a>
                     </li>
-                    <li class="nxl-item">
+                    <!-- <li class="nxl-item">
                         <a href="I.html" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-briefcase"></i></span>
                             <span class="nxl-mtext">I (Interview)</span><span class="nxl-arrow"><i></i></span>
@@ -294,7 +294,7 @@
                             <span class="nxl-micon"><i class="feather-flag"></i></span>
                             <span class="nxl-mtext">K (Kick off)</span><span class="nxl-arrow"><i></i></span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <!-- <li class="nxl-item nxl-hasmenu">
                         <a href="javascript:void(0);" class="nxl-link">
@@ -311,12 +311,12 @@
                             <li class="nxl-item"><a class="nxl-link" href="RE.html">K (Kick off)</a></li>
                         </ul>
                     </li> -->
-                    <li class="nxl-item">
+                    <!-- <li class="nxl-item">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-bar-chart-2"></i></span>
                             <span class="nxl-mtext">My Performance</span><span class="nxl-arrow"><i></i></span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nxl-item">
                         <a href="javascript:void(0);" class="nxl-link">
                             <span class="nxl-micon"><i class="feather-log-out"></i></span>
@@ -1596,7 +1596,7 @@
         }
 
         function loadAnalysisChart(startDate = null, endDate = null) {
-            let url = `https://fundsaudit.com/api/v1/analysis/daily?userId=${userData.user_id}`;
+            let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
             if (startDate && endDate) {
                 url += `&startDate=${startDate}&endDate=${endDate}`;
@@ -1611,35 +1611,43 @@
                     const jdList = $("#jdList");
                     jdList.empty();
 
-                    if (res.success && res.dates && res.dates.length > 0) {
-                        const dates = res.dates.map(item => {
+                    if (res.success && res.data && res.data.length > 0) {
+                        const dates = res.data.map(item => {
                             let d = new Date(item.date);
                             let day = d.getDate();
                             let weekday = d.toLocaleDateString("en-US", { weekday: "short" });
-                            // return `${day} (${weekday})`;
+                            // fallback for missing 'day' field
+                            item.day = weekday;
                             return `${day}`;
                         });
 
-                        const jdCounts = res.dates.map(item => item.jdSent);
+                        // Use achievedC1Target from response (global value)
+                        const achievedValue = res.achievedC1Target || 0;
 
-                        res.dates.forEach(item => {
-                            let target = item.plannedJds || 0;
+                        // y-axis data (use same achieved value for all dates)
+                        const jdCounts = res.data.map(() => achievedValue);
+
+                        // list display (showing date and count)
+                        res.data.forEach(item => {
+                            let target = item.c1Target || 0;
+                            let achieved = achievedValue || 0;
                             jdList.append(`
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>${formatDateUI(item.date)} (${item.day})</span>
-                            <span class="fw-bold">${item.jdSent}/${target}</span>
+                            <span class="fw-bold">${achieved}/${target}</span>
                         </li>
                     `);
                         });
 
+                        // chart rendering or updating
                         if (analysisChart) {
                             analysisChart.updateOptions({
-                                series: [{ name: "Planned JDs", data: jdCounts }],
+                                series: [{ name: "Achieved C1 Target", data: jdCounts }],
                                 xaxis: { categories: dates }
                             });
                         } else {
                             analysisChart = new ApexCharts(document.querySelector("#conversion-statistic-bar-chart"), {
-                                series: [{ name: "JDs Sent", data: jdCounts }],
+                                series: [{ name: "Achieved C1 Target", data: jdCounts }],
                                 chart: { type: "bar", height: 200, toolbar: { show: false } },
                                 plotOptions: { bar: { horizontal: false, endingShape: "rounded", columnWidth: "20%" } },
                                 colors: ["#fff"],
@@ -1657,7 +1665,7 @@
                                 yaxis: { labels: { show: false } },
                                 tooltip: {
                                     theme: "dark",
-                                    y: { formatter: (val) => val + " JDs Sent" },
+                                    y: { formatter: (val) => val + " Achieved" },
                                     style: { colors: "#000", fontFamily: "Roboto" }
                                 }
                             });
@@ -1668,7 +1676,7 @@
                         jdList.append(`<li><span class="date">No Data</span><span class="count">0/0</span></li>`);
                         if (analysisChart) {
                             analysisChart.updateOptions({
-                                series: [{ name: "Planned JDs", data: [] }],
+                                series: [{ name: "Achieved C1 Target", data: [] }],
                                 xaxis: { categories: [] }
                             });
                         }
@@ -1678,6 +1686,13 @@
                     console.error("Error fetching analysis data", err);
                 }
             });
+        }
+
+        // Utility function to format date for UI
+        function formatDateUI(dateString) {
+            const d = new Date(dateString);
+            const options = { day: "numeric", month: "short" };
+            return d.toLocaleDateString("en-US", options);
         }
 
         function loadDashboardData(startDate = null, endDate = null) {
@@ -1920,9 +1935,11 @@
                         dropdowns.sourcedBy = res.users.map(u => u.name);
 
                         filteredData = [...tableData];
+                        updateCollegeCount();
                         renderTable();
                         renderPagination();
                         renderColumnFilters();
+
                     }
                 }
             });
@@ -2018,6 +2035,10 @@
                 month: "short",
                 year: "numeric"
             });
+        }
+
+        function updateCollegeCount() {
+            $("#collegeCount").text(filteredData.length || 0);
         }
 
         function attachCellEvents() {
@@ -2151,7 +2172,11 @@
                 let field = columnKeys[index];
                 let values = [...new Set(tableData.map(row => row[field]))].filter(v => v);
 
-                values.forEach(v => $(this).append(`<option value="${v}">${v}</option>`));
+                values.forEach(v => {
+                    const displayValue = columnKeys[index] === "dateOfConnect" ? formatDate(v) : v;
+                    $(this).append(`<option value="${v}">${displayValue}</option>`);
+                });
+
             });
 
             $(".column-filter").off("change").on("change", function () {
@@ -2167,10 +2192,11 @@
                 if (value) {
                     let field = columnKeys[index];
                     filteredData = filteredData.filter(row => row[field] == value);
-
                 }
             });
+
             currentPage = 1;
+            updateCollegeCount();
             renderTable();
             renderPagination();
         }
@@ -2181,6 +2207,7 @@
                 Object.values(row).some(field => (field + "").toLowerCase().includes(value))
             );
             currentPage = 1;
+            updateCollegeCount();
             renderTable();
             renderPagination();
         };
@@ -2211,9 +2238,9 @@
         const apiBase2 = `https://fundsaudit.com/api/v1/asheet/individual/${userData2.user_id}`;
 
         const dropdowns2 = {
-            businessSector: ["Sector 1", "Sector 2", "Sector 3"],
+            businessSector: ["Lawyers / Advocates", "CA / CS / Accountant", "Real Estate Brokers / Developers", "Event Management / Wedding Planner", "Interior Designer / Architect", "Tours & Travel / Vehicle Rental", "Agro-Based Products / Agri Services", "Salon / Beauty shop", "Consultancy / Advisory", "Insurance / Investment Agents", "Product-Based Company", "Doctor / Dentist / Clinics", "Articraft / Gifts & Decor", "Fashion / Clothing", "Education & Training Institutes", "Fitness & Wellness", "Food & Beverages", "Jewellery / Makeup / Perfumes", "Manufacturing & Industrial Units", "E-commerce & Online Stores"],
             existingWebsite: ["YES", "NO"],
-            meetingStatus: ["FOLLOW-UP", "COMPLETED", "CANCELLED"],
+            meetingStatus: ["C1 Scheduled", "Follow Up", "CNA", "Switch Off", "Not Interested", "Wrong Number"],
             smmPresence: ["YES", "NO"],
             sourcedBy: []
         };
@@ -2251,6 +2278,7 @@
                         dropdowns2.sourcedBy = res.users.map(u => u.name);
 
                         filteredData2 = [...tableData2];
+                        updateCollegeCount2();
                         renderTable2();
                         renderPagination2();
                         renderColumnFilters2();
@@ -2349,6 +2377,10 @@
                 month: "short",
                 year: "numeric"
             });
+        }
+
+        function updateCollegeCount2() {
+            $("#collegeCount2").text(filteredData2.length || 0);
         }
 
         function attachCellEvents2() {
@@ -2482,7 +2514,10 @@
                 let field2 = columnKeys2[index2];
                 let values2 = [...new Set(tableData2.map(row => row[field2]))].filter(v => v);
 
-                values2.forEach(v => $(this).append(`<option value="${v}">${v}</option>`));
+                values2.forEach(v => {
+                    const displayValue2 = columnKeys2[index2] === "dateOfConnect" ? formatDate2(v) : v;
+                    $(this).append(`<option value="${v}">${displayValue2}</option>`);
+                });
             });
 
             $(".column-filter2").off("change").on("change", function () {
@@ -2500,7 +2535,9 @@
                     filteredData2 = filteredData2.filter(row => row[field2] == value2);
                 }
             });
+
             currentPage2 = 1;
+            updateCollegeCount2();
             renderTable2();
             renderPagination2();
         }
@@ -2511,6 +2548,7 @@
                 Object.values(row).some(field => (field + "").toLowerCase().includes(value2))
             );
             currentPage2 = 1;
+            updateCollegeCount2();
             renderTable2();
             renderPagination2();
         };
@@ -2541,9 +2579,9 @@
         const apiBase3 = `https://fundsaudit.com/api/v1/asheet/followup`;
 
         const dropdowns3 = {
-            businessSector: ["Sector 1", "Sector 2", "Sector 3"],
+            businessSector: ["Lawyers / Advocates", "CA / CS / Accountant", "Real Estate Brokers / Developers", "Event Management / Wedding Planner", "Interior Designer / Architect", "Tours & Travel / Vehicle Rental", "Agro-Based Products / Agri Services", "Salon / Beauty shop", "Consultancy / Advisory", "Insurance / Investment Agents", "Product-Based Company", "Doctor / Dentist / Clinics", "Articraft / Gifts & Decor", "Fashion / Clothing", "Education & Training Institutes", "Fitness & Wellness", "Food & Beverages", "Jewellery / Makeup / Perfumes", "Manufacturing & Industrial Units", "E-commerce & Online Stores"],
             existingWebsite: ["YES", "NO"],
-            meetingStatus: ["FOLLOW-UP", "COMPLETED", "CANCELLED"],
+            meetingStatus: ["C1 Scheduled", "Follow Up", "CNA", "Switch Off", "Not Interested", "Wrong Number"],
             smmPresence: ["YES", "NO"],
             sourcedBy: []
         };
@@ -2581,6 +2619,7 @@
                         dropdowns3.sourcedBy = res.users.map(u => u.name);
 
                         filteredData3 = [...tableData3];
+                        updateCollegeCount3();
                         renderTable3();
                         renderPagination3();
                         renderColumnFilters3();
@@ -2679,6 +2718,10 @@
                 month: "short",
                 year: "numeric"
             });
+        }
+
+        function updateCollegeCount3() {
+            $("#collegeCount3").text(filteredData3.length || 0);
         }
 
         function attachCellEvents3() {
@@ -2812,7 +2855,10 @@
                 let field3 = columnKeys3[index3];
                 let values3 = [...new Set(tableData3.map(row => row[field3]))].filter(v => v);
 
-                values3.forEach(v => $(this).append(`<option value="${v}">${v}</option>`));
+                values3.forEach(v => {
+                    const displayValue3 = columnKeys3[index3] === "dateOfConnect" ? formatDate3(v) : v;
+                    $(this).append(`<option value="${v}">${displayValue3}</option>`);
+                });
             });
 
             $(".column-filter3").off("change").on("change", function () {
@@ -2830,7 +2876,9 @@
                     filteredData3 = filteredData3.filter(row => row[field3] == value3);
                 }
             });
+
             currentPage3 = 1;
+            updateCollegeCount3();  // <-- add this line
             renderTable3();
             renderPagination3();
         }
@@ -2841,6 +2889,7 @@
                 Object.values(row).some(field => (field + "").toLowerCase().includes(value3))
             );
             currentPage3 = 1;
+            updateCollegeCount3();  // <-- add this line
             renderTable3();
             renderPagination3();
         };
@@ -2975,57 +3024,54 @@
     </script>
 
     <script>
-let fromDate2 = null;
-let toDate2 = null;
+        let fromDate2 = null;
+        let toDate2 = null;
 
-function loadAnalysisCounts() {
-    let apiUrl = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
+        function loadAnalysisCounts() {
+            let apiUrl = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-    // Append date range if selected
-    if (fromDate2 && toDate2) {
-        apiUrl += `&startDate=${fromDate2}&endDate=${toDate2}`;
-    }
-
-    $.ajax({
-        url: apiUrl,
-        method: "GET",
-        success: function (res) {
-            if (res.success) {
-                console.log("mytarget API response:", res);
-
-                // Update only card counts
-                $("#cnaCount").text(res.CNA || 0);
-                $("#switchOffCount").text(res.SwitchOff || 0);
-                $("#notInterestedCount").text(res.NotInterested || 0);
-                $("#wrongNumberCount").text(res.WrongNumber || 0);
-
-            } else {
-                console.error("No data found in response", res);
+            if (fromDate2 && toDate2) {
+                apiUrl += `&startDate=${fromDate2}&endDate=${toDate2}`;
             }
-        },
-        error: function (err) {
-            console.error("Error fetching counts:", err);
+
+            $.ajax({
+                url: apiUrl,
+                method: "GET",
+                success: function (res) {
+                    if (res.success) {
+                        console.log("mytarget API response:", res);
+
+                        $("#cnaCount").text(res.CNA || 0);
+                        $("#switchOffCount").text(res.SwitchOff || 0);
+                        $("#notInterestedCount").text(res.NotInterested || 0);
+                        $("#wrongNumberCount").text(res.WrongNumber || 0);
+
+                    } else {
+                        console.error("No data found in response", res);
+                    }
+                },
+                error: function (err) {
+                    console.error("Error fetching counts:", err);
+                }
+            });
         }
-    });
-}
 
-$(document).ready(function () {
-    loadAnalysisCounts();
-});
-
-flatpickr("#dateRangePicker2", {
-    mode: "range",
-    dateFormat: "Y-m-d",
-    onClose: function (selectedDates, dateStr, instance) {
-        if (selectedDates.length === 2) {
-            fromDate2 = instance.formatDate(selectedDates[0], "Y-m-d");
-            toDate2 = instance.formatDate(selectedDates[1], "Y-m-d");
+        $(document).ready(function () {
             loadAnalysisCounts();
-        }
-    }
-});
-</script>
+        });
 
+        flatpickr("#dateRangePicker2", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+            onClose: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    fromDate2 = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate2 = instance.formatDate(selectedDates[1], "Y-m-d");
+                    loadAnalysisCounts();
+                }
+            }
+        });
+    </script>
 
     <div class="modal fade" id="manualEntryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
