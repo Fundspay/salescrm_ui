@@ -358,215 +358,205 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
-    let fromDate = null;
-    let toDate = null;
-    let userData = null;
-    const postUrl = `https://fundsaudit.com/api/v1/mytarget/add`;
+        let fromDate = null;
+        let toDate = null;
+        let userData = null;
+        const postUrl = `https://fundsaudit.com/api/v1/mytarget/add`;
 
-    function formatDateForUI(dateStr) {
-        const parts = dateStr.split("-");
-        if (parts.length !== 3) return dateStr;
-        return `${parts[2]}-${parts[1]}-${parts[0]}`;
-    }
-
-    function getDefaultDateRange() {
-        const now = new Date();
-        const firstDay = new Date(now.getFullYear(), now.getMonth(), 2);
-        const lastDay = new Date(now.getFullYear(), now.getMonth() + 2, 0);
-
-        return {
-            from: firstDay.toISOString().split("T")[0],
-            to: lastDay.toISOString().split("T")[0]
-        };
-    }
-
-    function renderTargetRows(data) {
-        const container = $("#targetsContainer");
-        container.empty();
-
-        if (!data || data.length === 0) {
-            container.append(`<p class="text-muted">No targets found for this date range.</p>`);
-            return;
+        function formatDateForUI(dateStr) {
+            const parts = dateStr.split("-");
+            if (parts.length !== 3) return dateStr;
+            return `${parts[2]}-${parts[1]}-${parts[0]}`;
         }
 
-        data.forEach((item, index) => {
-            let btnClass = (parseInt(item.jds) > 0 || parseInt(item.calls) > 0 || parseInt(item.followUps) > 0 || parseInt(item.resumetarget) > 0
-                || parseInt(item.collegeTarget) > 0 || parseInt(item.interviewsTarget) > 0 || parseInt(item.resumesReceivedTarget) > 0) // 🔥 added new fields
-                ? "btn-success"
-                : "btn-primary";
+        function getDefaultDateRange() {
+            const now = new Date();
+            const firstDay = new Date(now.getFullYear(), now.getMonth(), 2);
+            const lastDay = new Date(now.getFullYear(), now.getMonth() + 2, 0);
 
-            const row = `
-                <div class="row mb-3 align-items-center border-bottom pb-2">
-                    <!-- Left side: Date + Day -->
-                    <div class="col-lg-2 fw-semibold">
-                        ${formatDateForUI(item.date)} <br>
-                        <small class="text-muted">(${item.day})</small>
+            return {
+                from: firstDay.toISOString().split("T")[0],
+                to: lastDay.toISOString().split("T")[0]
+            };
+        }
+
+        function renderTargetRows(data) {
+            const container = $("#targetsContainer");
+            container.empty();
+
+            if (!data || data.length === 0) {
+                container.append(`<p class="text-muted">No targets found for this date range.</p>`);
+                return;
+            }
+
+            data.forEach((item, index) => {
+                let btnClass = (parseInt(item.c1Target) > 0 || parseInt(item.c2Target) > 0 || parseInt(item.c3Target) > 0 || parseInt(item.c4Target) > 0
+                    || parseInt(item.target) > 0)
+                    ? "btn-success"
+                    : "btn-primary";
+
+                const row = `
+                    <div class="row mb-3 align-items-center border-bottom pb-2">
+                        <!-- Left side: Date + Day -->
+                        <div class="col-lg-2 fw-semibold">
+                            ${formatDateForUI(item.date)} <br>
+                            <small class="text-muted">(${item.day})</small>
+                        </div>
+
+                        <!-- JDs input -->
+                        <div class="col-lg-2">c1 Target:
+                            <input type="number" class="form-control" id="c1Target-${index}" value="${item.c1Target}" />
+                        </div>
+
+                        <!-- Calls input -->
+                        <div class="col-lg-2">c2 Target:
+                            <input type="number" class="form-control" id="c2Target-${index}" value="${item.c2Target}" />
+                        </div>
+
+                        <!-- Follow Ups input -->
+                        <div class="col-lg-2">c3 Target:
+                            <input type="number" class="form-control" id="c3Target-${index}" value="${item.c3Target}" />
+                        </div>
+
+                        <!-- Resume Target input -->
+                        <div class="col-lg-2">c4 Target:
+                            <input type="number" class="form-control" id="c4Target-${index}" value="${item.c4Target}" />
+                        </div>
+
+                        <!-- New Fields -->
+                        <div class="col-lg-2">Token Target:
+                            <input type="number" class="form-control" id="token-${index}" value="${item.token || 0}" />
+                        </div>
+
+                        <!-- Save button -->
+                        <div class="col-lg-2 ms-auto text-end" style="margin-top: 2%;">
+                            <button class="btn ${btnClass} btn-save px-5" data-date="${item.date}" data-index="${index}" style="min-width: 120px;">
+                                Save
+                            </button>
+                        </div>
                     </div>
+                `;
+                container.append(row);
+            });
 
-                    <!-- JDs input -->
-                    <div class="col-lg-1">JDs:
-                        <input type="number" class="form-control" id="jds-${index}" value="${item.jds}" />
-                    </div>
+            $(".btn-save").on("click", function () {
+                const date = $(this).data("date");
+                const index = $(this).data("index");
 
-                    <!-- Calls input -->
-                    <div class="col-lg-1">Calls:
-                        <input type="number" class="form-control" id="calls-${index}" value="${item.calls}" />
-                    </div>
+                const c1Target = $(`#c1Target-${index}`).val();
+                const c2Target = $(`#c2Target-${index}`).val();
+                const c3Target = $(`#c3Target-${index}`).val();
+                const c4Target = $(`#c4Target-${index}`).val();
 
-                    <!-- Follow Ups input -->
-                    <div class="col-lg-1">Follow Ups:
-                        <input type="number" class="form-control" id="followUps-${index}" value="${item.followUps}" />
-                    </div>
+                const token = $(`#token-${index}`).val();
+                // const interviewsTargetVal = $(`#interviewsTarget-${index}`).val();
+                // const resumesReceivedTargetVal = $(`#resumesReceivedTarget-${index}`).val();
 
-                    <!-- Resume Target input -->
-                    <div class="col-lg-1">Resume:
-                        <input type="number" class="form-control" id="resumetarget-${index}" value="${item.resumetarget}" />
-                    </div>
+                saveTarget(date, c1Target, c2Target, c3Target, c4Target, token);
+            });
+        }
 
-                    <!-- 🔥 New Fields -->
-                    <div class="col-lg-1">College:
-                        <input type="number" class="form-control" id="collegeTarget-${index}" value="${item.collegeTarget || 0}" />
-                    </div>
+        function fetchTargetData(startDate, endDate) {
+            const apiUrl = `https://fundsaudit.com/api/v1/mytarget/fetch/?userId=${userData.user_id}&startDate=${startDate}&endDate=${endDate}`;
+            console.log("Calling API:", apiUrl);
 
-                    <div class="col-lg-1">Interviews:
-                        <input type="number" class="form-control" id="interviewsTarget-${index}" value="${item.interviewsTarget || 0}" />
-                    </div>
-
-                    <div class="col-lg-2">Resumes Received:
-                        <input type="number" class="form-control" id="resumesReceivedTarget-${index}" value="${item.resumesReceivedTarget || 0}" />
-                    </div>
-
-                    <!-- Save button -->
-                    <div class="col-lg-1 text-end">
-                        <button class="btn ${btnClass} btn-save" data-date="${item.date}" data-index="${index}">
-                            Save
-                        </button>
-                    </div>
-                </div>
-            `;
-            container.append(row);
-        });
-
-        $(".btn-save").on("click", function () {
-            const date = $(this).data("date");
-            const index = $(this).data("index");
-
-            const jdsVal = $(`#jds-${index}`).val();
-            const callsVal = $(`#calls-${index}`).val();
-            const followUpsVal = $(`#followUps-${index}`).val();
-            const resumeVal = $(`#resumetarget-${index}`).val();
-
-            // 🔥 Grab new fields
-            const collegeTargetVal = $(`#collegeTarget-${index}`).val();
-            const interviewsTargetVal = $(`#interviewsTarget-${index}`).val();
-            const resumesReceivedTargetVal = $(`#resumesReceivedTarget-${index}`).val();
-
-            saveTarget(date, jdsVal, callsVal, followUpsVal, resumeVal, collegeTargetVal, interviewsTargetVal, resumesReceivedTargetVal);
-        });
-    }
-
-    function fetchTargetData(startDate, endDate) {
-        const apiUrl = `https://fundsaudit.com/api/v1/mytarget/fetch/?userId=${userData.user_id}&startDate=${startDate}&endDate=${endDate}`;
-        console.log("Calling API:", apiUrl);
-
-        $.ajax({
-            url: apiUrl,
-            type: "GET",
-            success: function (response) {
-                console.log("GET response:", response);
-                if (response.success && response.dates && response.dates.length > 0) {
-                    renderTargetRows(response.dates);
-                } else {
-                    $("#targetsContainer").html("<p class='text-muted'>No targets found.</p>");
+            $.ajax({
+                url: apiUrl,
+                type: "GET",
+                success: function (response) {
+                    console.log("GET response:", response);
+                    if (response.success && response.dates && response.dates.length > 0) {
+                        renderTargetRows(response.dates);
+                    } else {
+                        $("#targetsContainer").html("<p class='text-muted'>No targets found.</p>");
+                    }
+                },
+                error: function (xhr) {
+                    console.error("Error loading target:", xhr.responseText);
                 }
-            },
-            error: function (xhr) {
-                console.error("Error loading target:", xhr.responseText);
-            }
-        });
-    }
+            });
+        }
 
-    function saveTarget(date, jds, calls, followUps, resumetarget, collegeTarget, interviewsTarget, resumesReceivedTarget) {
-        Swal.fire({
-            title: "Saving Target...",
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        });
-
-        const payload = {
-            userId: userData.user_id,
-            targets: [
-                {
-                    date: date,
-                    jds: parseInt(jds),
-                    calls: parseInt(calls),
-                    followUps: parseInt(followUps),
-                    resumetarget: parseInt(resumetarget),
-                    collegeTarget: parseInt(collegeTarget),          // 🔥 new field
-                    interviewsTarget: parseInt(interviewsTarget),    // 🔥 new field
-                    resumesReceivedTarget: parseInt(resumesReceivedTarget) // 🔥 new field
+        function saveTarget(date, c1Target, c2Target, c3Target, c4Target, token) {
+            Swal.fire({
+                title: "Saving Target...",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                didOpen: () => {
+                    Swal.showLoading();
                 }
-            ]
-        };
-        console.log("payload:", payload);
+            });
 
-        $.ajax({
-            url: postUrl,
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(payload),
-            success: function (res) {
-                console.log("Save response:", res);
-                Swal.fire({
-                    icon: "success",
-                    title: "Target saved successfully!",
-                    confirmButtonColor: "#3085d6"
-                });
-                fetchTargetData(fromDate, toDate);
-            },
-            error: function (xhr) {
-                console.error("Save error:", xhr.responseText);
-                Swal.fire({
-                    icon: "error",
-                    title: "Save failed!",
-                    text: xhr.responseText
-                });
-            }
-        });
-    }
+            const payload = {
+                userId: userData.user_id,
+                targets: [
+                    {
+                        date: date,
+                        c1Target: parseInt(c1Target),
+                        c2Target: parseInt(c2Target),
+                        c3Target: parseInt(c3Target),
+                        c4Target: parseInt(c4Target),
+                        token: parseInt(token),
+                        // interviewsTarget: parseInt(interviewsTarget),
+                        // resumesReceivedTarget: parseInt(resumesReceivedTarget)
+                    }
+                ]
+            };
+            console.log("payload:", payload);
 
-    $(document).ready(function () {
-        userData = JSON.parse(sessionStorage.getItem("user_data"));
-        console.log("UserData:", userData);
-
-        const defaultRange = getDefaultDateRange();
-        fromDate = defaultRange.from;
-        toDate = defaultRange.to;
-
-        flatpickr("#dateRangePicker", {
-            mode: "range",
-            dateFormat: "Y-m-d",
-            defaultDate: [fromDate, toDate],
-            onClose: function (selectedDates, dateStr, instance) {
-                if (selectedDates.length === 2) {
-                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
-                    toDate = instance.formatDate(selectedDates[1], "Y-m-d");
-                } else {
-                    fromDate = defaultRange.from;
-                    toDate = defaultRange.to;
+            $.ajax({
+                url: postUrl,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(payload),
+                success: function (res) {
+                    console.log("Save response:", res);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Target saved successfully!",
+                        confirmButtonColor: "#3085d6"
+                    });
+                    fetchTargetData(fromDate, toDate);
+                },
+                error: function (xhr) {
+                    console.error("Save error:", xhr.responseText);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Save failed!",
+                        text: xhr.responseText
+                    });
                 }
-                console.log("From:", fromDate, "To:", toDate);
-                fetchTargetData(fromDate, toDate);
-            }
+            });
+        }
+
+        $(document).ready(function () {
+            userData = JSON.parse(sessionStorage.getItem("user_data"));
+            console.log("UserData:", userData);
+
+            const defaultRange = getDefaultDateRange();
+            fromDate = defaultRange.from;
+            toDate = defaultRange.to;
+
+            flatpickr("#dateRangePicker", {
+                mode: "range",
+                dateFormat: "Y-m-d",
+                defaultDate: [fromDate, toDate],
+                onClose: function (selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                        toDate = instance.formatDate(selectedDates[1], "Y-m-d");
+                    } else {
+                        fromDate = defaultRange.from;
+                        toDate = defaultRange.to;
+                    }
+                    console.log("From:", fromDate, "To:", toDate);
+                    fetchTargetData(fromDate, toDate);
+                }
+            });
+
+            fetchTargetData(fromDate, toDate);
         });
-
-        fetchTargetData(fromDate, toDate);
-    });
-</script>
-
+    </script>
 
 </body>
 
