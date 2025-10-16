@@ -452,9 +452,9 @@
         const apiBase2 = `https://fundsaudit.com/api/v1/asheet/wrongnumber`;
 
         const dropdowns2 = {
-            businessSector: ["Sector 1", "Sector 2", "Sector 3"],
+            businessSector: ["Lawyers / Advocates", "CA / CS / Accountant", "Real Estate Brokers / Developers", "Event Management / Wedding Planner", "Interior Designer / Architect", "Tours & Travel / Vehicle Rental", "Agro-Based Products / Agri Services", "Salon / Beauty shop", "Consultancy / Advisory", "Insurance / Investment Agents", "Product-Based Company", "Doctor / Dentist / Clinics", "Articraft / Gifts & Decor", "Fashion / Clothing", "Education & Training Institutes", "Fitness & Wellness", "Food & Beverages", "Jewellery / Makeup / Perfumes", "Manufacturing & Industrial Units", "E-commerce & Online Stores"],
             existingWebsite: ["YES", "NO"],
-            meetingStatus: ["FOLLOW-UP", "COMPLETED", "CANCELLED"],
+            meetingStatus: ["C1 Scheduled", "Follow Up", "CNA", "Switch Off", "Not Interested", "Wrong Number"],
             smmPresence: ["YES", "NO"],
             sourcedBy: []
         };
@@ -492,6 +492,7 @@
                         dropdowns2.sourcedBy = res.users.map(u => u.name);
 
                         filteredData2 = [...tableData2];
+                        updateCollegeCount2();
                         renderTable2();
                         renderPagination2();
                         renderColumnFilters2();
@@ -590,6 +591,10 @@
                 month: "short",
                 year: "numeric"
             });
+        }
+
+        function updateCollegeCount2() {
+            $("#collegeCount2").text(filteredData2.length || 0);
         }
 
         function attachCellEvents2() {
@@ -723,7 +728,10 @@
                 let field2 = columnKeys2[index2];
                 let values2 = [...new Set(tableData2.map(row => row[field2]))].filter(v => v);
 
-                values2.forEach(v => $(this).append(`<option value="${v}">${v}</option>`));
+                values2.forEach(v => {
+                    const displayValue2 = columnKeys2[index2] === "dateOfConnect" ? formatDate2(v) : v;
+                    $(this).append(`<option value="${v}">${displayValue2}</option>`);
+                });
             });
 
             $(".column-filter2").off("change").on("change", function () {
@@ -741,7 +749,9 @@
                     filteredData2 = filteredData2.filter(row => row[field2] == value2);
                 }
             });
+
             currentPage2 = 1;
+            updateCollegeCount2();
             renderTable2();
             renderPagination2();
         }
@@ -752,6 +762,7 @@
                 Object.values(row).some(field => (field + "").toLowerCase().includes(value2))
             );
             currentPage2 = 1;
+            updateCollegeCount2();
             renderTable2();
             renderPagination2();
         };
