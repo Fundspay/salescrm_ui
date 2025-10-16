@@ -465,107 +465,41 @@
             <!-- [ Main Content ] start -->
             <div class="main-content">
                 <div class="row">
-                    <!-- Total Calls -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                    <!-- Target -->
+                    <div class="col-xxl-6 col-lg-6 col-md-6">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Total Calls</div>
+                                <div class="fs-12 fw-medium text-muted mb-3">Target</div>
                                 <div class="hstack justify-content-between lh-base">
                                     <div>
-                                        <h3><span id="totalCalls">0</span>/<span id="targetCalls">0</span></h3>
-                                        <!-- <div class="fs-11 text-muted">
-                                            Remaining: <span id="remainingCalls">0</span>
-                                        </div> -->
+                                        <h3><span id="targetAchieved">0</span>/<span id="targetTotal">0</span></h3>
                                     </div>
-                                    <div class="hstack gap-2 fs-11" id="totalCallsTrend">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="achievementPercent">0%</span>
+                                    <div class="hstack gap-2 fs-11" id="targetTrend">
+                                        <span id="targetPercent">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Connected -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
+                    <!-- Tokes -->
+                    <div class="col-xxl-6 col-lg-6 col-md-6">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Connected</div>
+                                <div class="fs-12 fw-medium text-muted mb-3">Tokens</div>
                                 <div class="hstack justify-content-between lh-base">
-                                    <h3><span id="connectedCount">0</span></h3>
-                                    <div class="hstack gap-2 fs-11">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="connectedPercent">0%</span>
+                                    <div>
+                                        <h3><span id="tokesAchieved">0</span>/<span id="tokesTotal">0</span></h3>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Not Answered -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Not Answered</div>
-                                <div class="hstack justify-content-between lh-base">
-                                    <h3><span id="notAnsweredCount">0</span></h3>
-                                    <div class="hstack gap-2 fs-11">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="notAnsweredPercent">0%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Busy -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Busy</div>
-                                <div class="hstack justify-content-between lh-base">
-                                    <h3><span id="busyCount">0</span></h3>
-                                    <div class="hstack gap-2 fs-11">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="busyPercent">0%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Switch Off -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Switch Off</div>
-                                <div class="hstack justify-content-between lh-base">
-                                    <h3><span id="switchOffCount">0</span></h3>
-                                    <div class="hstack gap-2 fs-11">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="switchOffPercent">0%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Invalid -->
-                    <div class="col-xxl-2 col-lg-2 col-md-6">
-                        <div class="card stretch stretch-full">
-                            <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Invalid</div>
-                                <div class="hstack justify-content-between lh-base">
-                                    <h3><span id="invalidCount">0</span></h3>
-                                    <div class="hstack gap-2 fs-11">
-                                        <!-- <i class="feather-arrow-up-circle fs-12"></i> -->
-                                        <span id="invalidPercent">0%</span>
+                                    <div class="hstack gap-2 fs-11" id="tokesTrend">
+                                        <span id="tokesPercent">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="col-xxl-12 col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
                     <div class="card stretch stretch-full" id="remainingCallsCard"
@@ -1606,73 +1540,50 @@
             });
         }
 
-        function loadDashboardData(startDate = null, endDate = null) {
-            let url = `https://fundsaudit.com/api/v1/analysis/daily?userId=${userData.user_id}`;
+       function loadDashboardData(startDate = null, endDate = null) {
+    let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-            if (startDate && endDate) {
-                url += `&startDate=${startDate}&endDate=${endDate}`;
+    // Append date range if provided
+    if (startDate && endDate) {
+        url += `&startDate=${startDate}&endDate=${endDate}`;
+    }
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function (response) {
+            console.log("Dashboard API response:", response);
+
+            if (response.success) {
+                // Get totals from API
+                const totalC1Target = response.totalC1Target || 0;
+                const totalToken = response.totalToken || 0;
+                const achievedTarget = response.achievedC1Target || 0;
+
+                // Achieved values are not available yet, so show "-"
+               
+                const tokenAchieved = "0";
+
+                // Update Target box
+                $("#targetAchieved").text(achievedTarget);
+                $("#targetTotal").text(totalC1Target);
+
+                let targetPercent = "0"; // no achieved value yet
+                $("#targetPercent").text(targetPercent + "%");
+
+                // Update Tokens box
+                $("#tokesAchieved").text(tokenAchieved);
+                $("#tokesTotal").text(totalToken);
+
+                let tokesPercent = "0"; // no achieved value yet
+                $("#tokesPercent").text(tokesPercent + "%");
             }
-
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (response) {
-                    console.log("get call response metrics:", response);
-                    if (response.success) {
-                        const totals = response.totals;
-
-                        $("#totalCalls").text(totals.achievedCalls);
-                        $("#targetCalls").text(totals.plannedCalls);
-                        $("#remainingCalls").text(Math.max(totals.plannedCalls - totals.achievedCalls, 0));
-
-                        let achievementText = totals.plannedCalls > 0
-                            ? ((totals.achievedCalls / totals.plannedCalls) * 100).toFixed(2) + "%"
-                            : "Please add target first";
-
-                        $("#achievementPercent").text(totals.achievementPercent + "%");
-                        $("#achievementPercent2").text(achievementText);
-
-
-                        $("#connectedCount").text(totals.connected);
-                        $("#connectedPercent").text(((totals.connected / (totals.plannedCalls || 1)) * 100).toFixed(1) + "%");
-
-                        $("#notAnsweredCount").text(totals.notAnswered);
-                        $("#notAnsweredPercent").text(((totals.notAnswered / (totals.plannedCalls || 1)) * 100).toFixed(1) + "%");
-
-                        $("#busyCount").text(totals.busy);
-                        $("#busyPercent").text(((totals.busy / (totals.plannedCalls || 1)) * 100).toFixed(1) + "%");
-
-                        $("#switchOffCount").text(totals.switchOff);
-                        $("#switchOffPercent").text(((totals.switchOff / (totals.plannedCalls || 1)) * 100).toFixed(1) + "%");
-
-                        $("#invalidCount").text(totals.invalid);
-                        $("#invalidPercent").text(((totals.invalid / (totals.plannedCalls || 1)) * 100).toFixed(1) + "%");
-
-                        let percent = totals.achievementPercent;
-                        let card = $("#remainingCallsCard");
-
-                        card.removeClass("bg-danger bg-warning bg-success text-white text-dark");
-
-                        if (totals.plannedCalls === 0) {
-                            card.addClass("bg-white text-dark");
-                        } else {
-                            if (percent < 33) {
-                                card.addClass("bg-danger text-white");
-                            } else if (percent >= 33 && percent <= 66) {
-                                card.addClass("bg-warning text-white");
-                            } else {
-                                card.addClass("bg-success text-white");
-                            }
-                        }
-
-                    }
-                },
-                error: function (err) {
-                    console.error("Error fetching dashboard data", err);
-                }
-            });
+        },
+        error: function (err) {
+            console.error("Error fetching dashboard data", err);
         }
-
+    });
+}
         $(document).ready(function () {
             loadAnalysisChart();
             loadDashboardData();
