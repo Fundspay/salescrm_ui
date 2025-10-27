@@ -391,48 +391,64 @@
 
             data.forEach((item, index) => {
                 let btnClass = (parseInt(item.c1Target) > 0 || parseInt(item.c2Target) > 0 || parseInt(item.c3Target) > 0 || parseInt(item.c4Target) > 0
-                    || parseInt(item.target) > 0)
+                    || parseInt(item.target) > 0 || parseInt(item.subscriptionTarget) > 0)
                     ? "btn-success"
                     : "btn-primary";
 
                 const row = `
                     <div class="row mb-3 align-items-center border-bottom pb-2">
                         <!-- Left side: Date + Day -->
-                        <div class="col-lg-2 fw-semibold">
+                        <div class="col-lg-2 fw-semibold text-center">
                             ${formatDateForUI(item.date)} <br>
                             <small class="text-muted">(${item.day})</small>
                         </div>
 
-                        <!-- JDs input -->
-                        <div class="col-lg-2">c1 Target:
-                            <input type="number" class="form-control" id="c1Target-${index}" value="${item.c1Target}" />
-                        </div>
+                        <!-- Target Inputs -->
+                        <div class="col-lg-10">
+                            <div class="row g-3">
+                                <!-- c1 Target -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">c1 Target:</label>
+                                    <input type="number" class="form-control" id="c1Target-${index}" value="${item.c1Target}" />
+                                </div>
 
-                        <!-- Calls input -->
-                        <div class="col-lg-2">c2 Target:
-                            <input type="number" class="form-control" id="c2Target-${index}" value="${item.c2Target}" />
-                        </div>
+                                <!-- c2 Target -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">c2 Target:</label>
+                                    <input type="number" class="form-control" id="c2Target-${index}" value="${item.c2Target}" />
+                                </div>
 
-                        <!-- Follow Ups input -->
-                        <div class="col-lg-2">c3 Target:
-                            <input type="number" class="form-control" id="c3Target-${index}" value="${item.c3Target}" />
-                        </div>
+                                <!-- c3 Target -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">c3 Target:</label>
+                                    <input type="number" class="form-control" id="c3Target-${index}" value="${item.c3Target}" />
+                                </div>
 
-                        <!-- Resume Target input -->
-                        <div class="col-lg-2">c4 Target:
-                            <input type="number" class="form-control" id="c4Target-${index}" value="${item.c4Target}" />
-                        </div>
+                                <!-- c4 Target -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">c4 Target:</label>
+                                    <input type="number" class="form-control" id="c4Target-${index}" value="${item.c4Target}" />
+                                </div>
 
-                        <!-- New Fields -->
-                        <div class="col-lg-2">Token Target:
-                            <input type="number" class="form-control" id="token-${index}" value="${item.token || 0}" />
-                        </div>
+                                <!-- Token Target (below c1) -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">Token Target:</label>
+                                    <input type="number" class="form-control" id="token-${index}" value="${item.token || 0}" />
+                                </div>
 
-                        <!-- Save button -->
-                        <div class="col-lg-2 ms-auto text-end" style="margin-top: 2%;">
-                            <button class="btn ${btnClass} btn-save px-5" data-date="${item.date}" data-index="${index}" style="min-width: 120px;">
-                                Save
-                            </button>
+                                <!-- Subscription Target (last one) -->
+                                <div class="col-md-2">
+                                    <label class="form-label fw-semibold mb-1">Subscription Target:</label>
+                                    <input type="number" class="form-control" id="subscriptionTarget-${index}" value="${item.subscriptionTarget || 0}" />
+                                </div>
+
+                                <!-- Save button -->
+                                <div class="col-md-2 d-flex align-items-end justify-content-end">
+                                    <button class="btn ${btnClass} btn-save w-100" data-date="${item.date}" data-index="${index}">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -449,10 +465,11 @@
                 const c4Target = $(`#c4Target-${index}`).val();
 
                 const token = $(`#token-${index}`).val();
+                const subscriptionTarget = $(`#subscriptionTarget-${index}`).val();
                 // const interviewsTargetVal = $(`#interviewsTarget-${index}`).val();
                 // const resumesReceivedTargetVal = $(`#resumesReceivedTarget-${index}`).val();
 
-                saveTarget(date, c1Target, c2Target, c3Target, c4Target, token);
+                saveTarget(date, c1Target, c2Target, c3Target, c4Target, token, subscriptionTarget);
             });
         }
 
@@ -477,7 +494,7 @@
             });
         }
 
-        function saveTarget(date, c1Target, c2Target, c3Target, c4Target, token) {
+        function saveTarget(date, c1Target, c2Target, c3Target, c4Target, token, subscriptionTarget) {
             Swal.fire({
                 title: "Saving Target...",
                 allowOutsideClick: false,
@@ -497,6 +514,7 @@
                         c3Target: parseInt(c3Target),
                         c4Target: parseInt(c4Target),
                         token: parseInt(token),
+                        subscriptionTarget: parseInt(subscriptionTarget)
                         // interviewsTarget: parseInt(interviewsTarget),
                         // resumesReceivedTarget: parseInt(resumesReceivedTarget)
                     }
