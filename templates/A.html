@@ -480,7 +480,7 @@
                         <h5 class="m-b-10">Dashboard</h5>
                     </div> -->
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="CO.html">Home</a></li>
+                        <li class="breadcrumb-item"><a>Home</a></li>
                         <li class="breadcrumb-item">Attract</li>
                     </ul>
                 </div>
@@ -1647,7 +1647,7 @@
                                 chart: { type: "bar", height: 200, toolbar: { show: false } },
                                 plotOptions: { bar: { horizontal: false, endingShape: "rounded", columnWidth: "20%" } },
                                 colors: ["#fff"],
-                                grid: { show: false },
+                                grid: { show: true, borderColor: "rgba(255,255,255,0.2)" },
                                 legend: { show: false },
                                 dataLabels: { enabled: false },
                                 xaxis: {
@@ -1658,7 +1658,12 @@
                                     },
                                     axisBorder: { show: false }
                                 },
-                                yaxis: { labels: { show: false } },
+                                yaxis: {
+                                    labels: {
+                                        show: true,
+                                        style: { colors: "#fff", fontFamily: "Roboto" }
+                                    }
+                                },
                                 tooltip: {
                                     theme: "dark",
                                     y: { formatter: (val) => val + " Achieved" },
