@@ -480,7 +480,7 @@
                         <h5 class="m-b-10">Dashboard</h5>
                     </div> -->
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="CO.html">Home</a></li>
+                        <li class="breadcrumb-item"><a>Home</a></li>
                         <li class="breadcrumb-item">Interact</li>
                     </ul>
                 </div>
@@ -508,7 +508,7 @@
                         </span>
                     </label>
                 </div> -->
-                <div class="position-relative border-bottom">
+                <!-- <div class="position-relative border-bottom">
                     <label for="excelUpload" class="dropdown-item upload-trigger" style="cursor:pointer;">
                         <span class="btn btn-icon" data-bs-toggle="tooltip" data-bs-trigger="hover"
                             title="Upload Excel files (Less than 5MB)">
@@ -517,7 +517,7 @@
                     </label>
                     <input type="file" id="excelUpload" accept=".csv,.xls,.xlsx" style="display:none;">
 
-                </div>
+                </div> -->
                 <div class="date-picker-container" style="margin-left: 1%;">
                     <input type="text" id="dateRangePicker" class="form-control" placeholder="Select date or range"
                         style="max-width:220px;" />
@@ -527,41 +527,92 @@
             <!-- [ Main Content ] start -->
             <div class="main-content">
                 <div class="row">
-                    <!-- Target -->
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
+                    <!-- C1 Target -->
+                    <div class="col-xxl-4 col-lg-6 col-md-6 mb-3">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Target</div>
+                                <div class="fs-12 fw-medium text-muted mb-3">C1 Target</div>
                                 <div class="hstack justify-content-between lh-base">
                                     <div>
-                                        <h3><span id="targetAchieved">0</span>/<span id="targetTotal">0</span></h3>
+                                        <h3><span id="c1Achieved">0</span>/<span id="c1Total">0</span></h3>
                                     </div>
-                                    <div class="hstack gap-2 fs-11" id="targetTrend">
-                                        <span id="targetPercent">0%</span>
+                                    <div class="hstack gap-2 fs-11" id="c1Trend">
+                                        <span id="c1Percent">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tokes -->
-                    <div class="col-xxl-6 col-lg-6 col-md-6">
+                    <!-- C2 Target -->
+                    <div class="col-xxl-4 col-lg-6 col-md-6 mb-3">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
-                                <div class="fs-12 fw-medium text-muted mb-3">Tokens</div>
+                                <div class="fs-12 fw-medium text-muted mb-3">C2 Target</div>
                                 <div class="hstack justify-content-between lh-base">
                                     <div>
-                                        <h3><span id="tokesAchieved">0</span>/<span id="tokesTotal">0</span></h3>
+                                        <h3><span id="c2Achieved">0</span>/<span id="c2Total">0</span></h3>
                                     </div>
-                                    <div class="hstack gap-2 fs-11" id="tokesTrend">
-                                        <span id="tokesPercent">0%</span>
+                                    <div class="hstack gap-2 fs-11" id="c2Trend">
+                                        <span id="c2Percent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C3 Target -->
+                    <div class="col-xxl-4 col-lg-6 col-md-6 mb-3">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">C3 Target</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <div>
+                                        <h3><span id="c3Achieved">0</span>/<span id="c3Total">0</span></h3>
+                                    </div>
+                                    <div class="hstack gap-2 fs-11" id="c3Trend">
+                                        <span id="c3Percent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C4 Target -->
+                    <div class="col-xxl-4 col-lg-6 col-md-6 mb-3">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">C4 Target</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <div>
+                                        <h3><span id="c4Achieved">0</span>/<span id="c4Total">0</span></h3>
+                                    </div>
+                                    <div class="hstack gap-2 fs-11" id="c4Trend">
+                                        <span id="c4Percent">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Target -->
+                    <div class="col-xxl-4 col-lg-6 col-md-6 mb-3">
+                        <div class="card stretch stretch-full">
+                            <div class="card-body">
+                                <div class="fs-12 fw-medium text-muted mb-3">Subscription Target</div>
+                                <div class="hstack justify-content-between lh-base">
+                                    <div>
+                                        <h3><span id="subscriptionAchieved">0</span>/<span
+                                                id="subscriptionTotal">0</span></h3>
+                                    </div>
+                                    <div class="hstack gap-2 fs-11" id="subscriptionTrend">
+                                        <span id="subscriptionPercent">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- <div class="col-xxl-12 col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
                     <div class="card stretch stretch-full" id="remainingCallsCard"
@@ -780,7 +831,7 @@
                                 <div id="conversion-statistic-bar-chart"></div>
                             </div>
                             <div class="card-body">
-                                <h6 class="mb-3">Daily JD Sent</h6>
+                                <h6 class="mb-3">Subscription Targets Achieved</h6>
                                 <ul class="list-group" id="jdList">
                                     <!-- Dates and JD counts will be appended here -->
                                 </ul>
@@ -1163,6 +1214,40 @@
                             background: #fff7ed;
                             box-shadow: inset 0 0 0 2px #f97316;
                         }
+
+                        /* Color groups for phase headers (C2–C4) */
+                        #leadsTable3 th:nth-child(19),
+                        #leadsTable3 th:nth-child(20),
+                        #leadsTable3 th:nth-child(21) {
+                            background-color: #fff0e1 !important;
+                            /* Orange */
+                            color: #7c2d12;
+                        }
+
+                        #leadsTable3 th:nth-child(22),
+                        #leadsTable3 th:nth-child(23),
+                        #leadsTable3 th:nth-child(24) {
+                            background-color: #e0f2ff !important;
+                            /* Blue */
+                            color: #0c4a6e;
+                        }
+
+                        #leadsTable3 th:nth-child(25),
+                        #leadsTable3 th:nth-child(26),
+                        #leadsTable3 th:nth-child(27) {
+                            background-color: #dbffdd !important;
+                            /* Yellow */
+                            color: #127128;
+                        }
+
+                        /* Optional: for C1 section */
+                        #leadsTable3 th:nth-child(16),
+                        #leadsTable3 th:nth-child(17),
+                        #leadsTable3 th:nth-child(18) {
+                            background-color: #ffe5e5 !important;
+                            /* Red */
+                            color: #7f1d1d;
+                        }
                     </style>
 
                     <div class="col-12">
@@ -1328,7 +1413,7 @@
                     <div class="col-lg-6">
                         <div class="row g-3 h-100">
                             <!-- First Row of Cards -->
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <a href="tables/cna.html" class="text-decoration-none">
                                     <div class="card bg-danger text-white h-100">
                                         <div class="card-body">
@@ -1341,9 +1426,9 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="tables/not-interested.html" class="text-decoration-none">
+                            </div> -->
+                            <div class="col-md-12">
+                                <a href="tables/not-interested-2.html" class="text-decoration-none">
                                     <div class="card bg-warning text-white h-100">
                                         <div class="card-body">
                                             <div class="text-start">
@@ -1363,7 +1448,7 @@
                     <div class="col-lg-6">
                         <div class="row g-3 h-100">
                             <!-- Second Row of Cards -->
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <a href="tables/wrong-number.html" class="text-decoration-none">
                                     <div class="card bg-secondary text-white h-100">
                                         <div class="card-body">
@@ -1376,14 +1461,14 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="tables/others.html" class="text-decoration-none">
+                            </div> -->
+                            <div class="col-md-12">
+                                <a href="tables/dicey.html" class="text-decoration-none">
                                     <div class="card bg-primary text-white h-100">
                                         <div class="card-body">
                                             <div class="text-start">
                                                 <p class="text-reset m-0">
-                                                    Switch off:
+                                                    Dicey:
                                                 <h4 class="text-reset" id="switchOffCount">0</h4>
                                                 </p>
                                             </div>
@@ -1446,6 +1531,18 @@
                                             <th>EXISTING WEBSITE</th>
                                             <th>SMM PRESENCE</th>
                                             <th>MEETING STATUS</th>
+                                            <th>DATE OF C1</th>
+                                            <th>C1 STATUS</th>
+                                            <th>COMMENT FOR C1</th>
+                                            <th>DATE OF C2</th>
+                                            <th>C2 STATUS</th>
+                                            <th>COMMENT FOR C2</th>
+                                            <th>DATE OF C3</th>
+                                            <th>C3 STATUS</th>
+                                            <th>COMMENT FOR C3</th>
+                                            <th>DATE OF C4</th>
+                                            <th>C4 STATUS</th>
+                                            <th>COMMENT FOR C4</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -1708,21 +1805,15 @@
                             let d = new Date(item.date);
                             let day = d.getDate();
                             let weekday = d.toLocaleDateString("en-US", { weekday: "short" });
-                            // fallback for missing 'day' field
                             item.day = weekday;
                             return `${day}`;
                         });
 
-                        // Use achievedC1Target from response (global value)
-                        const achievedValue = res.achievedC1Target || 0;
+                        const jdCounts = res.data.map(item => item.achievedSubscription || 0);
 
-                        // y-axis data (use same achieved value for all dates)
-                        const jdCounts = res.data.map(() => achievedValue);
-
-                        // list display (showing date and count)
                         res.data.forEach(item => {
-                            let target = item.c1Target || 0;
-                            let achieved = achievedValue || 0;
+                            let target = item.subscriptionTarget || 0;
+                            let achieved = item.achievedSubscription || 0;
                             jdList.append(`
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>${formatDateUI(item.date)} (${item.day})</span>
@@ -1731,19 +1822,18 @@
                     `);
                         });
 
-                        // chart rendering or updating
                         if (analysisChart) {
                             analysisChart.updateOptions({
-                                series: [{ name: "Achieved C1 Target", data: jdCounts }],
+                                series: [{ name: "Achieved Subscription Target", data: jdCounts }],
                                 xaxis: { categories: dates }
                             });
                         } else {
                             analysisChart = new ApexCharts(document.querySelector("#conversion-statistic-bar-chart"), {
-                                series: [{ name: "Achieved C1 Target", data: jdCounts }],
+                                series: [{ name: "Achieved Subscription Target", data: jdCounts }],
                                 chart: { type: "bar", height: 200, toolbar: { show: false } },
                                 plotOptions: { bar: { horizontal: false, endingShape: "rounded", columnWidth: "20%" } },
                                 colors: ["#fff"],
-                                grid: { show: false },
+                                grid: { show: true, borderColor: "rgba(255,255,255,0.2)" },
                                 legend: { show: false },
                                 dataLabels: { enabled: false },
                                 xaxis: {
@@ -1752,9 +1842,15 @@
                                         show: true,
                                         style: { colors: "#fff", fontFamily: "Roboto" }
                                     },
-                                    axisBorder: { show: false }
+                                    axisBorder: { show: false },
+                                    axisTicks: { show: false }
                                 },
-                                yaxis: { labels: { show: false } },
+                                yaxis: {
+                                    labels: {
+                                        show: true,
+                                        style: { colors: "#fff", fontFamily: "Roboto" }
+                                    }
+                                },
                                 tooltip: {
                                     theme: "dark",
                                     y: { formatter: (val) => val + " Achieved" },
@@ -1768,7 +1864,7 @@
                         jdList.append(`<li><span class="date">No Data</span><span class="count">0/0</span></li>`);
                         if (analysisChart) {
                             analysisChart.updateOptions({
-                                series: [{ name: "Achieved C1 Target", data: [] }],
+                                series: [{ name: "Achieved Subscription Target", data: [] }],
                                 xaxis: { categories: [] }
                             });
                         }
@@ -1790,7 +1886,6 @@
         function loadDashboardData(startDate = null, endDate = null) {
             let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-            // Append date range if provided
             if (startDate && endDate) {
                 url += `&startDate=${startDate}&endDate=${endDate}`;
             }
@@ -1802,34 +1897,39 @@
                     console.log("Dashboard API response:", response);
 
                     if (response.success) {
-                        // Get totals from API
+                        // Extract totals and achieved values
                         const totalC1Target = response.totalC1Target || 0;
-                        const totalToken = response.totalToken || 0;
-                        const achievedTarget = response.achievedC1Target || 0;
+                        const totalC2Target = response.totalC2Target || 0;
+                        const totalC3Target = response.totalC3Target || 0;
+                        const totalC4Target = response.totalC4Target || 0;
+                        const totalSubscriptionTarget = response.totalsubscriptionTarget || 0;
 
-                        // Achieved values are not available yet, so show "-"
+                        const achievedC1Target = response.achievedC1Target || 0;
+                        const achievedC2Target = response.achievedC2Target || 0;
+                        const achievedC3Target = response.achievedC3Target || 0;
+                        const achievedC4Target = response.achievedC4Target || 0;
+                        const achievedSubscriptionTarget = response.achievedSubscriptionTarget || 0;
 
-                        const tokenAchieved = "0";
-
-                        // Update Target box
-                        $("#targetAchieved").text(achievedTarget);
-                        $("#targetTotal").text(totalC1Target);
-
-                        let targetPercent = "0"; // no achieved value yet
-                        $("#targetPercent").text(targetPercent + "%");
-
-                        // Update Tokens box
-                        $("#tokesAchieved").text(tokenAchieved);
-                        $("#tokesTotal").text(totalToken);
-
-                        let tokesPercent = "0"; // no achieved value yet
-                        $("#tokesPercent").text(tokesPercent + "%");
+                        // Update each card with data
+                        updateCard("#c1Achieved", "#c1Total", "#c1Percent", achievedC1Target, totalC1Target);
+                        updateCard("#c2Achieved", "#c2Total", "#c2Percent", achievedC2Target, totalC2Target);
+                        updateCard("#c3Achieved", "#c3Total", "#c3Percent", achievedC3Target, totalC3Target);
+                        updateCard("#c4Achieved", "#c4Total", "#c4Percent", achievedC4Target, totalC4Target);
+                        updateCard("#subscriptionAchieved", "#subscriptionTotal", "#subscriptionPercent", achievedSubscriptionTarget, totalSubscriptionTarget);
                     }
                 },
                 error: function (err) {
                     console.error("Error fetching dashboard data", err);
                 }
             });
+        }
+
+        // Helper function to update a target card
+        function updateCard(achievedId, totalId, percentId, achieved, total) {
+            $(achievedId).text(achieved);
+            $(totalId).text(total);
+            const percent = total > 0 ? ((achieved / total) * 100).toFixed(1) : 0;
+            $(percentId).text(percent + "%");
         }
         $(document).ready(function () {
             loadAnalysisChart();
@@ -2761,14 +2861,39 @@
         var userData3 = JSON.parse(sessionStorage.getItem("user_data"));
         console.log(userData3);
 
-        const apiBase3 = `https://fundsaudit.com/api/v1/asheet/followup`;
+        const apiBase3 = `https://fundsaudit.com/api/v1/isheet/follow-ups`;
 
         const dropdowns3 = {
-            businessSector: ["Lawyers / Advocates", "CA / CS / Accountant", "Real Estate Brokers / Developers", "Event Management / Wedding Planner", "Interior Designer / Architect", "Tours & Travel / Vehicle Rental", "Agro-Based Products / Agri Services", "Salon / Beauty shop", "Consultancy / Advisory", "Insurance / Investment Agents", "Product-Based Company", "Doctor / Dentist / Clinics", "Articraft / Gifts & Decor", "Fashion / Clothing", "Education & Training Institutes", "Fitness & Wellness", "Food & Beverages", "Jewellery / Makeup / Perfumes", "Manufacturing & Industrial Units", "E-commerce & Online Stores"],
+            businessSector: [
+                "Lawyers / Advocates",
+                "CA / CS / Accountant",
+                "Real Estate Brokers / Developers",
+                "Event Management / Wedding Planner",
+                "Interior Designer / Architect",
+                "Tours & Travel / Vehicle Rental",
+                "Agro-Based Products / Agri Services",
+                "Salon / Beauty shop",
+                "Consultancy / Advisory",
+                "Insurance / Investment Agents",
+                "Product-Based Company",
+                "Doctor / Dentist / Clinics",
+                "Articraft / Gifts & Decor",
+                "Fashion / Clothing",
+                "Education & Training Institutes",
+                "Fitness & Wellness",
+                "Food & Beverages",
+                "Jewellery / Makeup / Perfumes",
+                "Manufacturing & Industrial Units",
+                "E-commerce & Online Stores"
+            ],
             existingWebsite: ["YES", "NO"],
-            meetingStatus: ["C1 Scheduled", "Follow Up", "CNA", "Switch Off", "Not Interested", "Wrong Number"],
             smmPresence: ["YES", "NO"],
-            sourcedBy: []
+            meetingStatus: ["C1 Scheduled", "Follow Up", "CNA", "Switch Off", "Not Interested", "Wrong Number"],
+            sourcedBy: [],
+            c1Status: ["C2 Scheduled", "Follow Up", "Dicey", "Not Interested", "Token"],
+            c2Status: ["C3 Scheduled", "Follow Up", "Dicey", "Not Interested", "Token"],
+            c3Status: ["C4 Scheduled", "Follow Up", "Dicey", "Not Interested", "Token"],
+            c4Status: ["Premium", "Gold", "Standard", "Reference Given"]
         };
 
         let tableData3 = [];
@@ -2782,6 +2907,7 @@
                 method: "GET",
                 success: function (res) {
                     if (res.success && res.data) {
+                        console.log("GET response:", res);
                         tableData3 = res.data.map((row, index) => ({
                             sno: index + 1,
                             id: row.id,
@@ -2798,52 +2924,29 @@
                             smmPresence: row.smmPresence || "",
                             sourcedBy: row.sourcedBy || "",
                             sourcedFrom: row.sourcedFrom || "",
-                            zone: row.zone || ""
+                            zone: row.zone || "",
+                            dateOfC1Connect: row.dateOfC1Connect || "",
+                            c1Status: row.c1Status || "",
+                            c1Comment: row.c1Comment || "",
+                            dateOfC2Clarity: row.dateOfC2Clarity || "",
+                            c2Status: row.c2Status || "",
+                            c2Comment: row.c2Comment || "",
+                            dateOfC3Clarity: row.dateOfC3Clarity || "",
+                            c3Status: row.c3Status || "",
+                            c3Comment: row.c3Comment || "",
+                            dateOfC4Customer: row.dateOfC4Customer || "",
+                            c4Status: row.c4Status || "",
+                            c4Comment: row.c4Comment || ""
                         }));
 
-                        dropdowns3.sourcedBy = res.users.map(u => u.name);
-
                         filteredData3 = [...tableData3];
-                        updateCollegeCount3();
+                        updateCount3();
                         renderTable3();
                         renderPagination3();
                         renderColumnFilters3();
                     }
                 }
             });
-        }
-
-        function renderTable3() {
-            let tbody3 = $("#leadsTable3 tbody");
-            tbody3.empty();
-
-            const start3 = (currentPage3 - 1) * rowsPerPage3;
-            const end3 = start3 + rowsPerPage3;
-            const rows3 = filteredData3.slice(start3, end3);
-
-            rows3.forEach((row, index) => {
-                let tr3 = `<tr data-id="${row.id}">
-                <td>${row.sno}</td>
-                ${makeCell3("sourcedFrom", row.sourcedFrom)}
-                ${makeDropdownCell3("sourcedBy", row.sourcedBy)}
-                ${makeDateCell3("dateOfConnect", row.dateOfConnect)}
-                ${makeCell3("businessName", row.businessName)}
-                ${makeCell3("contactPersonName", row.contactPersonName)}
-                ${makeCell3("mobileNumber", row.mobileNumber)}
-                ${makeCell3("address", row.address)}
-                ${makeCell3("email", row.email)}
-                ${makeDropdownCell3("businessSector", row.businessSector)}
-                ${makeCell3("zone", row.zone)}
-                ${makeCell3("landmark", row.landmark)}
-                ${makeDropdownCell3("existingWebsite", row.existingWebsite)}
-                ${makeDropdownCell3("smmPresence", row.smmPresence)}
-                ${makeDropdownCell3("meetingStatus", row.meetingStatus)}
-            </tr>`;
-                tbody3.append(tr3);
-            });
-
-            attachCellEvents3();
-            setStickyColumns3();
         }
 
         const columnKeys3 = [
@@ -2861,126 +2964,164 @@
             "landmark",
             "existingWebsite",
             "smmPresence",
-            "meetingStatus"
+            "meetingStatus",
+            "dateOfC1Connect",
+            "c1Status",
+            "c1Comment",
+            "dateOfC2Clarity",
+            "c2Status",
+            "c2Comment",
+            "dateOfC3Clarity",
+            "c3Status",
+            "c3Comment",
+            "dateOfC4Customer",
+            "c4Status",
+            "c4Comment"
         ];
 
-        function makeCell3(field, value) {
-            let displayValue3 = value || "";
-            return `<td data-field="${field}">
-            <span>${displayValue3}</span>
-            <input type="text" value="${displayValue3}" style="display:none;">
-        </td>`;
+        function renderTable3() {
+            let tbody = $("#leadsTable3 tbody");
+            tbody.empty();
+
+            const start = (currentPage3 - 1) * rowsPerPage3;
+            const end = start + rowsPerPage3;
+            const rows = filteredData3.slice(start, end);
+
+            rows.forEach((row) => {
+                let tr = `<tr data-id="${row.id}">
+                <td>${row.sno}</td>
+                <td>${row.sourcedFrom || ""}</td>
+                <td>${row.sourcedBy || ""}</td>
+                <td>${row.dateOfConnect || ""}</td>
+                <td>${row.businessName || ""}</td>
+                <td>${row.contactPersonName || ""}</td>
+                <td>${row.mobileNumber || ""}</td>
+                <td>${row.address || ""}</td>
+                <td>${row.email || ""}</td>
+                <td>${row.businessSector || ""}</td>
+                <td>${row.zone || ""}</td>
+                <td>${row.landmark || ""}</td>
+                <td>${row.existingWebsite || ""}</td>
+                <td>${row.smmPresence || ""}</td>
+                <td>${row.meetingStatus || ""}</td>
+                ${makeDateCell3("dateOfC1Connect", row.dateOfC1Connect)}
+                ${makeDropdownCell3("c1Status", row.c1Status, dropdowns3.c1Status)}
+                ${makeEditableComment3("c1Comment", row.c1Comment)}
+                ${makeDateCell3("dateOfC2Clarity", row.dateOfC2Clarity)}
+                ${makeDropdownCell3("c2Status", row.c2Status, dropdowns3.c2Status)}
+                ${makeEditableComment3("c2Comment", row.c2Comment)}
+                ${makeDateCell3("dateOfC3Clarity", row.dateOfC3Clarity)}
+                ${makeDropdownCell3("c3Status", row.c3Status, dropdowns3.c3Status)}
+                ${makeEditableComment3("c3Comment", row.c3Comment)}
+                ${makeDateCell3("dateOfC4Customer", row.dateOfC4Customer)}
+                ${makeDropdownCell3("c4Status", row.c4Status, dropdowns3.c4Status)}
+                ${makeEditableComment3("c4Comment", row.c4Comment)}
+            </tr>`;
+                tbody.append(tr);
+            });
+
+            attachCellEvents3();
+            setStickyColumns3();
         }
 
-        function makeDropdownCell3(field, selectedValue) {
-            let options3 = dropdowns3[field] || [];
-            let html3 = `<td data-field="${field}">
+        function makeCell3(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+            <span>${displayValue}</span>
+                <input type="text" value="${displayValue}" style="display:none;">
+            </td>`;
+        }
+
+        function makeDropdownCell3(field, selectedValue, optionsList = null) {
+            let options = optionsList || dropdowns3[field] || [];
+            let html = `<td data-field="${field}">
             <span style="font-weight:bold;">${selectedValue || ""}</span>
-            <select style="display:none;" class="form-control">`;
-            options3.forEach(opt => {
-                let sel3 = (opt === selectedValue) ? "selected" : "";
-                html3 += `<option value="${opt}" ${sel3}>${opt}</option>`;
+            <select style="display:none;" class="form-control form-control-sm">`;
+            options.forEach(opt => {
+                let sel = (opt === selectedValue) ? "selected" : "";
+                html += `<option value="${opt}" ${sel}>${opt}</option>`;
             });
-            html3 += `</select></td>`;
-            return html3;
+            html += `</select></td>`;
+            return html;
+        }
+
+        function makeEditableComment3(field, value) {
+            let displayValue = value || "";
+            return `<td data-field="${field}">
+            <span>${displayValue}</span>
+                <input type="text" value="${displayValue}" style="display:none;">
+            </td>`;
         }
 
         function makeDateCell3(field, value) {
-            let displayValue3 = formatDate3(value);
-            let rawValue3 = value ? new Date(value).toISOString().split("T")[0] : "";
+            let displayValue = formatDate3(value);
+            let rawValue = value ? new Date(value).toISOString().split("T")[0] : "";
             return `<td data-field="${field}">
-            <span>${displayValue3}</span>
-            <input type="text" class="date-picker3" value="${rawValue3}" style="display:none;">
-        </td>`;
+            <span>${displayValue}</span>
+                <input type="text" class="date-picker3" value="${rawValue}" style="display:none;">
+            </td>`;
         }
 
         function formatDate3(dateStr) {
             if (!dateStr) return "";
-            let date3 = new Date(dateStr);
-            if (isNaN(date3)) return dateStr;
-            return date3.toLocaleDateString("en-GB", {
-                day: "numeric",
-                month: "short",
-                year: "numeric"
-            });
-        }
-
-        function updateCollegeCount3() {
-            $("#collegeCount3").text(filteredData3.length || 0);
+            let date = new Date(dateStr);
+            if (isNaN(date)) return dateStr;
+            return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
         }
 
         function attachCellEvents3() {
             $("#leadsTable3 td").off("dblclick").on("dblclick", function () {
-                let td3 = $(this);
-                td3.addClass("editing");
-                td3.find("input,select").show().focus();
-                td3.find("span").hide();
-                console.log("Editing cell for field:", td3.data("field"));
+                let td = $(this);
+                td.find("input,select").show().focus();
+                td.find("span").hide();
             });
 
-            $("#leadsTable3 td input, #leadsTable3 td select")
-                .off("blur change")
-                .on("blur change", function () {
-                    let td3 = $(this).closest("td");
-                    let tr3 = $(this).closest("tr");
-                    let id3 = tr3.data("id");
-                    let field3 = td3.data("field");
-                    let value3 = $(this).val();
+            $("#leadsTable3 td input, #leadsTable3 td select").off("blur change").on("blur change", function () {
+                let td = $(this).closest("td");
+                let tr = $(this).closest("tr");
+                let id = tr.data("id");
+                let field = td.data("field");
+                let value = $(this).val();
 
-                    td3.find("span").text(value3).show();
-                    td3.find("input,select").hide();
-                    td3.removeClass("editing");
+                td.find("span").text(field.includes("dateOf") ? formatDate3(value) : value).show();
+                td.find("input,select").hide();
 
-                    let payload3 = {};
-                    payload3[field3] = value3;
-                    payload3.userId = userData3.user_id;
+                let payload = {};
+                payload[field] = value;
 
-                    console.log("Updating row ID:", id3, "Field:", field3, "Value:", value3, "Payload:", payload3);
-
-                    $.ajax({
-                        url: "https://fundsaudit.com/api/v1/asheet/update/" + id3,
-                        method: "PUT",
-                        contentType: "application/json",
-                        data: JSON.stringify(payload3),
-                        success: function (res) {
-                            console.log("Updated successfully:", res);
-                        },
-                        error: function (err) {
-                            console.error("Update failed:", err);
-                        }
-                    });
+                $.ajax({
+                    url: "https://fundsaudit.com/api/v1/isheet/update-followup/" + id,
+                    method: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(payload),
+                    success: function (res) {
+                        console.log("Updated:", field, res);
+                    }
                 });
+            });
 
             $(".date-picker3").flatpickr({
                 dateFormat: "Y-m-d",
                 onChange: function (selectedDates, dateStr, instance) {
-                    let input3 = $(instance.input);
-                    let td3 = input3.closest("td");
-                    let tr3 = input3.closest("tr");
-                    let id3 = tr3.data("id");
-                    let field3 = td3.data("field");
-                    let value3 = dateStr;
+                    let input = $(instance.input);
+                    let td = input.closest("td");
+                    let tr = input.closest("tr");
+                    let id = tr.data("id");
+                    let field = td.data("field");
 
-                    td3.find("span").text(formatDate3(value3)).show();
-                    input3.hide();
-                    td3.removeClass("editing");
+                    td.find("span").text(formatDate3(dateStr)).show();
+                    input.hide();
 
-                    let payload3 = {};
-                    payload3[field3] = value3;
-                    payload3.userId = userData3.user_id;
-
-                    console.log("Date change for row ID:", id3, "Field:", field3, "Value:", value3, "Payload:", payload3);
+                    let payload = {};
+                    payload[field] = dateStr;
 
                     $.ajax({
-                        url: "https://fundsaudit.com/api/v1/asheet/update/" + id3,
+                        url: "https://fundsaudit.com/api/v1/isheet/update-followup/" + id,
                         method: "PUT",
                         contentType: "application/json",
-                        data: JSON.stringify(payload3),
+                        data: JSON.stringify(payload),
                         success: function (res) {
-                            console.log("Date Updated successfully:", res);
-                        },
-                        error: function (err) {
-                            console.error("Date update failed", err);
+                            console.log("Date updated:", field, res);
                         }
                     });
                 }
@@ -2988,61 +3129,64 @@
         }
 
         function renderPagination3() {
-            const totalPages3 = Math.ceil(filteredData3.length / rowsPerPage3);
-            const pagination3 = $("#pagination3");
-            pagination3.empty();
+            const totalPages = Math.ceil(filteredData3.length / rowsPerPage3);
+            const pagination = $("#pagination3");
+            pagination.empty();
 
-            const prevDisabled3 = currentPage3 === 1 ? 'disabled' : '';
-            const nextDisabled3 = currentPage3 === totalPages3 ? 'disabled' : '';
+            const prevDisabled = currentPage3 === 1 ? 'disabled' : '';
+            const nextDisabled = currentPage3 === totalPages ? 'disabled' : '';
 
-            pagination3.append(`<li><a href="javascript:void(0);" class="${prevDisabled3}" onclick="changePage3(${currentPage3 - 1})">&laquo;</a></li>`);
+            pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage3(${currentPage3 - 1})">&laquo;</a></li>`);
 
-            for (let i = 1; i <= totalPages3; i++) {
-                const active3 = i === currentPage3 ? "active" : "";
-                pagination3.append(`<li><a href="javascript:void(0);" class="${active3}" onclick="changePage3(${i})">${i}</a></li>`);
+            for (let i = 1; i <= totalPages; i++) {
+                const active = i === currentPage3 ? "active" : "";
+                pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage3(${i})">${i}</a></li>`);
             }
 
-            pagination3.append(`<li><a href="javascript:void(0);" class="${nextDisabled3}" onclick="changePage3(${currentPage3 + 1})">&raquo;</a></li>`);
+            pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage3(${currentPage3 + 1})">&raquo;</a></li>`);
         }
 
-        window.changePage3 = function (page3) {
-            const totalPages3 = Math.ceil(filteredData3.length / rowsPerPage3);
-            if (page3 < 1 || page3 > totalPages3) return;
-            currentPage3 = page3;
+        window.changePage3 = function (page) {
+            const totalPages = Math.ceil(filteredData3.length / rowsPerPage3);
+            if (page < 1 || page > totalPages) return;
+            currentPage3 = page;
             renderTable3();
             renderPagination3();
         };
 
         function renderColumnFilters3() {
-            const headerRow3 = $("#leadsTable3 thead tr.filters");
-            headerRow3.remove();
+            const headerRow = $("#leadsTable3 thead tr.filters");
+            headerRow.remove();
 
-            let filterRow3 = "<tr class='filters'>";
-            $("#leadsTable3 thead tr:first th").each(function (i, th) {
+            let filterRow = "<tr class='filters'>";
+            columnKeys3.forEach((key, i) => {
                 if (i === 0) {
-                    filterRow3 += "<th></th>";
+                    filterRow += "<th></th>";
                 } else {
-                    filterRow3 += `<th><select class="column-filter3 form-select form-select-sm" data-index="${i}">
-                    <option value="">All</option>
-                </select></th>`;
+                    filterRow += `
+                <th>
+                    <select class="column-filter3 form-select form-select-sm" data-index="${i}">
+                        <option value="">All</option>
+                    </select>
+                </th>
+            `;
                 }
             });
+            filterRow += "</tr>";
 
-            filterRow3 += "</tr>";
-            $("#leadsTable3 thead").append(filterRow3);
+            $("#leadsTable3 thead").append(filterRow);
 
             populateColumnFilterOptions3();
         }
 
         function populateColumnFilterOptions3() {
             $("#leadsTable3 thead .column-filter3").each(function () {
-                const index3 = $(this).data("index");
-                let field3 = columnKeys3[index3];
-                let values3 = [...new Set(tableData3.map(row => row[field3]))].filter(v => v);
-
-                values3.forEach(v => {
-                    const displayValue3 = columnKeys3[index3] === "dateOfConnect" ? formatDate3(v) : v;
-                    $(this).append(`<option value="${v}">${displayValue3}</option>`);
+                const index = $(this).data("index");
+                let field = columnKeys3[index];
+                let values = [...new Set(tableData3.map(row => row[field]))].filter(v => v);
+                values.forEach(v => {
+                    const displayValue = field.includes("dateOf") ? formatDate3(v) : v;
+                    $(this).append(`<option value="${v}">${displayValue}</option>`);
                 });
             });
 
@@ -3054,43 +3198,46 @@
         function applyFilters3() {
             filteredData3 = [...tableData3];
             $("#leadsTable3 thead .column-filter3").each(function () {
-                const value3 = $(this).val();
-                const index3 = $(this).data("index");
-                if (value3) {
-                    let field3 = columnKeys3[index3];
-                    filteredData3 = filteredData3.filter(row => row[field3] == value3);
+                const value = $(this).val();
+                const index = $(this).data("index");
+                if (value) {
+                    let field = columnKeys3[index];
+                    filteredData3 = filteredData3.filter(row => row[field] == value);
                 }
             });
-
             currentPage3 = 1;
-            updateCollegeCount3();  // <-- add this line
+            updateCount3();
             renderTable3();
             renderPagination3();
         }
 
-        window.filterTable3 = function () {
-            const value3 = $("#searchInput3").val().toLowerCase().trim();
-            filteredData3 = tableData3.filter(row =>
-                Object.values(row).some(field => (field + "").toLowerCase().includes(value3))
-            );
-            currentPage3 = 1;
-            updateCollegeCount3();  // <-- add this line
-            renderTable3();
-            renderPagination3();
-        };
+        function updateCount3() {
+            $("#collegeCount3").text(filteredData3.length || 0);
+        }
 
-        window.exportToExcel3 = function () {
-            const headers3 = Object.keys(tableData3[0] || {}).filter(k => k !== "id");
-            const data3 = [headers3];
+        window.exportToExcel3 = function (useFiltered = true) {
+            const dataSource = useFiltered ? filteredData3 : tableData3;
 
-            tableData3.forEach(row => {
-                data3.push(headers3.map(h => row[h]));
+            if (!dataSource || dataSource.length === 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "No Data",
+                    text: "There is no data to export.",
+                });
+                return;
+            }
+
+            const headers = Object.keys(dataSource[0]).filter(k => k !== "id");
+            const data = [headers];
+
+            dataSource.forEach(row => {
+                data.push(headers.map(h => row[h]));
             });
 
-            const worksheet3 = XLSX.utils.aoa_to_sheet(data3);
-            const workbook3 = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook3, worksheet3, "BusinessDetails3");
-            XLSX.writeFile(workbook3, "BusinessDetails3.xlsx");
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "BusinessDetails3");
+            XLSX.writeFile(workbook, "BusinessDetails3.xlsx");
         };
 
         $(document).ready(function () {
