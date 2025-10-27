@@ -409,13 +409,17 @@
                                     </div> -->
                                     <div class="row mb-4 align-items-center">
                                         <div class="col-lg-4">
-                                            <label for="gender" class="fw-semibold">Gender: </label>
+                                            <label for="gender" class="fw-semibold">Gender:</label>
                                         </div>
                                         <div class="col-lg-8">
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="feather-user"></i></div>
-                                                <input type="text" class="form-control" id="gender"
-                                                    placeholder="Gender">
+                                                <select class="form-control" id="gender"
+                                                    style="appearance: none; -webkit-appearance: none; -moz-appearance: none; font-family: inherit; font-size: inherit; color: inherit;">
+                                                    <option value="" disabled selected>Select Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
