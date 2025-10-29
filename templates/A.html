@@ -340,7 +340,7 @@
                     </li>
                 </ul>
 
-                
+
             </div>
         </div>
     </nav>
@@ -514,41 +514,44 @@
             <!-- [ Main Content ] start -->
             <div class="main-content">
                 <div class="row">
-                    <!-- Target -->
+                    <!-- C1 Target -->
                     <div class="col-xxl-6 col-lg-6 col-md-6">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
                                 <div class="fs-12 fw-medium text-muted mb-3">C1 Target Achieved</div>
                                 <div class="hstack justify-content-between lh-base">
                                     <div>
-                                        <h3><span id="targetAchieved">0</span>/<span id="targetTotal">0</span></h3>
+                                        <h3>
+                                            <span id="targetAchieved">0</span>/<span id="targetTotal">0</span>
+                                        </h3>
                                     </div>
                                     <div class="hstack gap-2 fs-11" id="targetTrend">
-                                        <span id="targetPercent">0%</span>
+                                        <span id="targetPercent" class="fw-bold text-success">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tokes -->
+                    <!-- Tokens -->
                     <div class="col-xxl-6 col-lg-6 col-md-6">
                         <div class="card stretch stretch-full">
                             <div class="card-body">
                                 <div class="fs-12 fw-medium text-muted mb-3">Tokens</div>
                                 <div class="hstack justify-content-between lh-base">
                                     <div>
-                                        <h3><span id="tokesAchieved">0</span>/<span id="tokesTotal">0</span></h3>
+                                        <h3>
+                                            <span id="tokesAchieved">0</span>/<span id="tokesTotal">0</span>
+                                        </h3>
                                     </div>
                                     <div class="hstack gap-2 fs-11" id="tokesTrend">
-                                        <span id="tokesPercent">0%</span>
+                                        <span id="tokesPercent" class="fw-bold text-success">0%</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <!-- <div class="col-xxl-12 col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
                     <div class="card stretch stretch-full" id="remainingCallsCard"
@@ -1676,7 +1679,6 @@
             });
         }
 
-        // Utility function to format date for UI
         function formatDateUI(dateString) {
             const d = new Date(dateString);
             const options = { day: "numeric", month: "short" };
@@ -1686,7 +1688,6 @@
         function loadDashboardData(startDate = null, endDate = null) {
             let url = `https://fundsaudit.com/api/v1/mytarget/c1targets?userId=${userData.user_id}`;
 
-            // Append date range if provided
             if (startDate && endDate) {
                 url += `&startDate=${startDate}&endDate=${endDate}`;
             }
@@ -1698,28 +1699,33 @@
                     console.log("Dashboard API response:", response);
 
                     if (response.success) {
-                        // Get totals from API
                         const totalC1Target = response.totalC1Target || 0;
+                        const achievedC1Target = response.achievedC1Target || 0;
                         const totalToken = response.totalToken || 0;
-                        const achievedTarget = response.achievedC1Target || 0;
+                        const achievedToken = response.achievedToken || 0;
 
-                        // Achieved values are not available yet, so show "-"
+                        const targetPercent = totalC1Target > 0
+                            ? ((achievedC1Target / totalC1Target) * 100).toFixed(1)
+                            : 0;
+                        const tokenPercent = totalToken > 0
+                            ? ((achievedToken / totalToken) * 100).toFixed(1)
+                            : 0;
 
-                        const tokenAchieved = "0";
-
-                        // Update Target box
-                        $("#targetAchieved").text(achievedTarget);
+                        $("#targetAchieved").text(achievedC1Target);
                         $("#targetTotal").text(totalC1Target);
+                        $("#targetPercent")
+                            .text(targetPercent + "%")
+                            .removeClass("text-success text-danger")
+                            .addClass(targetPercent >= 50 ? "text-success" : "text-danger");
 
-                        let targetPercent = "0"; // no achieved value yet
-                        $("#targetPercent").text(targetPercent + "%");
-
-                        // Update Tokens box
-                        $("#tokesAchieved").text(tokenAchieved);
+                        $("#tokesAchieved").text(achievedToken);
                         $("#tokesTotal").text(totalToken);
-
-                        let tokesPercent = "0"; // no achieved value yet
-                        $("#tokesPercent").text(tokesPercent + "%");
+                        $("#tokesPercent")
+                            .text(tokenPercent + "%")
+                            .removeClass("text-success text-danger")
+                            .addClass(tokenPercent >= 50 ? "text-success" : "text-danger");
+                    } else {
+                        console.warn("Dashboard response not successful");
                     }
                 },
                 error: function (err) {
