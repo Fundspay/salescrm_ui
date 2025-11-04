@@ -2427,6 +2427,16 @@
             $("#collegeCount").text(filteredData.length || 0);
         }
 
+        window.filterTable = function () {
+            const value = $("#searchInput").val().toLowerCase().trim();
+            filteredData = tableData.filter(row =>
+                Object.values(row).some(field => (field + "").toLowerCase().includes(value))
+            );
+            currentPage = 1;
+            renderTable();
+            renderPagination();
+        };
+
         window.exportToExcel = function () {
             if (!tableData || tableData.length === 0) {
                 Swal.fire({
@@ -2813,6 +2823,16 @@
         function updateCount2() {
             $("#collegeCount2").text(filteredData2.length || 0);
         }
+
+        window.filterTable2 = function () {
+            const value2 = $("#searchInput2").val().toLowerCase().trim();
+            filteredData2 = tableData2.filter(row =>
+                Object.values(row).some(field => (field + "").toLowerCase().includes(value2))
+            );
+            currentPage2 = 1;
+            renderTable2();
+            renderPagination2();
+        };
 
         window.exportToExcel2 = function (useFiltered = true) {
             const dataSource = useFiltered ? filteredData2 : tableData2;
@@ -3201,6 +3221,16 @@
         function updateCount3() {
             $("#collegeCount3").text(filteredData3.length || 0);
         }
+
+        window.filterTable3 = function () {
+            const value3 = $("#searchInput3").val().toLowerCase().trim();
+            filteredData3 = tableData3.filter(row =>
+                Object.values(row).some(field => (field + "").toLowerCase().includes(value3))
+            );
+            currentPage3 = 1;
+            renderTable3();
+            renderPagination3();
+        };
 
         window.exportToExcel3 = function (useFiltered = true) {
             const dataSource = useFiltered ? filteredData3 : tableData3;
