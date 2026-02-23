@@ -977,7 +977,7 @@
                         #leadsTable th:nth-child(34),
                         #leadsTable th:nth-child(35),
                         #leadsTable th:nth-child(36),
-                        #leadsTable th:nth-child(37){
+                        #leadsTable th:nth-child(37) {
                             background-color: #faffdb !important;
                             /* Yellow */
                             color: #667112;
@@ -1128,7 +1128,7 @@
                         #leadsTable2 th:nth-child(34),
                         #leadsTable2 th:nth-child(35),
                         #leadsTable2 th:nth-child(36),
-                        #leadsTable2 th:nth-child(37){
+                        #leadsTable2 th:nth-child(37) {
                             background-color: #faffdb !important;
                             /* Yellow */
                             color: #667112;
@@ -1478,7 +1478,7 @@
                 </div>
                 <hr style="border: none; border-top: 10px dotted #000000; margin-top: 10px;"> -->
 
-                <!-- <div class="col-12 flex-fill">
+                    <!-- <div class="col-12 flex-fill">
                     <div class="card stretch stretch-full">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
@@ -1558,69 +1558,69 @@
                     </div>
                 </div> -->
 
-                <style>
-                    #dateRangePicker3::placeholder {
-                        font-weight: 700;
-                        color: #000;
-                        opacity: 1;
-                    }
-
-                    .search-wrapper3 {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                    }
-
-                    .search-icon {
-                        background: none;
-                        border: none;
-                        cursor: pointer;
-                        margin-right: 8px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 4px;
-                    }
-
-                    .search-bar3 {
-                        display: none;
-                    }
-
-                    .search-bar3.active {
-                        display: block;
-                    }
-
-                    #searchInput3 {
-                        padding: 6px 10px;
-                        border: 1px solid #ccc;
-                        border-radius: 6px;
-                    }
-                </style>
-
-                <script>
-                    const searchToggle3 = document.getElementById("searchToggle3");
-                    const searchBar3 = document.getElementById("searchBar3");
-                    const searchWrapper3 = document.getElementById("searchWrapper3");
-
-                    searchToggle3.addEventListener("click", () => {
-                        const isActive = searchBar3.classList.toggle("active");
-
-                        if (isActive) {
-                            document.getElementById("searchInput3").focus();
-
-                            loadTableData();
-                            loadTableData3();
+                    <style>
+                        #dateRangePicker3::placeholder {
+                            font-weight: 700;
+                            color: #000;
+                            opacity: 1;
                         }
-                    });
 
-                    document.addEventListener("click", (event) => {
-                        if (!searchWrapper3.contains(event.target)) {
-                            searchBar3.classList.remove("active");
+                        .search-wrapper3 {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
                         }
-                    });
-                </script>
 
-                <!-- <style>
+                        .search-icon {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            margin-right: 8px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 4px;
+                        }
+
+                        .search-bar3 {
+                            display: none;
+                        }
+
+                        .search-bar3.active {
+                            display: block;
+                        }
+
+                        #searchInput3 {
+                            padding: 6px 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                    </style>
+
+                    <script>
+                        const searchToggle3 = document.getElementById("searchToggle3");
+                        const searchBar3 = document.getElementById("searchBar3");
+                        const searchWrapper3 = document.getElementById("searchWrapper3");
+
+                        searchToggle3.addEventListener("click", () => {
+                            const isActive = searchBar3.classList.toggle("active");
+
+                            if (isActive) {
+                                document.getElementById("searchInput3").focus();
+
+                                loadTableData();
+                                loadTableData3();
+                            }
+                        });
+
+                        document.addEventListener("click", (event) => {
+                            if (!searchWrapper3.contains(event.target)) {
+                                searchBar3.classList.remove("active");
+                            }
+                        });
+                    </script>
+
+                    <!-- <style>
                     .card-header-action {
                         gap: 10px;
                     }
@@ -1661,66 +1661,66 @@
                 </style> -->
 
 
-                <!-- [ Main Content ] end -->
-            </div>
-            <!-- [ Footer ] start -->
-            <footer class="footer">
-                <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
-                    <span>Copyright Fundsroom ©</span>
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                </p>
-                <div class="d-flex align-items-center gap-4">
-                    <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
+                    <!-- [ Main Content ] end -->
+                </div>
+                <!-- [ Footer ] start -->
+                <footer class="footer">
+                    <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
+                        <span>Copyright Fundsroom ©</span>
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </p>
+                    <div class="d-flex align-items-center gap-4">
+                        <!-- <a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Help</a>
 					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Terms</a>
 					<a href="javascript:void(0);" class="fs-11 fw-semibold text-uppercase">Privacy</a> -->
-                </div>
-            </footer>
-            <style>
-                .flatpickr-calendar,
-                .flatpickr-calendar * {
-                    font-family: 'Inter', sans-serif !important;
-                    font-size: 14px;
-                }
+                    </div>
+                </footer>
+                <style>
+                    .flatpickr-calendar,
+                    .flatpickr-calendar * {
+                        font-family: 'Inter', sans-serif !important;
+                        font-size: 14px;
+                    }
 
-                .flatpickr-months .flatpickr-month {
-                    font-weight: 600;
-                    color: #155fcf;
-                }
+                    .flatpickr-months .flatpickr-month {
+                        font-weight: 600;
+                        color: #155fcf;
+                    }
 
-                .flatpickr-weekday {
-                    color: #1e293b;
-                    font-weight: 500;
-                }
+                    .flatpickr-weekday {
+                        color: #1e293b;
+                        font-weight: 500;
+                    }
 
-                .flatpickr-day.selected,
-                .flatpickr-day.startRange,
-                .flatpickr-day.endRange {
-                    background: #155fcf !important;
-                    color: #fff !important;
-                    border-radius: 6px;
-                }
+                    .flatpickr-day.selected,
+                    .flatpickr-day.startRange,
+                    .flatpickr-day.endRange {
+                        background: #155fcf !important;
+                        color: #fff !important;
+                        border-radius: 6px;
+                    }
 
-                .flatpickr-day.inRange {
-                    background: #e0ebff;
-                    color: #155fcf;
-                }
+                    .flatpickr-day.inRange {
+                        background: #e0ebff;
+                        color: #155fcf;
+                    }
 
-                .flatpickr-day.today {
-                    border: 1px solid #155fcf;
-                }
+                    .flatpickr-day.today {
+                        border: 1px solid #155fcf;
+                    }
 
-                #dateRangePicker {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 14px;
-                    border-radius: 6px;
-                    border: 1px solid #cbd5e1;
-                    padding: 6px 10px;
-                    color: #1e293b;
-                }
-            </style>
-            <!-- [ Footer ] end -->
+                    #dateRangePicker {
+                        font-family: 'Inter', sans-serif;
+                        font-size: 14px;
+                        border-radius: 6px;
+                        border: 1px solid #cbd5e1;
+                        padding: 6px 10px;
+                        color: #1e293b;
+                    }
+                </style>
+                <!-- [ Footer ] end -->
     </main>
     <!--! ================================================================ !-->
     <!--! [End] Main Content !-->
@@ -1929,86 +1929,86 @@
     </script>
 
     <!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-<style>
-  /* Calendar styling for holiday display */
-  .holiday-day {
-    background-color: #ffe6e6 !important;
-    border-radius: 6px;
-    position: relative;
-  }
-
-  .holiday-label {
-    display: block;
-    font-size: 9px;
-    color: #d63333;
-    font-weight: 600;
-    line-height: 1;
-    margin-top: 2px;
-  }
-
-  /* Make the calendar date smaller so text fits */
-  .flatpickr-day {
-    height: 38px !important;
-    line-height: 20px !important;
-    font-size: 12px !important;
-  }
-</style>
-
-<script>
-  // 🎉 List of major Indian holidays for 2025
-  const indianHolidays = [
-    { date: "2025-01-26", name: "Republic Day" },
-    { date: "2025-03-14", name: "Holi" },
-    { date: "2025-04-14", name: "Ambedkar Jayanti" },
-    { date: "2025-08-15", name: "Independence" },
-    { date: "2025-10-02", name: "Gandhi Jayanti" },
-    { date: "2025-10-21", name: "Dussehra" },
-    { date: "2025-10-31", name: "Diwali" },
-    { date: "2025-12-25", name: "Christmas" }
-  ];
-
-  let fromDate = null;
-  let toDate = null;
-
-  // 🗓️ Initialize Flatpickr
-  flatpickr("#dateRangePicker", {
-    mode: "range",
-    dateFormat: "Y-m-d",
-
-    // Highlight and label holidays
-    onDayCreate: function (dObj, dStr, fp, dayElem) {
-      const date = dayElem.dateObj.toISOString().split("T")[0];
-      const holiday = indianHolidays.find(h => h.date === date);
-
-      if (holiday) {
-        dayElem.classList.add("holiday-day");
-        // Append holiday name below the date
-        const label = document.createElement("span");
-        label.classList.add("holiday-label");
-        label.textContent = holiday.name;
-        dayElem.appendChild(label);
-      }
-    },
-
-    // When user selects range
-    onClose: function (selectedDates, dateStr, instance) {
-      if (selectedDates.length === 2) {
-        fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
-        toDate = instance.formatDate(selectedDates[1], "Y-m-d");
-        console.log("From:", fromDate, "To:", toDate);
-
-        // Trigger your existing scripts
-        loadAnalysisChart(fromDate, toDate);
-        loadDashboardData(fromDate, toDate);
-        if (typeof loadTableData2 === "function") {
-          loadTableData2(fromDate, toDate);
+    <style>
+        /* Calendar styling for holiday display */
+        .holiday-day {
+            background-color: #ffe6e6 !important;
+            border-radius: 6px;
+            position: relative;
         }
-      }
-    }
-  });
-</script>
+
+        .holiday-label {
+            display: block;
+            font-size: 9px;
+            color: #d63333;
+            font-weight: 600;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        /* Make the calendar date smaller so text fits */
+        .flatpickr-day {
+            height: 38px !important;
+            line-height: 20px !important;
+            font-size: 12px !important;
+        }
+    </style>
+
+    <script>
+        // 🎉 List of major Indian holidays for 2025
+        const indianHolidays = [
+            { date: "2025-01-26", name: "Republic Day" },
+            { date: "2025-03-14", name: "Holi" },
+            { date: "2025-04-14", name: "Ambedkar Jayanti" },
+            { date: "2025-08-15", name: "Independence" },
+            { date: "2025-10-02", name: "Gandhi Jayanti" },
+            { date: "2025-10-21", name: "Dussehra" },
+            { date: "2025-10-31", name: "Diwali" },
+            { date: "2025-12-25", name: "Christmas" }
+        ];
+
+        let fromDate = null;
+        let toDate = null;
+
+        // 🗓️ Initialize Flatpickr
+        flatpickr("#dateRangePicker", {
+            mode: "range",
+            dateFormat: "Y-m-d",
+
+            // Highlight and label holidays
+            onDayCreate: function (dObj, dStr, fp, dayElem) {
+                const date = dayElem.dateObj.toISOString().split("T")[0];
+                const holiday = indianHolidays.find(h => h.date === date);
+
+                if (holiday) {
+                    dayElem.classList.add("holiday-day");
+                    // Append holiday name below the date
+                    const label = document.createElement("span");
+                    label.classList.add("holiday-label");
+                    label.textContent = holiday.name;
+                    dayElem.appendChild(label);
+                }
+            },
+
+            // When user selects range
+            onClose: function (selectedDates, dateStr, instance) {
+                if (selectedDates.length === 2) {
+                    fromDate = instance.formatDate(selectedDates[0], "Y-m-d");
+                    toDate = instance.formatDate(selectedDates[1], "Y-m-d");
+                    console.log("From:", fromDate, "To:", toDate);
+
+                    // Trigger your existing scripts
+                    loadAnalysisChart(fromDate, toDate);
+                    loadDashboardData(fromDate, toDate);
+                    if (typeof loadTableData2 === "function") {
+                        loadTableData2(fromDate, toDate);
+                    }
+                }
+            }
+        });
+    </script>
 
 
     <script>
@@ -2178,7 +2178,7 @@
         let tableData = [];
         let filteredData = [];
         let rmNames = [];
-        const rowsPerPage = 10;
+        const rowsPerPage = 100;
         let currentPage = 1;
 
         function loadTableData() {
@@ -2453,9 +2453,30 @@
 
             pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage(${currentPage - 1})">&laquo;</a></li>`);
 
-            for (let i = 1; i <= totalPages; i++) {
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + 3);
+
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            if (startPage > 1) {
+                pagination.append(`<li><a href="javascript:void(0);" onclick="changePage(1)">1</a></li>`);
+                if (startPage > 2) {
+                    pagination.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
                 const active = i === currentPage ? "active" : "";
                 pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage(${i})">${i}</a></li>`);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    pagination.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+                pagination.append(`<li><a href="javascript:void(0);" onclick="changePage(${totalPages})">${totalPages}</a></li>`);
             }
 
             pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage(${currentPage + 1})">&raquo;</a></li>`);
@@ -2878,9 +2899,30 @@
 
             pagination.append(`<li><a href="javascript:void(0);" class="${prevDisabled}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
 
-            for (let i = 1; i <= totalPages; i++) {
+            let startPage = Math.max(1, currentPage2 - 1);
+            let endPage = Math.min(totalPages, startPage + 3);
+
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            if (startPage > 1) {
+                pagination.append(`<li><a href="javascript:void(0);" onclick="changePage2(1)">1</a></li>`);
+                if (startPage > 2) {
+                    pagination.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
                 const active = i === currentPage2 ? "active" : "";
                 pagination.append(`<li><a href="javascript:void(0);" class="${active}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    pagination.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+                pagination.append(`<li><a href="javascript:void(0);" onclick="changePage2(${totalPages})">${totalPages}</a></li>`);
             }
 
             pagination.append(`<li><a href="javascript:void(0);" class="${nextDisabled}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);

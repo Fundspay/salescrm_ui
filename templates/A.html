@@ -614,12 +614,12 @@
                                         <thead>
                                             <tr class="border-b">
                                                 <th>SR</th>
+                                                <th>CONTACT PERSON NAME</th>
+                                                <th>MOBILE NUMBER</th>
                                                 <th>SOURCED FROM</th>
                                                 <th>SOURCED BY</th>
                                                 <th>DATE OF CONNECT</th>
                                                 <th>BUSINESS NAME</th>
-                                                <th>CONTACT PERSON NAME</th>
-                                                <th>MOBILE NUMBER</th>
                                                 <th>ADDRESS</th>
                                                 <th>EMAIL</th>
                                                 <th>BUSINESS SECTOR</th>
@@ -1113,12 +1113,12 @@
                                         <thead class="table-light">
                                             <tr class="border-b">
                                                 <th>SR</th>
+                                                <th>CONTACT PERSON NAME</th>
+                                                <th>MOBILE NUMBER</th>
                                                 <th>SOURCED FROM</th>
                                                 <th>SOURCED BY</th>
                                                 <th>DATE OF CONNECT</th>
                                                 <th>BUSINESS NAME</th>
-                                                <th>CONTACT PERSON NAME</th>
-                                                <th>MOBILE NUMBER</th>
                                                 <th>ADDRESS</th>
                                                 <th>EMAIL</th>
                                                 <th>BUSINESS SECTOR</th>
@@ -1330,12 +1330,12 @@
                                     <thead>
                                         <tr class="border-b">
                                             <th>SR</th>
+                                            <th>CONTACT PERSON NAME</th>
+                                            <th>MOBILE NUMBER</th>
                                             <th>SOURCED FROM</th>
                                             <th>SOURCED BY</th>
                                             <th>DATE OF CONNECT</th>
                                             <th>BUSINESS NAME</th>
-                                            <th>CONTACT PERSON NAME</th>
-                                            <th>MOBILE NUMBER</th>
                                             <th>ADDRESS</th>
                                             <th>EMAIL</th>
                                             <th>BUSINESS SECTOR</th>
@@ -1950,21 +1950,21 @@
             rows.forEach((row, index) => {
                 let tr = `<tr data-id="${row.id}">
                 <td>${row.sno}</td>
-                ${makeCell("sourcedFrom", row.sourcedFrom)}
-                ${makeDropdownCell("sourcedBy", row.sourcedBy)}
-                ${makeDateCell("dateOfConnect", row.dateOfConnect)}
-                ${makeCell("businessName", row.businessName)}
-                ${makeCell("contactPersonName", row.contactPersonName)}
-                ${makeCell("mobileNumber", row.mobileNumber)}
-                ${makeCell("address", row.address)}
-                ${makeCell("email", row.email)}
-                ${makeDropdownCell("businessSector", row.businessSector)}
-                ${makeCell("zone", row.zone)}
-                ${makeCell("landmark", row.landmark)}
-                ${makeDropdownCell("existingWebsite", row.existingWebsite)}
-                ${makeDropdownCell("smmPresence", row.smmPresence)}
-                ${makeDropdownCell("meetingStatus", row.meetingStatus)}
-            </tr>`;
+                    ${makeCell("contactPersonName", row.contactPersonName)}
+                    ${makeCell("mobileNumber", row.mobileNumber)}
+                    ${makeCell("sourcedFrom", row.sourcedFrom)}
+                    ${makeDropdownCell("sourcedBy", row.sourcedBy)}
+                    ${makeDateCell("dateOfConnect", row.dateOfConnect)}
+                    ${makeCell("businessName", row.businessName)}
+                    ${makeCell("address", row.address)}
+                    ${makeCell("email", row.email)}
+                    ${makeDropdownCell("businessSector", row.businessSector)}
+                    ${makeCell("zone", row.zone)}
+                    ${makeCell("landmark", row.landmark)}
+                    ${makeDropdownCell("existingWebsite", row.existingWebsite)}
+                    ${makeDropdownCell("smmPresence", row.smmPresence)}
+                    ${makeDropdownCell("meetingStatus", row.meetingStatus)}
+                </tr>`;
                 tbody.append(tr);
             });
 
@@ -1974,12 +1974,12 @@
 
         const columnKeys = [
             "sno",
+            "contactPersonName",
+            "mobileNumber",
             "sourcedFrom",
             "sourcedBy",
             "dateOfConnect",
             "businessName",
-            "contactPersonName",
-            "mobileNumber",
             "address",
             "email",
             "businessSector",
@@ -2313,12 +2313,12 @@
             rows2.forEach((row, index) => {
                 let tr2 = `<tr data-id="${row.id}">
                 <td>${row.sno}</td>
+                ${makeCell2("contactPersonName", row.contactPersonName)}
+                ${makeCell2("mobileNumber", row.mobileNumber)}
                 ${makeCell2("sourcedFrom", row.sourcedFrom)}
                 ${makeDropdownCell2("sourcedBy", row.sourcedBy)}
                 ${makeDateCell2("dateOfConnect", row.dateOfConnect)}
                 ${makeCell2("businessName", row.businessName)}
-                ${makeCell2("contactPersonName", row.contactPersonName)}
-                ${makeCell2("mobileNumber", row.mobileNumber)}
                 ${makeCell2("address", row.address)}
                 ${makeCell2("email", row.email)}
                 ${makeDropdownCell2("businessSector", row.businessSector)}
@@ -2337,12 +2337,12 @@
 
         const columnKeys2 = [
             "sno",
+            "contactPersonName",
+            "mobileNumber",
             "sourcedFrom",
             "sourcedBy",
             "dateOfConnect",
             "businessName",
-            "contactPersonName",
-            "mobileNumber",
             "address",
             "email",
             "businessSector",
@@ -2675,12 +2675,12 @@
             rows3.forEach((row, index) => {
                 let tr3 = `<tr data-id="${row.id}">
                 <td>${row.sno}</td>
+                ${makeCell3("contactPersonName", row.contactPersonName)}
+                ${makeCell3("mobileNumber", row.mobileNumber)}
                 ${makeCell3("sourcedFrom", row.sourcedFrom)}
                 ${makeDropdownCell3("sourcedBy", row.sourcedBy)}
                 ${makeDateCell3("dateOfConnect", row.dateOfConnect)}
                 ${makeCell3("businessName", row.businessName)}
-                ${makeCell3("contactPersonName", row.contactPersonName)}
-                ${makeCell3("mobileNumber", row.mobileNumber)}
                 ${makeCell3("address", row.address)}
                 ${makeCell3("email", row.email)}
                 ${makeDropdownCell3("businessSector", row.businessSector)}
@@ -2699,12 +2699,12 @@
 
         const columnKeys3 = [
             "sno",
+            "contactPersonName",
+            "mobileNumber",
             "sourcedFrom",
             "sourcedBy",
             "dateOfConnect",
             "businessName",
-            "contactPersonName",
-            "mobileNumber",
             "address",
             "email",
             "businessSector",
