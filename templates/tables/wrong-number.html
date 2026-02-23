@@ -461,7 +461,7 @@
 
         let tableData2 = [];
         let filteredData2 = [];
-        const rowsPerPage2 = 10;
+        const rowsPerPage2 = 100;
         let currentPage2 = 1;
 
         function loadTableData2() {
@@ -685,9 +685,30 @@
 
             pagination2.append(`<li><a href="javascript:void(0);" class="${prevDisabled2}" onclick="changePage2(${currentPage2 - 1})">&laquo;</a></li>`);
 
-            for (let i = 1; i <= totalPages2; i++) {
+            let startPage = Math.max(1, currentPage2 - 1);
+            let endPage = Math.min(totalPages2, startPage + 3);
+
+            if (endPage - startPage < 3) {
+                startPage = Math.max(1, endPage - 3);
+            }
+
+            if (startPage > 1) {
+                pagination2.append(`<li><a href="javascript:void(0);" onclick="changePage2(1)">1</a></li>`);
+                if (startPage > 2) {
+                    pagination2.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
                 const active2 = i === currentPage2 ? "active" : "";
                 pagination2.append(`<li><a href="javascript:void(0);" class="${active2}" onclick="changePage2(${i})">${i}</a></li>`);
+            }
+
+            if (endPage < totalPages2) {
+                if (endPage < totalPages2 - 1) {
+                    pagination2.append(`<li><span class="ellipsis">...</span></li>`);
+                }
+                pagination2.append(`<li><a href="javascript:void(0);" onclick="changePage2(${totalPages2})">${totalPages2}</a></li>`);
             }
 
             pagination2.append(`<li><a href="javascript:void(0);" class="${nextDisabled2}" onclick="changePage2(${currentPage2 + 1})">&raquo;</a></li>`);
