@@ -656,12 +656,12 @@
                                         <thead>
                                             <tr class="border-b">
                                                 <th>SR</th>
+                                                <th>CONTACT PERSON NAME</th>
+                                                <th>MOBILE NUMBER</th>
                                                 <th>SOURCED FROM</th>
                                                 <th>SOURCED BY</th>
                                                 <th>DATE OF CONNECT</th>
                                                 <th>BUSINESS NAME</th>
-                                                <th>CONTACT PERSON NAME</th>
-                                                <th>MOBILE NUMBER</th>
                                                 <th>ADDRESS</th>
                                                 <th>EMAIL</th>
                                                 <th>BUSINESS SECTOR</th>
@@ -1305,12 +1305,12 @@
                                         <thead class="table-light">
                                             <tr class="border-b">
                                                 <th>SR</th>
+                                                <th>CONTACT PERSON NAME</th>
+                                                <th>MOBILE NUMBER</th>
                                                 <th>SOURCED FROM</th>
                                                 <th>SOURCED BY</th>
                                                 <th>DATE OF CONNECT</th>
                                                 <th>BUSINESS NAME</th>
-                                                <th>CONTACT PERSON NAME</th>
-                                                <th>MOBILE NUMBER</th>
                                                 <th>ADDRESS</th>
                                                 <th>EMAIL</th>
                                                 <th>BUSINESS SECTOR</th>
@@ -2255,8 +2255,8 @@
         }
 
         const columnKeys = [
-            "sno", "sourcedFrom", "sourcedBy", "dateOfConnect", "businessName", "contactPersonName",
-            "mobileNumber", "address", "email", "businessSector", "zone", "landmark",
+            "sno", "contactPersonName",
+            "mobileNumber", "sourcedFrom", "sourcedBy", "dateOfConnect", "businessName", "address", "email", "businessSector", "zone", "landmark",
             "existingWebsite", "smmPresence", "meetingStatus",
             "dateOfC1Connect", "c1Status", "c1Comment", "dateOfC2Clarity", "c2Status", "c2Comment",
             "dateOfC3Clarity", "c3Status", "c3Comment", "dateOfC4Customer", "c4Status", "c4Comment",
@@ -2280,12 +2280,12 @@
                 let tr = `<tr data-id="${row.id}" data-id2="${row.id2}">`;
                 tr += `
                 <td>${row.sno}</td>
+                <td>${row.contactPersonName || ""}</td>
+                <td>${row.mobileNumber || ""}</td>
                 <td>${row.sourcedFrom || ""}</td>
                 <td>${row.sourcedBy || ""}</td>
                 <td>${row.dateOfConnect || ""}</td>
                 <td>${row.businessName || ""}</td>
-                <td>${row.contactPersonName || ""}</td>
-                <td>${row.mobileNumber || ""}</td>
                 <td>${row.address || ""}</td>
                 <td>${row.email || ""}</td>
                 <td>${row.businessSector || ""}</td>
@@ -2717,8 +2717,7 @@
         }
 
         const columnKeys2 = [
-            "sno", "sourcedFrom", "sourcedBy", "dateOfConnect", "businessName", "contactPersonName",
-            "mobileNumber", "address", "email", "businessSector", "zone", "landmark",
+            "sno", "contactPersonName", "mobileNumber", "sourcedFrom", "sourcedBy", "dateOfConnect", "businessName", "address", "email", "businessSector", "zone", "landmark",
             "existingWebsite", "smmPresence", "meetingStatus",
             "dateOfC1Connect", "c1Status", "c1Comment", "dateOfC2Clarity", "c2Status", "c2Comment",
             "dateOfC3Clarity", "c3Status", "c3Comment", "dateOfC4Customer", "c4Status", "c4Comment",
@@ -2740,12 +2739,12 @@
                 let tr = `<tr data-id="${row.id}" data-id2="${row.id2}">`;
                 tr += `
                     <td>${row.sno}</td>
+                    <td>${row.contactPersonName || ""}</td>
+                    <td>${row.mobileNumber || ""}</td>
                     <td>${row.sourcedFrom || ""}</td>
                     <td>${row.sourcedBy || ""}</td>
                     <td>${row.dateOfConnect || ""}</td>
                     <td>${row.businessName || ""}</td>
-                    <td>${row.contactPersonName || ""}</td>
-                    <td>${row.mobileNumber || ""}</td>
                     <td>${row.address || ""}</td>
                     <td>${row.email || ""}</td>
                     <td>${row.businessSector || ""}</td>
